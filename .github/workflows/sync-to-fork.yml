@@ -6,7 +6,7 @@ on:
 
 jobs:
   sync:
-    if: github.repository == 'bs_memory_project'
+    if: github.repository == "bs_memory_project"
     runs-on: ubuntu-latest
     
     steps:
@@ -15,7 +15,7 @@ jobs:
   
       - name: Set up Git
         run: | 
-          git config user.name "Github Actions 
+          git config user.name "Github Actions" 
           git config user.email "action@github.com"
 
       - name: Add Fork as Remote
