@@ -1,0 +1,29 @@
+name: Sync Fork With Upstream
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  sync:
+    if: github.repository == 'bs_memory_project'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out the repository 
+      - uses: actions/checkout@v4
+  
+      - name: Set up Git
+        run: |
+          git config user.name "Github Actions"
+          git config user.email "action@github.com"
+
+      - name: Add Fork as Remote
+        run: git remote add fork https://github.com/EUNSUN23/bs_memory_project_forked.git
+
+      - name: Push changes to Fork
+        env: 
+          GITHUB_USERNAME: EUNSUN23
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          git push -f https://$GITHUB_USERNAME:$GITHUB_TOKEN@https://github.com/EUNSUN23/bs_memory_project_forked.git main
