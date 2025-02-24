@@ -10,7 +10,7 @@
     "lint": "eslint . --inspect-config",
     "format": "prettier . --write",
     "preview": "vite preview",
-    "prepare": "husky"
+    "postinstall": "husky"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
