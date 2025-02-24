@@ -1,4 +1,5 @@
-set -o pipefail
+echo "Running tests..."
 yarn run test
-yarn build
 
+echo "Running build..."
+yarn build
