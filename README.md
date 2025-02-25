@@ -1,1 +1,0 @@
-# bs_memory_project
