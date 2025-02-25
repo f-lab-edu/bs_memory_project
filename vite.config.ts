@@ -1,13 +1,20 @@
-/// <reference types="vitest" />
+import { defineConfig as testConfig } from 'vitest/config';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/vite';
 
-export default defineConfig({
-	plugins: [react(), tailwindcss()],
-	test: {
-		globals: true,
-		environment: 'jsdom',
-		setupFiles: './src/tests/setup.ts',
-	},
+const config = defineConfig({
+  plugins: [react()],
 });
+
+// Vitest configuration
+const tstConfig = testConfig({
+  test: {
+    environment: 'jsdom',
+  },
+});
+
+// Merge configurations
+export default {
+  ...config,
+  ...tstConfig,
+};
