@@ -1,10 +1,14 @@
 name: Vercel Preview Deployment
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 on:
   push:
     branches-ignore:
       - main
 jobs:
-  build-test-deploy:
+  build-test:
     if: github.repository == 'EUNSUN23/bs_memory_project_forked'
     runs-on: ubuntu-latest
     steps:
@@ -27,10 +31,13 @@ jobs:
         if: ${{ success() }}
         run: yarn build
 
-      - name: Deploy to Vercel
+      - name: Install Vercel CLI
         if: ${{ success() }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        run: yarn add global vercel@latest
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+
+
+
