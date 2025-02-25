@@ -33,7 +33,7 @@ jobs:
 
       - name: Install Vercel CLI
         if: ${{ success() }}
-        run: yarn add global vercel@latest
+        run: yarn global add vercel@latest
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
