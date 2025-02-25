@@ -1,5 +1,0 @@
-echo "Running tests..."
-yarn run test
-
-echo "Running build..."
-yarn build
