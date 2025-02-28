@@ -52,6 +52,7 @@ export default tseslint.config(
       'jsx-a11y/role-has-required-aria-props': 'warn',
       'jsx-a11y/role-supports-aria-props': 'warn',
       'tailwindcss/classnames-order': 'off',
+      '@typescript-eslint/consistent-type-definitions': 'off',
     },
   },
 );
