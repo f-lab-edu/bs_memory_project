@@ -6,6 +6,7 @@ import Home from '@pages/home';
 import Drilling from '@pages/drilling';
 import RootComponent from './RootComponent.tsx';
 import Exam from '@pages/exam';
+import { getSeries } from './apis/series.ts';
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
+        loader: getSeries,
         element: <Home />,
       },
       {

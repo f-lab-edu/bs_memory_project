@@ -55,6 +55,8 @@ export default tseslint.config(
       '@typescript-eslint/consistent-type-definitions': 'off',
       '@typescript-eslint/no-redundant-type-constituents': 'off',
       '@typescript-eslint/consistent-indexed-object-style': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
     },
   },
 );
