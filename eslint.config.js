@@ -54,6 +54,7 @@ export default tseslint.config(
       'tailwindcss/classnames-order': 'off',
       '@typescript-eslint/consistent-type-definitions': 'off',
       '@typescript-eslint/no-redundant-type-constituents': 'off',
+      '@typescript-eslint/consistent-indexed-object-style': 'off',
     },
   },
 );
