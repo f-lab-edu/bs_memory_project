@@ -1,4 +1,7 @@
 import { VerseSummaryDatum } from '../../types.ts';
+import { useVerseSelectStore } from '../../../../store/verseSelectStore.ts';
+import { useShallow } from 'zustand/react/shallow';
+import { ChangeEvent } from 'react';
 
 type VerseOptionProps = {
   data: VerseSummaryDatum;
@@ -16,6 +19,16 @@ function VerseOption({ data }: VerseOptionProps) {
     bible_code: { bible_name },
   } = data;
 
+  const isSelected = useVerseSelectStore(useShallow(state => state.hasId(idx)));
+
+  const addSelected = useVerseSelectStore(state => state.add);
+  const removeSelected = useVerseSelectStore(state => state.remove);
+
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.checked) removeSelected(idx);
+    else addSelected(idx);
+  };
+
   return (
     <li className='flex items-center space-x-4 pb-1.5 pt-3 mobile:py-1.5'>
       <div className='flex basis-[40px] justify-center'>
@@ -23,7 +36,8 @@ function VerseOption({ data }: VerseOptionProps) {
           type='checkbox'
           id={`${series_code}-${card_num}`}
           className='size-5 checked:ring-0 focus-within:ring-0 mobile:size-4'
-          value={idx}
+          checked={isSelected}
+          onChange={onChangeHandler}
         />
       </div>
       <label
