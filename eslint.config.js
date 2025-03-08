@@ -54,6 +54,17 @@ export default tseslint.config(
       'tailwindcss/classnames-order': 'off',
       '@typescript-eslint/consistent-type-definitions': 'off',
       '@typescript-eslint/no-redundant-type-constituents': 'off',
+      '@typescript-eslint/consistent-indexed-object-style': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      'react/jsx-handler-names': [
+        'error',
+        {
+          eventHandlerPrefix: 'handle',
+          eventHandlerPropPrefix: 'on',
+          checkLocalVariables: true,
+        },
+      ],
     },
   },
 );

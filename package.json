@@ -10,7 +10,9 @@
     "lint": "eslint . --inspect-config",
     "format": "prettier . --write",
     "preview": "vite preview",
-    "postinstall": "husky"
+    "postinstall": "husky",
+    "update-types": "dotenv -- cross-var npx supabase gen types --lang=typescript --project-id %VITE_SUPABASE_PID% --schema public > src/apis/database.types.ts",
+    "dev:update-types": "dotenv -- cross-var npx supabase gen types --lang=typescript --local > src/apis/database.types.ts"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
@@ -23,6 +25,7 @@
     "@react-icons/all-files": "^4.1.0",
     "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/forms": "^0.5.10",
+    "@tanstack/react-query": "^5.67.1",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -31,7 +34,8 @@
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.2.0",
     "tailwind-merge": "2.6.0",
-    "tailwindcss": "3"
+    "tailwindcss": "3",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
@@ -44,6 +48,8 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
+    "cross-var": "^1.1.0",
+    "dotenv-cli": "^8.0.0",
     "eslint": "^9.19.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.4",
@@ -56,7 +62,6 @@
     "lint-staged": "^15.4.3",
     "prettier": "^3.5.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "supabase": "^2.15.8",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.22.0",
     "vite": "^6.1.0",

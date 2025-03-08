@@ -1,5 +1,3 @@
-import { BIBLE_VERSION } from './src/constants/bibleVersion.ts';
-
 export type Json =
   | string
   | number
@@ -9,6 +7,31 @@ export type Json =
   | Json[];
 
 export type Database = {
+  graphql_public: {
+    Tables: {
+      [_ in never]: never;
+    };
+    Views: {
+      [_ in never]: never;
+    };
+    Functions: {
+      graphql: {
+        Args: {
+          operationName?: string;
+          query?: string;
+          variables?: Json;
+          extensions?: Json;
+        };
+        Returns: Json;
+      };
+    };
+    Enums: {
+      [_ in never]: never;
+    };
+    CompositeTypes: {
+      [_ in never]: never;
+    };
+  };
   public: {
     Tables: {
       android_metadata: {
@@ -25,27 +48,27 @@ export type Database = {
       };
       bible_code: {
         Row: {
-          bible_code: string | null;
-          bible_name: string | null;
+          bible_code: string;
+          bible_name: string;
           bible_name_eng: string | null;
-          chapter: number | null;
-          short_name: string | null;
+          chapter: number;
+          short_name: string;
           short_name_eng: string | null;
         };
         Insert: {
-          bible_code?: string | null;
-          bible_name?: string | null;
+          bible_code: string;
+          bible_name: string;
           bible_name_eng?: string | null;
-          chapter?: number | null;
-          short_name?: string | null;
+          chapter: number;
+          short_name: string;
           short_name_eng?: string | null;
         };
         Update: {
-          bible_code?: string | null;
-          bible_name?: string | null;
+          bible_code?: string;
+          bible_name?: string;
           bible_name_eng?: string | null;
-          chapter?: number | null;
-          short_name?: string | null;
+          chapter?: number;
+          short_name?: string;
           short_name_eng?: string | null;
         };
         Relationships: [];
@@ -71,6 +94,21 @@ export type Database = {
         };
         Relationships: [];
       };
+      bible_version: {
+        Row: {
+          code: string;
+          name: string;
+        };
+        Insert: {
+          code?: string;
+          name: string;
+        };
+        Update: {
+          code?: string;
+          name?: string;
+        };
+        Relationships: [];
+      };
       config: {
         Row: {
           oyo_backup: string | null;
@@ -88,34 +126,40 @@ export type Database = {
       };
       series: {
         Row: {
-          category: string | null;
-          category_eng: string | null;
-          ord: number | null;
-          print_opt: string | null;
-          series_code: string | null;
-          series_name: string | null;
-          series_name_eng: string | null;
-          verse_count: number | null;
+          category: string;
+          category_eng: string;
+          ord: number;
+          parent_series: string | null;
+          print_opt: string;
+          series_code: string;
+          series_name: string;
+          series_name_eng: string;
+          sub_series_opt: string;
+          verse_count: number;
         };
         Insert: {
-          category?: string | null;
-          category_eng?: string | null;
-          ord?: number | null;
-          print_opt?: string | null;
-          series_code?: string | null;
-          series_name?: string | null;
-          series_name_eng?: string | null;
-          verse_count?: number | null;
+          category?: string;
+          category_eng?: string;
+          ord: number;
+          parent_series?: string | null;
+          print_opt?: string;
+          series_code?: string;
+          series_name?: string;
+          series_name_eng?: string;
+          sub_series_opt?: string;
+          verse_count: number;
         };
         Update: {
-          category?: string | null;
-          category_eng?: string | null;
-          ord?: number | null;
-          print_opt?: string | null;
-          series_code?: string | null;
-          series_name?: string | null;
-          series_name_eng?: string | null;
-          verse_count?: number | null;
+          category?: string;
+          category_eng?: string;
+          ord?: number;
+          parent_series?: string | null;
+          print_opt?: string;
+          series_code?: string;
+          series_name?: string;
+          series_name_eng?: string;
+          sub_series_opt?: string;
+          verse_count?: number;
         };
         Relationships: [];
       };
@@ -178,96 +222,112 @@ export type Database = {
       };
       verse: {
         Row: {
-          bible_code: string | null;
-          bible_version: string | null;
-          card_num: number | null;
-          category: string | null;
+          bible_code: string;
+          bible_version: string;
+          card_num: number;
+          category: string;
           category_eng: string | null;
-          chapter: number | null;
+          chapter: number;
           chul_opt: string | null;
           double_opt: string | null;
           false_content: string | null;
           false_count: number | null;
-          idx: number | null;
+          idx: number;
           memory_date: string | null;
           pass1_opt: string | null;
           pass2_opt: string | null;
           pass3_opt: string | null;
           print_opt: string | null;
-          series_code: string | null;
-          theme: string | null;
+          series_code: string;
+          theme: string;
           theme_eng: string | null;
-          verse_gae: string | null;
+          verse_gae: string;
           verse_kjv: string | null;
-          verse_kor: string | null;
+          verse_kor: string;
           verse_niv: string | null;
           verse_opt: string | null;
-          verse1: number | null;
-          verse2: number | null;
+          verse1: number;
+          verse2: number;
         };
         Insert: {
-          bible_code?: string | null;
-          bible_version?: string | null;
-          card_num?: number | null;
-          category?: string | null;
+          bible_code: string;
+          bible_version?: string;
+          card_num: number;
+          category: string;
           category_eng?: string | null;
-          chapter?: number | null;
+          chapter: number;
           chul_opt?: string | null;
           double_opt?: string | null;
           false_content?: string | null;
           false_count?: number | null;
-          idx?: number | null;
+          idx: number;
           memory_date?: string | null;
           pass1_opt?: string | null;
           pass2_opt?: string | null;
           pass3_opt?: string | null;
           print_opt?: string | null;
-          series_code?: string | null;
-          theme?: string | null;
+          series_code: string;
+          theme: string;
           theme_eng?: string | null;
-          verse_gae?: string | null;
+          verse_gae: string;
           verse_kjv?: string | null;
-          verse_kor?: string | null;
+          verse_kor: string;
           verse_niv?: string | null;
           verse_opt?: string | null;
-          verse1?: number | null;
-          verse2?: number | null;
+          verse1: number;
+          verse2: number;
         };
         Update: {
-          bible_code?: string | null;
-          bible_version?: string | null;
-          card_num?: number | null;
-          category?: string | null;
+          bible_code?: string;
+          bible_version?: string;
+          card_num?: number;
+          category?: string;
           category_eng?: string | null;
-          chapter?: number | null;
+          chapter?: number;
           chul_opt?: string | null;
           double_opt?: string | null;
           false_content?: string | null;
           false_count?: number | null;
-          idx?: number | null;
+          idx?: number;
           memory_date?: string | null;
           pass1_opt?: string | null;
           pass2_opt?: string | null;
           pass3_opt?: string | null;
           print_opt?: string | null;
-          series_code?: string | null;
-          theme?: string | null;
+          series_code?: string;
+          theme?: string;
           theme_eng?: string | null;
-          verse_gae?: string | null;
+          verse_gae?: string;
           verse_kjv?: string | null;
-          verse_kor?: string | null;
+          verse_kor?: string;
           verse_niv?: string | null;
           verse_opt?: string | null;
-          verse1?: number | null;
-          verse2?: number | null;
+          verse1?: number;
+          verse2?: number;
         };
-        Relationships: [];
+        Relationships: [
+          {
+            foreignKeyName: 'verse_bible_code_fkey';
+            columns: ['bible_code'];
+            isOneToOne: false;
+            referencedRelation: 'bible_code';
+            referencedColumns: ['bible_code'];
+          },
+        ];
       };
     };
-    Views: Record<never, never>;
-    Functions: Record<never, never>;
-    Enums: Record<never, never>;
-    CompositeTypes: Record<never, never>;
+    Views: {
+      [_ in never]: never;
+    };
+    Functions: {
+      [_ in never]: never;
+    };
+    Enums: {
+      [_ in never]: never;
+    };
+    CompositeTypes: {
+      [_ in never]: never;
+    };
   };
 };
 
@@ -367,11 +427,3 @@ export type CompositeTypes<
   : PublicCompositeTypeNameOrOptions extends keyof PublicSchema['CompositeTypes']
     ? PublicSchema['CompositeTypes'][PublicCompositeTypeNameOrOptions]
     : never;
-
-export type SeriesRowData = Database['public']['Tables']['series']['Row'];
-
-export type BibleVersionName =
-  (typeof BIBLE_VERSION)[keyof typeof BIBLE_VERSION]['name'];
-
-export type BibleVersionCode =
-  (typeof BIBLE_VERSION)[keyof typeof BIBLE_VERSION]['code'];

@@ -1,11 +1,21 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
+import '@/index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from '@pages/home';
 import Drilling from '@pages/drilling';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { getSeries } from '@apis/series.ts';
 import RootComponent from './RootComponent.tsx';
 import Exam from '@pages/exam';
+import Home from '@pages/home';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 10,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -13,6 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
+        loader: getSeries,
         element: <Home />,
       },
       {
@@ -29,6 +40,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </StrictMode>,
 );
