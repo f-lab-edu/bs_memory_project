@@ -21,12 +21,13 @@
     "noUncheckedSideEffectImports": true,
     "baseUrl": "./",
     "paths": {
+      "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@features/*": ["src/features/*"],
       "@apis/*": ["src/apis/*"],
       "@store/*": ["src/store/*"],
-      "@/*": ["src/*"]
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": ["src"]
