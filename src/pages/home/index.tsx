@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import VerseSelect from '../../features/verseSelect';
+import VerseSelect from '@features/verseSelect';
 
 function Home() {
   return (

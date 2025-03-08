@@ -57,6 +57,14 @@ export default tseslint.config(
       '@typescript-eslint/consistent-indexed-object-style': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
+      'react/jsx-handler-names': [
+        'error',
+        {
+          eventHandlerPrefix: 'handle',
+          eventHandlerPropPrefix: 'on',
+          checkLocalVariables: true,
+        },
+      ],
     },
   },
 );

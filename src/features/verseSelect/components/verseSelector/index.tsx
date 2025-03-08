@@ -1,11 +1,21 @@
-import { VerseSummaryData } from '../../types.ts';
-import VerseOption from './VerseOption.tsx';
+import { ChangeEvent } from 'react';
+import { useVerseSelectStore } from '@store/verseSelectStore.ts';
+import { VerseSummaryData } from '@features/verseSelect/types.ts';
+import VerseOption from '@features/verseSelect/components/verseSelector/VerseOption.tsx';
 
 type VerseSelectorProps = {
   data: VerseSummaryData;
 };
 
 function VerseSelector({ data }: VerseSelectorProps) {
+  const resetSelected = useVerseSelectStore(state => state.reset);
+  const addSelected = useVerseSelectStore(state => state.add);
+
+  const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.checked) resetSelected();
+    else addSelected(data.map(v => v.idx));
+  };
+
   return (
     <ul
       role='list'
@@ -17,7 +27,7 @@ function VerseSelector({ data }: VerseSelectorProps) {
             type='checkbox'
             id={`${data[0].series_code}-all`}
             className='size-5 checked:ring-0 focus-within:ring-0 mobile:size-4'
-            value={0}
+            onChange={handleChangeCheckbox}
           />
         </div>
         <label

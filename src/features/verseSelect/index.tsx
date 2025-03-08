@@ -1,6 +1,6 @@
 import { useLoaderData } from 'react-router-dom';
-import { SeriesData } from './types.ts';
-import SeriesTab from './components/seriesTab';
+import SeriesTab from '@features/verseSelect/components/seriesTab';
+import { SeriesData } from '@features/verseSelect/types.ts';
 
 function VerseSelect() {
   const data = useLoaderData<SeriesData>();
