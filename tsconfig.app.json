@@ -22,8 +22,11 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@utils/*": ["src/utils/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@features/*": ["src/features/*"],
+      "@apis/*": ["src/apis/*"],
+      "@store/*": ["src/store/*"],
+      "@/*": ["src/*"]
     }
   },
   "include": ["src"]

@@ -1,8 +1,8 @@
-import { SeriesDatum } from '../../types.ts';
-import SeriesContents from '../seriesContents';
 import { useState } from 'react';
 import { FaCaretUp } from '@react-icons/all-files/fa/FaCaretUp';
 import { FaCaretDown } from '@react-icons/all-files/fa/FaCaretDown';
+import SeriesContents from '@features/verseSelect/components/seriesContents';
+import { SeriesDatum } from '@features/verseSelect/types';
 
 type SeriesTabProps = {
   data: SeriesDatum;

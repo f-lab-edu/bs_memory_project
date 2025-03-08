@@ -1,7 +1,7 @@
-import { VerseSummaryData } from '../../types.ts';
-import VerseOption from './VerseOption.tsx';
 import { ChangeEvent } from 'react';
-import { useVerseSelectStore } from '../../../../store/verseSelectStore.ts';
+import { useVerseSelectStore } from '@store/verseSelectStore.ts';
+import { VerseSummaryData } from '@features/verseSelect/types.ts';
+import VerseOption from '@features/verseSelect/components/verseSelector/VerseOption.tsx';
 
 type VerseSelectorProps = {
   data: VerseSummaryData;
