@@ -24,7 +24,7 @@ function VerseOption({ data }: VerseOptionProps) {
   const addSelected = useVerseSelectStore(state => state.add);
   const removeSelected = useVerseSelectStore(state => state.remove);
 
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.checked) removeSelected(idx);
     else addSelected(idx);
   };
@@ -37,7 +37,7 @@ function VerseOption({ data }: VerseOptionProps) {
           id={`${series_code}-${card_num}`}
           className='size-5 checked:ring-0 focus-within:ring-0 mobile:size-4'
           checked={isSelected}
-          onChange={onChangeHandler}
+          onChange={handleChangeCheckbox}
         />
       </div>
       <label

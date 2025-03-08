@@ -11,7 +11,7 @@ function VerseSelector({ data }: VerseSelectorProps) {
   const resetSelected = useVerseSelectStore(state => state.reset);
   const addSelected = useVerseSelectStore(state => state.add);
 
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.checked) resetSelected();
     else addSelected(data.map(v => v.idx));
   };
@@ -27,7 +27,7 @@ function VerseSelector({ data }: VerseSelectorProps) {
             type='checkbox'
             id={`${data[0].series_code}-all`}
             className='size-5 checked:ring-0 focus-within:ring-0 mobile:size-4'
-            onChange={onChangeHandler}
+            onChange={handleChangeCheckbox}
           />
         </div>
         <label

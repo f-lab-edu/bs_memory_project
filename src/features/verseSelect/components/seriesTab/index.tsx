@@ -23,7 +23,7 @@ function SeriesTab({ data }: SeriesTabProps) {
     ? 'text-[35px] mobile:text-2xl'
     : 'text-[30px] mobile:text-xl';
 
-  const onTabClickHandler = () => setIsTabOpen(prev => !prev);
+  const handleClickSeriesTab = () => setIsTabOpen(prev => !prev);
 
   const contentsId = `contents-of-series${data.series_code}`;
 
@@ -33,7 +33,7 @@ function SeriesTab({ data }: SeriesTabProps) {
         aria-expanded={isTabOpen}
         aria-controls={contentsId}
         className={`w-full rounded-2xl px-7 py-2.5 text-center mobile:px-2 ${textSize} ${bgColor} flex items-center justify-between space-x-1`}
-        onClick={onTabClickHandler}
+        onClick={handleClickSeriesTab}
       >
         <span className={`${textColor} min-w-[200px] text-left font-semibold`}>
           {data.series_name}
