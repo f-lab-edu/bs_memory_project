@@ -10,7 +10,10 @@ const config = defineConfig({
 // Vitest configuration
 const tstConfig = testConfig({
   test: {
+    globals: true,
     environment: 'jsdom',
+    setupFiles: './vitest.setup.ts',
+    printConsoleTrace: true,
   },
 });
 
