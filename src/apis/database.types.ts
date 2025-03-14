@@ -109,6 +109,36 @@ export type Database = {
         };
         Relationships: [];
       };
+      card_hide_option: {
+        Row: {
+          code: string;
+          name: string;
+        };
+        Insert: {
+          code: string;
+          name: string;
+        };
+        Update: {
+          code?: string;
+          name?: string;
+        };
+        Relationships: [];
+      };
+      card_sort_method: {
+        Row: {
+          code: string;
+          name: string;
+        };
+        Insert: {
+          code: string;
+          name: string;
+        };
+        Update: {
+          code?: string;
+          name?: string;
+        };
+        Relationships: [];
+      };
       config: {
         Row: {
           oyo_backup: string | null;
