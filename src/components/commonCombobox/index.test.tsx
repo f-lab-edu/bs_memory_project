@@ -13,7 +13,7 @@ const items: CommonComboboxItem[] = BIBLE_VERSION.map(({ name, code }) => ({
   id: code,
 }));
 const selectedItem: CommonComboboxItem = items[0];
-const onChangeCombobox = vi.fn<(item: CommonComboboxItem) => void>();
+const handleChangeCombobox = vi.fn<(item: CommonComboboxItem) => void>();
 
 describe('CommonCombobox Test', () => {
   beforeEach(() => {
@@ -22,7 +22,7 @@ describe('CommonCombobox Test', () => {
         label={label}
         items={items}
         selectedItem={selectedItem}
-        handleChangeCombobox={onChangeCombobox}
+        onChangeCombobox={handleChangeCombobox}
       />,
     );
   });

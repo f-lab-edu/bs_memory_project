@@ -16,9 +16,11 @@ import {
 function CommonCombobox({
   label,
   items,
-  handleChangeCombobox,
+  onChangeCombobox,
   selectedItem,
 }: CommonComboboxProps) {
+  const handleChangeCombobox = (item: CommonComboboxItem) =>
+    onChangeCombobox(item);
   return (
     <Combobox as='div' value={selectedItem} onChange={handleChangeCombobox}>
       <Label className='block text-[22px] font-semibold text-secondary mobile:text-base/4'>
