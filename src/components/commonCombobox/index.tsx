@@ -37,7 +37,7 @@ function CommonCombobox({
           />
         </ComboboxButton>
 
-        <ComboboxOptions className='absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-xl shadow-lg ring-1 ring-black/5 focus:outline-none mobile:text-sm'>
+        <ComboboxOptions className='absolute z-10 max-h-60 w-full overflow-auto rounded-md bg-white text-xl shadow-lg ring-1 ring-black/5 focus:outline-none mobile:text-sm'>
           {items.map(item => (
             <ComboboxOption
               key={item.id}

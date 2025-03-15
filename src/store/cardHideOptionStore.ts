@@ -9,11 +9,13 @@ type CardHideOptionAction = {
   setCardHideOption: (cardHideOption: CardHideOption) => void;
 };
 
+export const DEFAULT_HIDE_OPTION = {
+  name: '없음',
+  code: 'NONE',
+};
+
 const initialState: CardHideOptionState = {
-  cardHideOption: {
-    name: '내용',
-    code: 'HIDE_003',
-  },
+  cardHideOption: DEFAULT_HIDE_OPTION,
 };
 
 type CardHideOptionStore = CardHideOptionState & CardHideOptionAction;
