@@ -19,7 +19,7 @@ function BibleVersionSelect() {
 
   const { data, isPending, isError } = useQuery({
     queryKey: ['bibleVersion'],
-    queryFn: () => getBibleVersions(),
+    queryFn: getBibleVersions,
   });
 
   if (isPending) return <Loader />;
@@ -36,7 +36,7 @@ function BibleVersionSelect() {
       label={'성경버전'}
       items={selectItems}
       selectedItem={selectedItem}
-      handleChangeCombobox={(item: CommonComboboxItem) =>
+      onChangeCombobox={(item: CommonComboboxItem) =>
         setBibleVersion({ name: item.name, code: item.value })
       }
     />

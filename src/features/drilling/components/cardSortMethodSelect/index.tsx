@@ -20,7 +20,7 @@ function CardSortMethodSelect() {
 
   const { data, isPending, isError } = useQuery({
     queryKey: ['cardSortMethod'],
-    queryFn: () => getCardSortMethod(),
+    queryFn: getCardSortMethod,
   });
 
   if (isPending) return <Loader />;
@@ -33,7 +33,7 @@ function CardSortMethodSelect() {
       label={'정렬방식'}
       items={items}
       selectedItem={selectedItem}
-      handleChangeCombobox={(item: CommonComboboxItem) => {
+      onChangeCombobox={(item: CommonComboboxItem) => {
         setCardSortMethod({ name: item.name, code: item.value });
       }}
     />

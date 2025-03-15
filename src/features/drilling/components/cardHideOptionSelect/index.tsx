@@ -23,7 +23,7 @@ function CardHideOptionSelect() {
 
   const { data, isPending, isError } = useQuery({
     queryKey: ['cardHideOption'],
-    queryFn: () => getCardHideOption(),
+    queryFn: getCardHideOption,
   });
 
   if (isPending) return <Loader />;
@@ -43,7 +43,7 @@ function CardHideOptionSelect() {
       label={'숨김'}
       items={items}
       selectedItem={selectedItem}
-      handleChangeCombobox={(item: CommonComboboxItem) => {
+      onChangeCombobox={(item: CommonComboboxItem) => {
         setCardHideOption({ name: item.name, code: item.value });
       }}
     />
