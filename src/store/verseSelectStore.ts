@@ -9,6 +9,7 @@ type VerseSelectAction = {
   add: (verseId: VerseId | VerseId[]) => void;
   hasId: (verseId: VerseId) => boolean;
   reset: () => void;
+  hasAnyId: () => boolean;
 };
 
 type VerseSelectStore = VerseSelectState & VerseSelectAction;
@@ -31,4 +32,5 @@ export const useVerseSelectStore = create<VerseSelectStore>()((set, get) => ({
     }),
   hasId: verseId => get().verseIds.some(_verseId => _verseId === verseId),
   reset: () => set(initialState),
+  hasAnyId: () => get().verseIds.length > 0,
 }));

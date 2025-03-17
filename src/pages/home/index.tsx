@@ -1,8 +1,21 @@
 import { Link } from 'react-router-dom';
 import VerseSelect from '@features/verseSelect';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
+import { useVerseSelectStore } from '@store/verseSelectStore.ts';
+import { useShallow } from 'zustand/react/shallow';
 
 function Home() {
+  const hasSelectedVerse = useVerseSelectStore(
+    useShallow(state => state.hasAnyId),
+  );
+
+  const handleOtherLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!hasSelectedVerse()) {
+      e.preventDefault();
+      alert('암송 구절을 선택해주세요. 😊');
+    }
+  };
+
   return (
     <div className='flex w-full flex-col items-center justify-center'>
       <nav className='mb-2 mt-4 flex w-full items-center justify-start'>
@@ -14,12 +27,20 @@ function Home() {
             </Link>
           </li>
           <li className='flex w-[150px] items-center rounded-3xl bg-secondary text-center text-2xl text-white mobile:text-base'>
-            <Link to={`/drilling`} className='inline-block w-full px-4 py-2.5'>
+            <Link
+              to={`/drilling`}
+              className='inline-block w-full px-4 py-2.5'
+              onClick={handleOtherLinkClick}
+            >
               암송하기
             </Link>
           </li>
           <li className='flex w-[150px] items-center rounded-3xl bg-secondary text-center text-2xl text-white mobile:text-base'>
-            <Link to={`/exam`} className='inline-block w-full px-4 py-2.5'>
+            <Link
+              to={`/exam`}
+              className='inline-block w-full px-4 py-2.5'
+              onClick={handleOtherLinkClick}
+            >
               시험보기
             </Link>
           </li>
