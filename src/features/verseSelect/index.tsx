@@ -13,7 +13,11 @@ function VerseSelect() {
   }, [resetVerseSelect]);
 
   return (
-    <div role='tabList' aria-multiselectable className='my-16 w-full space-y-4'>
+    <div
+      role='tabList'
+      aria-multiselectable
+      className='my-16 w-[600px] space-y-4 mobile:w-[300px]'
+    >
       {data.map(item => (
         <SeriesTab key={item.series_code} data={item} />
       ))}
