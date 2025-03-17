@@ -1,9 +1,16 @@
 import SeriesTab from '@features/verseSelect/components/seriesTab';
 import { SeriesData } from '@features/verseSelect/types.ts';
 import { useLoaderData } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useVerseSelectStore } from '@store/verseSelectStore.ts';
 
 function VerseSelect() {
   const data = useLoaderData<SeriesData>();
+  const resetVerseSelect = useVerseSelectStore(state => state.reset);
+
+  useEffect(() => {
+    resetVerseSelect();
+  }, [resetVerseSelect]);
 
   return (
     <div role='tabList' aria-multiselectable className='my-16 w-full space-y-4'>
