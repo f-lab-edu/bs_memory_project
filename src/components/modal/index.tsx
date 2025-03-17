@@ -57,7 +57,7 @@ function Modal({
               <button
                 type='button'
                 onClick={handleClickConfirm}
-                className='inline-flex w-full justify-center rounded-lg bg-secondary px-3 py-2 text-lg font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary mobile:text-base'
+                className='col-start-1 mt-3 inline-flex w-full justify-center rounded-lg bg-secondary px-3 py-2 text-lg font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary mobile:text-base'
               >
                 확인
               </button>
