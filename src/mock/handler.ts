@@ -32,7 +32,7 @@ export const getSubSeriesHandler = http.get(
 );
 
 export const getVerseSummaryHandler = http.get(
-  `${baseURL}/verse?select=idx%2Ccard_num%2Cseries_code%2Ccategory%2Ctheme%2Cchapter%2Cverse1%2Cverse2%2Cbible_code%28bible_name%29&series_code=eq.100&order=idx.asc
+  `${baseURL}/verse?select=idx%2Ccard_num%2Cseries_code%2Ccategory%2Ctheme%2Cchapter%2Cverse1%2Cverse2%2Cbible_code%28bible_name%29&series_code=eq.%25101&order=idx.asc
 `,
   () => {
     return HttpResponse.json({
