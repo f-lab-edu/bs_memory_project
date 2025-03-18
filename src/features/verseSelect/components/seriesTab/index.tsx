@@ -48,13 +48,11 @@ function SeriesTab({ data }: SeriesTabProps) {
           {isTabOpen ? <FaCaretUp /> : <FaCaretDown />}
         </span>
       </button>
-      {
-        <SeriesContents
-          contentsId={contentsId}
-          data={data}
-          isTabOpen={isTabOpen}
-        />
-      }
+      <SeriesContents
+        contentsId={contentsId}
+        data={data}
+        isTabOpen={isTabOpen}
+      />
     </div>
   );
 }

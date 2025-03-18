@@ -5,6 +5,7 @@ import Loader from '@components/Loader.tsx';
 import SeriesTab from '@features/verseSelect/components/seriesTab';
 import VerseSelector from '@features/verseSelect/components/verseSelector';
 import { SeriesDatum } from '@features/verseSelect/types.ts';
+import { useEffect, useRef } from 'react';
 
 export type SeriesContentsProps = {
   data: SeriesDatum;
@@ -13,6 +14,8 @@ export type SeriesContentsProps = {
 };
 
 function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
+  const tabpanelRef = useRef<HTMLDivElement>(null);
+
   const { sub_series_opt, series_code } = data;
 
   const hasSubSeries = sub_series_opt === 'Y';
@@ -37,9 +40,20 @@ function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
     enabled: isTabOpen && !hasSubSeries,
   });
 
-  if (isSubSeriesPending || isVersePending) return <Loader />;
-  if (isSubSeriesError || isVerseError)
-    return <p>데이터 조회에 실패했습니다.</p>;
+  const isPending = isSubSeriesPending || isVersePending;
+  const isError = isSubSeriesError || isVerseError;
+
+  useEffect(() => {
+    if (isTabOpen && !isPending && !isError) {
+      tabpanelRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
+  }, [isTabOpen, isPending, isError]);
+
+  if (isPending) return <Loader />;
+  if (isError) return <p>데이터 조회에 실패했습니다.</p>;
 
   return (
     <div
@@ -47,6 +61,8 @@ function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
       id={contentsId}
       hidden={!isTabOpen}
       data-testid={contentsId}
+      ref={tabpanelRef}
+      className='scroll-mb-[50px] scroll-mt-[100px]'
     >
       {isTabOpen &&
         (hasSubSeries ? (
