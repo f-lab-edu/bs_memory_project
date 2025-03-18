@@ -2,14 +2,15 @@ import { VerseDetailData } from '@features/drilling/components/cardDisplay/card/
 import { getVerseAddress } from '@utils/common.ts';
 import { Textfit } from 'react-textfit';
 import { useCardHideOptionStore } from '@store/cardHideOptionStore.ts';
-import { ClassValue, clsx } from 'clsx';
+import { ClassValue } from 'clsx';
+import cn from '@utils/cn.ts';
 
 type CardProps = {
   data: VerseDetailData;
 };
 
 const cardTextClass = (isHidden: boolean, ...inputs: ClassValue[]) => {
-  return clsx(inputs, isHidden && 'text-transparent bg-sky-100/70');
+  return cn(inputs, isHidden && 'text-transparent bg-sky-100/70');
 };
 
 function Card({ data }: CardProps) {
