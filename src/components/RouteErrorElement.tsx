@@ -1,5 +1,5 @@
 import { useRouteError } from 'react-router-dom';
-import ErrorMessage from '@components/ErrorMessage';
+import ErrorMessage from '@components/errorMessage';
 import { IoIosWarning } from '@react-icons/all-files/io/IoIosWarning';
 
 function RouteErrorElement() {

@@ -1,9 +1,8 @@
 import CommonCombobox from '@components/commonCombobox';
 import { useExamConfigStore } from '@features/exam/store/examConfigStore';
 import { useShallow } from 'zustand/react/shallow';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { getExamExposeOptions } from '@apis/exposeOption';
-import Loader from '@components/Loader';
 
 function ExposeSelect() {
   const { name, code } = useExamConfigStore(
@@ -11,13 +10,10 @@ function ExposeSelect() {
   );
   const setExposeOption = useExamConfigStore(state => state.setExposeOption);
 
-  const { data, isPending, isError } = useQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ['exposeOption'],
     queryFn: getExamExposeOptions,
   });
-
-  if (isPending) return <Loader />;
-  if (isError) return <div>데이터 조회에 실패했습니다.</div>;
 
   const items = data.map(({ name, code }) => ({ name, value: code, id: code }));
 

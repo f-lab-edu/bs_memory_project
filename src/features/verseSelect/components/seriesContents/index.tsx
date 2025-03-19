@@ -10,8 +10,7 @@ import {
 import { getSubSeries } from '@apis/series';
 import { getVersesSummary } from '@apis/verse';
 import { ErrorBoundary } from 'react-error-boundary';
-import ErrorMessage from '@components/ErrorMessage';
-import { CgRedo } from '@react-icons/all-files/cg/CgRedo';
+import FetchErrorMessage from '@components/FetchErrorMessage';
 
 export type SeriesContentsProps = {
   data: SeriesDatum;
@@ -58,15 +57,10 @@ function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
         <ErrorBoundary
           onReset={handleQueryErrorReset}
           fallbackRender={({ resetErrorBoundary }) => (
-            <ErrorMessage className='mt-3 pl-4'>
-              <div className='flex w-full items-center space-x-3'>
-                <button title='재시도' onClick={() => resetErrorBoundary()}>
-                  <span className='sr-only'>재시도</span>
-                  <CgRedo aria-hidden={true} className='size-7' />
-                </button>
-                <span>데이터 조회에 실패했습니다.</span>
-              </div>
-            </ErrorMessage>
+            <FetchErrorMessage
+              className='mt-3 pl-4'
+              onClickRetryButton={() => resetErrorBoundary()}
+            />
           )}
         >
           <Suspense fallback={<Loader />}>
