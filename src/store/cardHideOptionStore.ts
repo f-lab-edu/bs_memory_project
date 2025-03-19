@@ -1,4 +1,4 @@
-import { CardHideOption } from '@apis/custom.types.ts';
+import { CardHideOption } from '@apis/custom.types';
 import { create } from 'zustand/index';
 
 type CardHideOptionState = {

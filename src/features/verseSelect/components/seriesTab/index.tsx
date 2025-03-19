@@ -6,8 +6,8 @@ import { SeriesDatum } from '@features/verseSelect/types';
 import {
   caretVariants,
   tabVariants,
-} from '@features/verseSelect/components/seriesTab/css/variants.ts';
-import cn from '@utils/cn.ts';
+} from '@features/verseSelect/components/seriesTab/css/variants';
+import cn from '@utils/cn';
 
 type SeriesTabProps = {
   data: SeriesDatum;

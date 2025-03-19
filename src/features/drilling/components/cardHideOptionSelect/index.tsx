@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import Loader from '@components/Loader.tsx';
-import { CommonComboboxItem } from '@components/commonCombobox/type.ts';
+import Loader from '@components/Loader';
+import { CommonComboboxItem } from '@components/commonCombobox/type';
 import CommonCombobox from '@components/commonCombobox';
 import {
   DEFAULT_HIDE_OPTION,
   useCardHideOptionStore,
-} from '@store/cardHideOptionStore.ts';
-import { getCardHideOption } from '@apis/cardHideOption.ts';
+} from '@store/cardHideOptionStore';
+import { getCardHideOption } from '@apis/cardHideOption';
 import { useShallow } from 'zustand/react/shallow';
 
 function CardHideOptionSelect() {

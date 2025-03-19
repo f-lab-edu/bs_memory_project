@@ -1,4 +1,4 @@
-import supabase from '@apis/supabase.ts';
+import supabase from '@apis/supabase';
 
 export const getBibleVersions = async () => {
   const { data, error } = await supabase.from('bible_version').select();

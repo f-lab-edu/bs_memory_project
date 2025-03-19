@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import Drilling from '@features/drilling';
-import { useVerseSelectStore } from '@store/verseSelectStore.ts';
+import { useVerseSelectStore } from '@store/verseSelectStore';
 import { useEffect } from 'react';
 
 function DrillingPage() {

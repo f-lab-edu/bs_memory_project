@@ -1,9 +1,9 @@
-import { VerseDetailData } from '@features/drilling/components/cardDisplay/card/type.ts';
-import { getVerseAddress } from '@utils/common.ts';
+import { VerseDetailData } from '@features/drilling/components/cardDisplay/card/type';
+import { getVerseAddress } from '@utils/common';
 import { Textfit } from 'react-textfit';
-import { useCardHideOptionStore } from '@store/cardHideOptionStore.ts';
+import { useCardHideOptionStore } from '@store/cardHideOptionStore';
 import { ClassValue } from 'clsx';
-import cn from '@utils/cn.ts';
+import cn from '@utils/cn';
 
 type CardProps = {
   data: VerseDetailData;

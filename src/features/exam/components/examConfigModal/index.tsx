@@ -2,9 +2,9 @@ import Modal from '@components/modal';
 import TimeLimit from '@features/exam/components/examConfigModal/timelimit';
 import ExposeSelect from '@features/exam/components/examConfigModal/exposeSelect';
 import SortMethodSelect from '@features/exam/components/examConfigModal/sortMethodSelect';
-import { useExamConfigModalStore } from '@features/exam/store/examConfigModalStore.ts';
+import { useExamConfigModalStore } from '@features/exam/store/examConfigModalStore';
 import { useNavigate } from 'react-router-dom';
-import { useExamConfigStore } from '@features/exam/store/examConfigStore.ts';
+import { useExamConfigStore } from '@features/exam/store/examConfigStore';
 
 function ExamConfigModal() {
   const isOpen = useExamConfigModalStore(state => state.isOpen);

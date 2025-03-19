@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { getSubSeries } from '@apis/series.ts';
-import { getVersesSummary } from '@apis/verse.ts';
-import Loader from '@components/Loader.tsx';
+import { getSubSeries } from '@apis/series';
+import { getVersesSummary } from '@apis/verse';
+import Loader from '@components/Loader';
 import SeriesTab from '@features/verseSelect/components/seriesTab';
 import VerseSelector from '@features/verseSelect/components/verseSelector';
-import { SeriesDatum } from '@features/verseSelect/types.ts';
+import { SeriesDatum } from '@features/verseSelect/types';
 import { useEffect, useRef } from 'react';
 
 export type SeriesContentsProps = {

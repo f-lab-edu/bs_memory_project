@@ -6,7 +6,7 @@ import {
   getSeriesHandler,
   getSubSeriesHandler,
   getVerseSummaryHandler,
-} from '@/mock/handler.ts';
+} from '@/mock/handler';
 
 export const handlers = [
   getSeriesHandler,

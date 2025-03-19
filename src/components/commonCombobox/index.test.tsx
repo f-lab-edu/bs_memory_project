@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-import { render } from '@/test/test-utils.tsx';
-import { BIBLE_VERSION } from '@/mock/mockData.ts';
-import { CommonComboboxItem } from '@components/commonCombobox/type.ts';
-import CommonCombobox from '@components/commonCombobox/index.tsx';
+import { render } from '@/test/test-utils';
+import { BIBLE_VERSION } from '@/mock/mockData';
+import { CommonComboboxItem } from '@components/commonCombobox/type';
 import { cleanup, screen, waitFor, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
+import CommonCombobox from '@components/commonCombobox/index';
 
 const label = '성경버전';
 const items: CommonComboboxItem[] = BIBLE_VERSION.map(({ name, code }) => ({

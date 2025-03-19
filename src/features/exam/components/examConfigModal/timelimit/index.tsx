@@ -1,7 +1,7 @@
 import {
   MINUITE,
   useExamConfigStore,
-} from '@features/exam/store/examConfigStore.ts';
+} from '@features/exam/store/examConfigStore';
 import { useShallow } from 'zustand/react/shallow';
 
 function TimeLimit() {

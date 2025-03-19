@@ -1,5 +1,5 @@
-import supabase from './supabase.ts';
-import { SeriesCode } from './custom.types.ts';
+import supabase from './supabase';
+import { SeriesCode } from './custom.types';
 
 export const getSeries = async () => {
   const { data, error } = await supabase

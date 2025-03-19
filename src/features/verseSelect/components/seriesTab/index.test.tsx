@@ -1,14 +1,14 @@
 import { describe, expect, test, beforeEach, afterEach } from 'vitest';
 import { screen, within, cleanup } from '@testing-library/react';
 import { UserEvent, userEvent } from '@testing-library/user-event';
-import SeriesTab from '@features/verseSelect/components/seriesTab/index.tsx';
-import { render } from '@/test/test-utils.tsx';
+import SeriesTab from '@features/verseSelect/components/seriesTab/index';
+import { render } from '@/test/test-utils';
 import {
   SERIES_DATA,
   SERIES_DATA_HAS_SUB,
   SERIES_DATA_NO_SUB,
   VERSE_SUMMARY_DATA,
-} from '@/mock/mockData.ts';
+} from '@/mock/mockData';
 
 describe('SeriesTab Test', () => {
   let user: UserEvent;

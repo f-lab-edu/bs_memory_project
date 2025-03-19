@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'vitest';
-import { VERSE_SUMMARY_DATA } from '@/mock/mockData.ts';
+import { VERSE_SUMMARY_DATA } from '@/mock/mockData';
 import { screen } from '@testing-library/react';
-import { render } from '@/test/test-utils.tsx';
-import VerseSelector from '@features/verseSelect/components/verseSelector/index.tsx';
+import { render } from '@/test/test-utils';
+import VerseSelector from '@features/verseSelect/components/verseSelector/index';
 import { userEvent } from '@testing-library/user-event';
 
 describe('VerseSelector test', () => {

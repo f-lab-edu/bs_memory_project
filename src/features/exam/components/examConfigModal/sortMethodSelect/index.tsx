@@ -1,9 +1,9 @@
-import { useExamConfigStore } from '@features/exam/store/examConfigStore.ts';
+import { useExamConfigStore } from '@features/exam/store/examConfigStore';
 import { useShallow } from 'zustand/react/shallow';
 import CommonCombobox from '@components/commonCombobox';
 import { useQuery } from '@tanstack/react-query';
-import { getCardSortMethod } from '@apis/cardSortMethod.ts';
-import Loader from '@components/Loader.tsx';
+import { getCardSortMethod } from '@apis/cardSortMethod';
+import Loader from '@components/Loader';
 
 function SortMethodSelect() {
   const { name, code } = useExamConfigStore(

@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import VerseSelect from '@features/verseSelect';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
-import { useVerseSelectStore } from '@store/verseSelectStore.ts';
 import { useShallow } from 'zustand/react/shallow';
 import ExamConfigModal from '@features/exam/components/examConfigModal';
-import { useExamConfigModalStore } from '@features/exam/store/examConfigModalStore.ts';
-import { useExamConfigStore } from '@features/exam/store/examConfigStore.ts';
+import { useVerseSelectStore } from '@store/verseSelectStore';
+import { useExamConfigModalStore } from '@features/exam/store/examConfigModalStore';
+import { useExamConfigStore } from '@features/exam/store/examConfigStore';
 
 function Home() {
   const hasSelectedVerse = useVerseSelectStore(

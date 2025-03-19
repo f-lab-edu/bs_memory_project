@@ -4,15 +4,15 @@ import SwiperCore from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
-import { VerseDetailDataList } from '@features/drilling/components/cardDisplay/card/type.ts';
+import { VerseDetailDataList } from '@features/drilling/components/cardDisplay/card/type';
 import Card from '@features/drilling/components/cardDisplay/card';
-import { getShortVerseAddress } from '@utils/common.ts';
+import { getShortVerseAddress } from '@utils/common';
 import { FiChevronsLeft } from '@react-icons/all-files/fi/FiChevronsLeft';
 import { FiChevronsRight } from '@react-icons/all-files/fi/FiChevronsRight';
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import { FaAngleRight } from '@react-icons/all-files/fa/FaAngleRight';
 import { useRef, useState } from 'react';
-import cn from '@utils/cn.ts';
+import cn from '@utils/cn';
 import { ClassValue } from 'clsx';
 
 type CardSwiperProps = {

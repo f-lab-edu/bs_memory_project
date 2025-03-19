@@ -11,7 +11,7 @@ import { FaCheck } from '@react-icons/all-files/fa/FaCheck';
 import {
   CommonComboboxItem,
   CommonComboboxProps,
-} from '@components/commonCombobox/type.ts';
+} from '@components/commonCombobox/type';
 
 function CommonCombobox({
   label,
