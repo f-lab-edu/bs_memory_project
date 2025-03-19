@@ -1,11 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
-import { getSubSeries } from '@apis/series';
-import { getVersesSummary } from '@apis/verse';
-import Loader from '@components/Loader';
-import SeriesTab from '@features/verseSelect/components/seriesTab';
 import VerseSelector from '@features/verseSelect/components/verseSelector';
 import { SeriesDatum } from '@features/verseSelect/types';
-import { useEffect, useRef } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
+import SubSeriesTabs from '@features/verseSelect/components/subSeriesTabs';
+import Loader from '@components/Loader';
+import { usePrefetchQuery } from '@tanstack/react-query';
+import { getSubSeries } from '@apis/series';
+import { getVersesSummary } from '@apis/verse';
 
 export type SeriesContentsProps = {
   data: SeriesDatum;
@@ -17,43 +17,26 @@ function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
   const tabpanelRef = useRef<HTMLDivElement>(null);
 
   const { sub_series_opt, series_code } = data;
-
   const hasSubSeries = sub_series_opt === 'Y';
 
-  const {
-    data: subSeriesData,
-    isLoading: isSubSeriesPending,
-    isError: isSubSeriesError,
-  } = useQuery({
-    queryKey: [series_code, hasSubSeries],
-    queryFn: () => getSubSeries(series_code),
-    enabled: isTabOpen && hasSubSeries,
+  usePrefetchQuery({
+    queryKey: ['subSeriesData', series_code],
+    queryFn: () => (hasSubSeries ? getSubSeries(series_code) : null),
   });
 
-  const {
-    data: verseData,
-    isLoading: isVersePending,
-    isError: isVerseError,
-  } = useQuery({
-    queryKey: [series_code, hasSubSeries],
-    queryFn: () => getVersesSummary(series_code),
-    enabled: isTabOpen && !hasSubSeries,
+  usePrefetchQuery({
+    queryKey: ['verseSummaryData', series_code],
+    queryFn: () => (!hasSubSeries ? getVersesSummary(series_code) : null),
   });
-
-  const isPending = isSubSeriesPending || isVersePending;
-  const isError = isSubSeriesError || isVerseError;
 
   useEffect(() => {
-    if (isTabOpen && !isPending && !isError) {
+    if (isTabOpen) {
       tabpanelRef.current?.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest',
       });
     }
-  }, [isTabOpen, isPending, isError]);
-
-  if (isPending) return <Loader />;
-  if (isError) return <p>데이터 조회에 실패했습니다.</p>;
+  }, [isTabOpen]);
 
   return (
     <div
@@ -64,20 +47,15 @@ function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
       ref={tabpanelRef}
       className='scroll-mb-[50px] scroll-mt-[100px]'
     >
-      {isTabOpen &&
-        (hasSubSeries ? (
-          <div
-            role='tablist'
-            aria-multiselectable
-            className={'mt-2.5 flex flex-col items-center space-y-3'}
-          >
-            {subSeriesData!.map(item => (
-              <SeriesTab key={item.series_code} data={item} />
-            ))}
-          </div>
-        ) : (
-          <VerseSelector data={verseData!} />
-        ))}
+      {isTabOpen && (
+        <Suspense fallback={<Loader />}>
+          {hasSubSeries ? (
+            <SubSeriesTabs parent_series_code={series_code} />
+          ) : (
+            <VerseSelector series_code={series_code} />
+          )}
+        </Suspense>
+      )}
     </div>
   );
 }
