@@ -1,4 +1,12 @@
-import { describe, expect, test, beforeEach, afterEach } from 'vitest';
+import {
+  describe,
+  expect,
+  test,
+  beforeEach,
+  afterEach,
+  beforeAll,
+  vi,
+} from 'vitest';
 import { screen, within, cleanup } from '@testing-library/react';
 import { UserEvent, userEvent } from '@testing-library/user-event';
 import SeriesTab from '@features/verseSelect/components/seriesTab/index';
@@ -12,6 +20,10 @@ import {
 
 describe('SeriesTab Test', () => {
   let user: UserEvent;
+
+  beforeAll(() => {
+    window.HTMLElement.prototype.scrollIntoView = vi.fn();
+  });
 
   beforeEach(() => {
     user = userEvent.setup();
