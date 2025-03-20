@@ -28,9 +28,10 @@ const getVersesDetailBV_001 = async (verseIds: Verse['idx'][]) => {
   const { data, error } = await supabase
     .from('verse')
     .select(
-      'idx,card_num,series_code,category,theme,bible_code(bible_name,short_name),chapter,verse1,verse2,verse_kor',
+      'idx,card_num,series_code(ord, series_name),category,theme,bible_code(bible_name,short_name),chapter,verse1,verse2,verse_kor',
     )
-    .in('idx', [...verseIds]);
+    .in('idx', [...verseIds])
+    .order('series_code(ord)', { ascending: true });
 
   if (error) throw error;
 
@@ -41,9 +42,10 @@ const getVerseDetailBV_002 = async (verseIds: Verse['idx'][]) => {
   const { data, error } = await supabase
     .from('verse')
     .select(
-      'idx,card_num,series_code,category,theme,bible_code(bible_name,short_name),chapter,verse1,verse2,verse_gae',
+      'idx,card_num,series_code(ord, series_name),category,theme,bible_code(bible_name,short_name),chapter,verse1,verse2,verse_gae',
     )
-    .in('idx', [...verseIds]);
+    .in('idx', [...verseIds])
+    .order('series_code(ord)', { ascending: true });
 
   if (error) throw error;
 
