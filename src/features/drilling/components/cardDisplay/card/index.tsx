@@ -21,7 +21,7 @@ function Card({ data }: CardProps) {
 
   const address = getVerseAddress(data);
   return (
-    <div className='my-4 flex h-[400px] flex-col items-start justify-center rounded-xl border border-[#bebebe] px-9 py-6 text-left shadow-lg'>
+    <div className='my-4 flex h-[400px] flex-col items-start justify-center rounded-xl border border-[#bebebe] px-9 py-6 text-left shadow-lg mobile:h-[200px]'>
       <div
         className={cardTextClass(
           hideOption === 'HIDE_002',
