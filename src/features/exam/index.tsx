@@ -7,6 +7,7 @@ import RangeInfo from '@features/exam/components/rangeInfo';
 import { getExamVerse } from '@apis/examVerse';
 import { useGlobalExamConfigStore } from '@features/exam/store/globalExamConfigStore';
 import ExamBoard from '@features/exam/components/examBoard';
+import SubmitButton from '@features/exam/components/submitButton';
 
 function Exam() {
   const { time, setCount } = useGlobalExamConfigStore(
@@ -32,6 +33,7 @@ function Exam() {
         <RangeInfo data={data} />
         <Timer time={time} />
       </div>
+      <SubmitButton />
       <ExamBoard data={data} />
     </div>
   );
