@@ -10,7 +10,7 @@ type ModalProps = {
   children: React.ReactNode;
   isOpen: boolean;
   onCloseModal: () => void;
-  onClickConfirm: () => void;
+  buttonElement: React.ReactNode;
 };
 
 function Modal({
@@ -18,10 +18,9 @@ function Modal({
   children,
   isOpen,
   onCloseModal,
-  onClickConfirm,
+  buttonElement,
 }: ModalProps) {
   const handleCloseModal = () => onCloseModal();
-  const handleClickConfirm = () => onClickConfirm();
   return (
     <Dialog open={isOpen} onClose={handleCloseModal} className='relative z-10'>
       <DialogBackdrop
@@ -46,22 +45,7 @@ function Modal({
               )}
               {children}
             </div>
-            <div className='my-3 flex items-center justify-center space-x-3'>
-              <button
-                type='button'
-                onClick={handleCloseModal}
-                className='col-start-1 mt-3 inline-flex w-full justify-center rounded-lg bg-white px-3 py-2 text-lg font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 mobile:text-base'
-              >
-                취소
-              </button>
-              <button
-                type='button'
-                onClick={handleClickConfirm}
-                className='col-start-1 mt-3 inline-flex w-full justify-center rounded-lg bg-secondary px-3 py-2 text-lg font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary mobile:text-base'
-              >
-                확인
-              </button>
-            </div>
+            {buttonElement}
           </DialogPanel>
         </div>
       </div>

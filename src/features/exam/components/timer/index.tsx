@@ -1,10 +1,11 @@
-import { useExamConfigStore } from '@features/exam/store/examConfigStore';
 import { useEffect, useRef, useState } from 'react';
 
-function Timer() {
+type TimerProps = {
+  time: number;
+};
+function Timer({ time }: TimerProps) {
   const [isPaused, setIsPaused] = useState(false);
-  const time = useExamConfigStore(state => state.time);
-  const [leftSeconds, setLeftSeconds] = useState(() => time / 1000);
+  const [leftSeconds, setLeftSeconds] = useState(() => time * 60);
 
   const intervalRef = useRef<NodeJS.Timeout>(null);
 
