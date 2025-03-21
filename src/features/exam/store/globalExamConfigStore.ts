@@ -6,28 +6,33 @@ type ExamConfigState = {
   time: number;
   sortMethod: CardSortMethod;
   exposeOption: ExamExposeOption;
+  setCount: number;
 };
 
 type ExamConfigAction = {
   setTime: (time: number) => void;
   setSortMethod: (sortMethod: CardSortMethod) => void;
   setExposeOption: (exposeOption: ExamExposeOption) => void;
+  setSetCount: (setCount: number) => void;
   reset: () => void;
 };
 
-type ExamConfigStore = ExamConfigState & ExamConfigAction;
+type GlobalExamConfigStore = ExamConfigState & ExamConfigAction;
 
-export const MINUITE = 1000 * 60;
 const initialState: ExamConfigState = {
-  time: MINUITE * 30,
+  time: 30,
   sortMethod: { name: '기본 순', code: 'SORT_001' },
   exposeOption: { name: '장절', code: 'EXPOSE_001' },
+  setCount: 0,
 };
 
-export const useExamConfigStore = create<ExamConfigStore>()(set => ({
-  ...initialState,
-  setTime: time => set(state => ({ ...state, time: MINUITE * time })),
-  setExposeOption: exposeOption => set(state => ({ ...state, exposeOption })),
-  setSortMethod: sortMethod => set(state => ({ ...state, sortMethod })),
-  reset: () => set(initialState),
-}));
+export const useGlobalExamConfigStore = create<GlobalExamConfigStore>()(
+  set => ({
+    ...initialState,
+    setTime: time => set(state => ({ ...state, time })),
+    setExposeOption: exposeOption => set(state => ({ ...state, exposeOption })),
+    setSortMethod: sortMethod => set(state => ({ ...state, sortMethod })),
+    setSetCount: setCount => set(state => ({ ...state, setCount })),
+    reset: () => set(initialState),
+  }),
+);
