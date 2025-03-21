@@ -1,6 +1,6 @@
 import { useGlobalExamConfigStore } from '@features/exam/store/globalExamConfigStore';
 import { ExamVerseDataList } from '@features/exam/type';
-import ExamCard from '@features/exam/components/examBoard/ExamCard';
+import ExamCard from '@features/exam/components/examBoard/examCard';
 
 type ExamBoardProps = {
   data: ExamVerseDataList;
