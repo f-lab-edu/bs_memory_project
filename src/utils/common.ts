@@ -1,7 +1,10 @@
 import { VerseDetailData } from '@features/drilling/components/cardDisplay/card/type';
 import { VerseSummaryDatum } from '@features/verseSelect/types';
+import { ExamVerseData } from '@features/exam/type';
 
-export const getVerseAddress = (data: VerseSummaryDatum | VerseDetailData) => {
+export const getVerseAddress = (
+  data: VerseSummaryDatum | VerseDetailData | ExamVerseData,
+) => {
   const {
     bible_code: { bible_name },
     chapter,
