@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import { useExamStatusStore } from '@features/exam/store/examStatusStore';
 
 type TimerProps = {
   time: number;
 };
 function Timer({ time }: TimerProps) {
+  const setIsFinished = useExamStatusStore(state => state.setIsFinished);
   const [isPaused, setIsPaused] = useState(false);
   const [leftSeconds, setLeftSeconds] = useState(() => time * 60);
 
@@ -28,8 +30,11 @@ function Timer({ time }: TimerProps) {
   useEffect(() => {
     if (leftSeconds === 0 && intervalRef.current) {
       clearInterval(intervalRef.current);
+      if (confirm('시험이 종료되었습니다. 수고하셨습니다. 😊')) {
+        setIsFinished(true);
+      }
     }
-  }, [leftSeconds]);
+  }, [leftSeconds, setIsFinished]);
 
   const min = Number((leftSeconds / 60).toFixed(2));
   const minValue = Math.floor(min);
