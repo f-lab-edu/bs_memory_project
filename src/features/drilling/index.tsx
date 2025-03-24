@@ -8,7 +8,7 @@ import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import FetchErrorMessage from '@components/FetchErrorMessage';
 
 function Drilling() {
-  const { reset: handleQueryErrorReset } = useQueryErrorResetBoundary();
+  const { reset } = useQueryErrorResetBoundary();
 
   return (
     <div className='flex w-full max-w-[800px] grow flex-col items-center justify-center space-y-4'>
@@ -17,12 +17,12 @@ function Drilling() {
         <CardHideOptionSelect />
       </div>
       <ErrorBoundary
-        onReset={handleQueryErrorReset}
+        onReset={reset}
         fallbackRender={({ resetErrorBoundary }) => (
           <FetchErrorMessage
             className='my-8 flex h-[400px] items-center rounded-3xl bg-neutral-100 px-9 py-6 align-middle text-4xl mobile:h-[200px] mobile:text-xl'
             iconClass='size-10 mobile:size-6 text-sky-600'
-            onClickRetryButton={() => resetErrorBoundary()}
+            onClickRetryButton={resetErrorBoundary}
           />
         )}
       >

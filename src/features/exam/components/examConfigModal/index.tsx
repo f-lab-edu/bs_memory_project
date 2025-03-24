@@ -12,7 +12,7 @@ import SetCountSelect from '@features/exam/components/examConfigModal/setCountSe
 import ConfigSubmit from '@features/exam/components/examConfigModal/configSubmit';
 
 function ExamConfigModal() {
-  const { reset: handleQueryErrorReset } = useQueryErrorResetBoundary();
+  const { reset } = useQueryErrorResetBoundary();
 
   const isOpen = useExamConfigModalStore(state => state.isOpen);
   const setIsOpen = useExamConfigModalStore(state => state.setIsOpen);
@@ -32,7 +32,7 @@ function ExamConfigModal() {
         <div className='mx-auto mb-12 mt-10 flex max-w-[200px] flex-col items-start space-y-5'>
           <TimeLimit />
           <ErrorBoundary
-            onReset={handleQueryErrorReset}
+            onReset={reset}
             fallbackRender={({ resetErrorBoundary }) => (
               <div className='flex w-full flex-col items-start'>
                 <div
@@ -44,7 +44,7 @@ function ExamConfigModal() {
                 <FetchErrorMessage
                   className='text-[14px]'
                   iconClass='size-5'
-                  onClickRetryButton={() => resetErrorBoundary()}
+                  onClickRetryButton={resetErrorBoundary}
                 />
               </div>
             )}
@@ -55,7 +55,7 @@ function ExamConfigModal() {
           </ErrorBoundary>
           <SetCountSelect />
           <ErrorBoundary
-            onReset={handleQueryErrorReset}
+            onReset={reset}
             fallbackRender={({ resetErrorBoundary }) => (
               <div className='flex w-full flex-col items-start'>
                 <div
@@ -67,7 +67,7 @@ function ExamConfigModal() {
                 <FetchErrorMessage
                   className='text-[14px]'
                   iconClass='size-5'
-                  onClickRetryButton={() => resetErrorBoundary()}
+                  onClickRetryButton={resetErrorBoundary}
                 />
               </div>
             )}
