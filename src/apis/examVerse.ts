@@ -1,7 +1,9 @@
 import supabase from '@apis/supabase';
-import { BibleVersion, Verse } from '@apis/custom.types';
+import { Verse } from '@apis/custom.types';
+import { BIBLE_VERSIONS } from '@utils/constants';
+import { BibleVersion } from '@utils/type';
 
-const getExamVerseBV_001 = async (verseIds: Verse['idx'][], count: number) => {
+const getKorExamVerse = async (verseIds: Verse['idx'][], count: number) => {
   const { data, error } = await supabase
     .from('verse')
     .select(
@@ -15,7 +17,7 @@ const getExamVerseBV_001 = async (verseIds: Verse['idx'][], count: number) => {
   return data.map(v => ({ ...v, contents: v.verse_kor }));
 };
 
-const getExamVerseBV_002 = async (verseIds: Verse['idx'][], count: number) => {
+const getGaeExamVerse = async (verseIds: Verse['idx'][], count: number) => {
   const { data, error } = await supabase
     .from('verse')
     .select(
@@ -23,19 +25,24 @@ const getExamVerseBV_002 = async (verseIds: Verse['idx'][], count: number) => {
     )
     .in('idx', [...verseIds])
     .limit(count);
-  // .order('series_code(ord)', { ascending: true });
 
   if (error) throw error;
 
   return data.map(v => ({ ...v, contents: v.verse_gae }));
 };
 
+const [BV_KOR, BV_GAE] = [BIBLE_VERSIONS[0], BIBLE_VERSIONS[1]];
+
 export const getExamVerse = async (
   verseIds: Verse['idx'][],
   bibleVersion: BibleVersion,
   count: number,
 ) => {
-  return bibleVersion.code === 'BV_001'
-    ? await getExamVerseBV_001(verseIds, count)
-    : await getExamVerseBV_002(verseIds, count);
+  if (bibleVersion.code === BV_KOR.code) {
+    return await getKorExamVerse(verseIds, count);
+  } else if (bibleVersion.code === BV_GAE.code) {
+    return await getGaeExamVerse(verseIds, count);
+  } else {
+    throw new Error(`Unknown Bible Version: ${bibleVersion.code}`);
+  }
 };

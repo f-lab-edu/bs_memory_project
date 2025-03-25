@@ -1,5 +1,7 @@
 import supabase from './supabase';
-import { BibleVersion, SeriesCode, Verse } from './custom.types';
+import { SeriesCode, Verse } from './custom.types';
+import { BibleVersion } from '@utils/type';
+import { BIBLE_VERSIONS } from '@utils/constants';
 
 export const getVersesSummary = async (seriesCode: SeriesCode) => {
   const { data, error } = await supabase
@@ -15,16 +17,22 @@ export const getVersesSummary = async (seriesCode: SeriesCode) => {
   return data;
 };
 
+const [BV_KOR, BV_GAE] = [BIBLE_VERSIONS[0], BIBLE_VERSIONS[1]];
+
 export const getVersesDetail = async (
   verseIds: Verse['idx'][],
   bibleVersion: BibleVersion,
 ) => {
-  return bibleVersion.code === 'BV_001'
-    ? await getVersesDetailBV_001(verseIds)
-    : await getVerseDetailBV_002(verseIds);
+  if (bibleVersion.code === BV_KOR.code) {
+    return await getKorVersesDetail(verseIds);
+  } else if (bibleVersion.code === BV_GAE.code) {
+    return await getGaeVersesDetail(verseIds);
+  } else {
+    throw new Error(`Unknown Bible Version: ${bibleVersion.code}`);
+  }
 };
 
-const getVersesDetailBV_001 = async (verseIds: Verse['idx'][]) => {
+const getKorVersesDetail = async (verseIds: Verse['idx'][]) => {
   const { data, error } = await supabase
     .from('verse')
     .select(
@@ -38,7 +46,7 @@ const getVersesDetailBV_001 = async (verseIds: Verse['idx'][]) => {
   return data.map(v => ({ ...v, contents: v.verse_kor }));
 };
 
-const getVerseDetailBV_002 = async (verseIds: Verse['idx'][]) => {
+const getGaeVersesDetail = async (verseIds: Verse['idx'][]) => {
   const { data, error } = await supabase
     .from('verse')
     .select(

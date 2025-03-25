@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { BibleVersion } from '@apis/custom.types';
+import { BibleVersion } from '@utils/type';
+import { BIBLE_VERSIONS } from '@utils/constants';
 
 type BibleVersionState = {
   bibleVersion: BibleVersion;
@@ -12,10 +13,7 @@ type BibleVersionAction = {
 type BibleVersionStore = BibleVersionState & BibleVersionAction;
 
 const initialState: BibleVersionState = {
-  bibleVersion: {
-    name: '개역한글판',
-    code: 'BV_001',
-  },
+  bibleVersion: BIBLE_VERSIONS[0],
 };
 
 export const useBibleVersionStore = create<BibleVersionStore>()(set => ({
