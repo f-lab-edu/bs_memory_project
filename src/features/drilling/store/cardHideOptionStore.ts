@@ -1,5 +1,6 @@
-import { CardHideOption } from '@apis/custom.types';
 import { create } from 'zustand/index';
+import { CardHideOption } from '@features/drilling/type';
+import { CARD_HIDE_OPTIONS } from '@features/drilling/constants';
 
 type CardHideOptionState = {
   cardHideOption: CardHideOption;
@@ -9,16 +10,12 @@ type CardHideOptionAction = {
   setCardHideOption: (cardHideOption: CardHideOption) => void;
 };
 
-export const DEFAULT_HIDE_OPTION = {
-  name: '없음',
-  code: 'NONE',
-};
+type CardHideOptionStore = CardHideOptionState & CardHideOptionAction;
 
 const initialState: CardHideOptionState = {
-  cardHideOption: DEFAULT_HIDE_OPTION,
+  cardHideOption: CARD_HIDE_OPTIONS[0],
 };
 
-type CardHideOptionStore = CardHideOptionState & CardHideOptionAction;
 export const useCardHideOptionStore = create<CardHideOptionStore>()(set => ({
   ...initialState,
   setCardHideOption: (cardHideOption: CardHideOption) =>
