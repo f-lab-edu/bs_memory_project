@@ -1,6 +1,6 @@
-import { CardSortMethod } from '@apis/custom.types';
-import { ExamExposeOption } from '@features/exam/type';
+import { CardSortMethod, ExamExposeOption } from '@features/exam/type';
 import { createStore } from 'zustand/vanilla';
+import { EXPOSE_OPTIONS, SORT_METHODS } from '@features/exam/constants';
 
 export interface ExamConfigProps {
   time: number;
@@ -22,8 +22,8 @@ export type ExamConfigStore = ReturnType<typeof createExamConfigStore>;
 export const createExamConfigStore = (initProps?: Partial<ExamConfigProps>) => {
   const DEFAULT_PROPS: ExamConfigProps = {
     time: 30,
-    sortMethod: { name: '기본 순', code: 'SORT_001' },
-    exposeOption: { name: '장절', code: 'EXPOSE_001' },
+    sortMethod: SORT_METHODS[0],
+    exposeOption: EXPOSE_OPTIONS[0],
     setCount: 0,
   };
 
