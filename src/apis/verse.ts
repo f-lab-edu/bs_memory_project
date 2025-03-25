@@ -2,6 +2,7 @@ import supabase from './supabase';
 import { SeriesCode, Verse } from './custom.types';
 import { BibleVersion } from '@utils/type';
 import { BIBLE_VERSIONS } from '@utils/constants';
+import SupabaseResponseError from '@apis/utils/SupabaseResponseError';
 
 export const getVersesSummary = async (seriesCode: SeriesCode) => {
   const { data, error } = await supabase
@@ -12,7 +13,7 @@ export const getVersesSummary = async (seriesCode: SeriesCode) => {
     .eq('series_code', seriesCode)
     .order('idx', { ascending: true });
 
-  if (error) throw error;
+  if (error) throw new SupabaseResponseError(error);
 
   return data;
 };
@@ -41,7 +42,7 @@ const getKorVersesDetail = async (verseIds: Verse['idx'][]) => {
     .in('idx', [...verseIds])
     .order('series_code(ord)', { ascending: true });
 
-  if (error) throw error;
+  if (error) throw new SupabaseResponseError(error);
 
   return data.map(v => ({ ...v, contents: v.verse_kor }));
 };
@@ -55,7 +56,7 @@ const getGaeVersesDetail = async (verseIds: Verse['idx'][]) => {
     .in('idx', [...verseIds])
     .order('series_code(ord)', { ascending: true });
 
-  if (error) throw error;
+  if (error) throw new SupabaseResponseError(error);
 
   return data.map(v => ({ ...v, contents: v.verse_gae }));
 };
