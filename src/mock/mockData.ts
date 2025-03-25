@@ -171,34 +171,3 @@ export const VERSE_SUMMARY_DATA = [
     },
   },
 ];
-
-export const BIBLE_VERSION = [
-  { code: 'BV_001', name: '개역한글판' },
-  { code: 'BV_002', name: '개역개정판' },
-];
-
-export const CARD_SORT_METHOD = [
-  {
-    code: 'SORT_001',
-    name: '기본 순',
-  },
-  {
-    code: 'SORT_002',
-    name: '랜덤',
-  },
-];
-
-export const CARD_HIDE_OPTION = [
-  {
-    code: 'HIDE_001',
-    name: '장절',
-  },
-  {
-    code: 'HIDE_002',
-    name: '제목',
-  },
-  {
-    code: 'HIDE_003',
-    name: '내용',
-  },
-];
