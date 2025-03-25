@@ -9,24 +9,20 @@ import FetchErrorMessage from '@components/FetchErrorMessage';
 import { Suspense } from 'react';
 import CommonComboboxSkeleton from '@components/CommonComboboxSkeleton';
 import SetCountSelect from '@features/exam/components/examConfigModal/setCountSelect';
-import ConfigSubmit from '@features/exam/components/examConfigModal/configSubmit';
+import useExamConfigModalHandler from '@/hooks/useExamConfigModalHandler';
 
 function ExamConfigModal() {
   const { reset } = useQueryErrorResetBoundary();
+  const { handleClickConfirm, handleClickClose } = useExamConfigModalHandler();
 
   const isOpen = useExamConfigModalStore(state => state.isOpen);
-  const setIsOpen = useExamConfigModalStore(state => state.setIsOpen);
-
-  const handleOnCloseModal = () => {
-    setIsOpen(false);
-  };
 
   return (
     <Modal
       title='시험설정'
-      onCloseModal={handleOnCloseModal}
       isOpen={isOpen}
-      buttonElement={<ConfigSubmit />}
+      onClickCloseCallback={handleClickClose}
+      onClickConfirmCallback={handleClickConfirm}
     >
       {isOpen && (
         <div className='mx-auto mb-12 mt-10 flex max-w-[200px] flex-col items-start space-y-5'>
