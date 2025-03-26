@@ -5,7 +5,7 @@ import {
   VERSE_SUMMARY_DATA,
 } from '@/mock/mockData';
 import { SUPABASE_URL } from '@/config';
-import { BIBLE_VERSIONS } from '@utils/constants';
+import { BIBLE_VERSIONS_LIST } from '@utils/constants';
 import { SORT_METHODS_LIST } from '@features/exam/constants';
 import { CARD_HIDE_OPTIONS_LIST } from '@features/drilling/constants';
 
@@ -46,7 +46,7 @@ export const getBibleVerseHandler = http.get(
   `${baseURL}/bible_version?select=*`,
   () => {
     return HttpResponse.json({
-      data: BIBLE_VERSIONS,
+      data: BIBLE_VERSIONS_LIST,
       error: null,
     });
   },
