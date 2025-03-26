@@ -7,7 +7,7 @@ import {
 import { SUPABASE_URL } from '@/config';
 import { BIBLE_VERSIONS } from '@utils/constants';
 import { SORT_METHODS_LIST } from '@features/exam/constants';
-import { CARD_HIDE_OPTIONS } from '@features/drilling/constants';
+import { CARD_HIDE_OPTIONS_LIST } from '@features/drilling/constants';
 
 const baseURL = `${SUPABASE_URL}/rest/v1`;
 
@@ -66,7 +66,7 @@ export const getCardHideOptionHandler = http.get(
   `${baseURL}/card_hide_option?select=*`,
   () => {
     return HttpResponse.json({
-      data: CARD_HIDE_OPTIONS,
+      data: CARD_HIDE_OPTIONS_LIST,
       error: null,
     });
   },

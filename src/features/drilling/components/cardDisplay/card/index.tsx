@@ -6,11 +6,11 @@ import { ClassValue } from 'clsx';
 import cn from '@utils/cn';
 import { CARD_HIDE_OPTIONS } from '@features/drilling/constants';
 
-const [HIDE_ADDR, HIDE_THEME, HIDE_CONTENTS] = [
-  CARD_HIDE_OPTIONS[1],
-  CARD_HIDE_OPTIONS[2],
-  CARD_HIDE_OPTIONS[3],
-];
+const {
+  ADDR: HIDE_ADDR,
+  THEME: HIDE_THEME,
+  CONTENTS: HIDE_CONTENTS,
+} = CARD_HIDE_OPTIONS;
 
 type CardProps = {
   data: VerseDetailData;

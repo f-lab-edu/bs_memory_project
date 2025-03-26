@@ -13,7 +13,7 @@ type CardHideOptionAction = {
 type CardHideOptionStore = CardHideOptionState & CardHideOptionAction;
 
 const initialState: CardHideOptionState = {
-  cardHideOption: CARD_HIDE_OPTIONS[0],
+  cardHideOption: CARD_HIDE_OPTIONS.NONE,
 };
 
 export const useCardHideOptionStore = create<CardHideOptionStore>()(set => ({
