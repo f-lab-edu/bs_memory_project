@@ -22,8 +22,8 @@ export type ExamConfigStore = ReturnType<typeof createExamConfigStore>;
 export const createExamConfigStore = (initProps?: Partial<ExamConfigProps>) => {
   const DEFAULT_PROPS: ExamConfigProps = {
     time: 30,
-    sortMethod: SORT_METHODS[0],
-    exposeOption: EXPOSE_OPTIONS[0],
+    sortMethod: SORT_METHODS.NORMAL,
+    exposeOption: EXPOSE_OPTIONS.ADDR,
     setCount: 0,
   };
 

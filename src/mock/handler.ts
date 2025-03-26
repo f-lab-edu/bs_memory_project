@@ -6,7 +6,7 @@ import {
 } from '@/mock/mockData';
 import { SUPABASE_URL } from '@/config';
 import { BIBLE_VERSIONS } from '@utils/constants';
-import { SORT_METHODS } from '@features/exam/constants';
+import { SORT_METHODS_LIST } from '@features/exam/constants';
 import { CARD_HIDE_OPTIONS } from '@features/drilling/constants';
 
 const baseURL = `${SUPABASE_URL}/rest/v1`;
@@ -56,7 +56,7 @@ export const getCardSortMethodHandler = http.get(
   `${baseURL}/card_sort_method?select=*`,
   () => {
     return HttpResponse.json({
-      data: SORT_METHODS,
+      data: SORT_METHODS_LIST,
       error: null,
     });
   },
