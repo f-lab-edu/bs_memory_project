@@ -2,37 +2,34 @@ import Modal from '@components/modal';
 import TimeLimit from '@features/exam/components/examConfigModal/timelimit';
 import ExposeSelect from '@features/exam/components/examConfigModal/exposeSelect';
 import SortMethodSelect from '@features/exam/components/examConfigModal/sortMethodSelect';
-import { useExamConfigModalStore } from '@features/exam/store/examConfigModalStore';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import FetchErrorMessage from '@components/FetchErrorMessage';
 import { Suspense } from 'react';
 import CommonComboboxSkeleton from '@components/CommonComboboxSkeleton';
 import SetCountSelect from '@features/exam/components/examConfigModal/setCountSelect';
-import ConfigSubmit from '@features/exam/components/examConfigModal/configSubmit';
+import useSubmitExamConfig from '@/hooks/useSubmitExamConfig';
+import { useExamConfigModalStore } from '@features/exam/store/examConfigModalStore';
 
 function ExamConfigModal() {
-  const { reset: handleQueryErrorReset } = useQueryErrorResetBoundary();
+  const { reset } = useQueryErrorResetBoundary();
+  const { submitExamConfig } = useSubmitExamConfig();
 
   const isOpen = useExamConfigModalStore(state => state.isOpen);
   const setIsOpen = useExamConfigModalStore(state => state.setIsOpen);
 
-  const handleOnCloseModal = () => {
-    setIsOpen(false);
-  };
-
   return (
     <Modal
       title='시험설정'
-      onCloseModal={handleOnCloseModal}
       isOpen={isOpen}
-      buttonElement={<ConfigSubmit />}
+      setIsOpen={setIsOpen}
+      onClickConfirmCallback={submitExamConfig}
     >
       {isOpen && (
         <div className='mx-auto mb-12 mt-10 flex max-w-[200px] flex-col items-start space-y-5'>
           <TimeLimit />
           <ErrorBoundary
-            onReset={handleQueryErrorReset}
+            onReset={reset}
             fallbackRender={({ resetErrorBoundary }) => (
               <div className='flex w-full flex-col items-start'>
                 <div
@@ -44,7 +41,7 @@ function ExamConfigModal() {
                 <FetchErrorMessage
                   className='text-[14px]'
                   iconClass='size-5'
-                  onClickRetryButton={() => resetErrorBoundary()}
+                  onClickRetryButton={resetErrorBoundary}
                 />
               </div>
             )}
@@ -55,7 +52,7 @@ function ExamConfigModal() {
           </ErrorBoundary>
           <SetCountSelect />
           <ErrorBoundary
-            onReset={handleQueryErrorReset}
+            onReset={reset}
             fallbackRender={({ resetErrorBoundary }) => (
               <div className='flex w-full flex-col items-start'>
                 <div
@@ -67,7 +64,7 @@ function ExamConfigModal() {
                 <FetchErrorMessage
                   className='text-[14px]'
                   iconClass='size-5'
-                  onClickRetryButton={() => resetErrorBoundary()}
+                  onClickRetryButton={resetErrorBoundary}
                 />
               </div>
             )}

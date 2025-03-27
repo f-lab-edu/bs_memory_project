@@ -3,20 +3,24 @@ import { useExamStatusStore } from '@features/exam/store/examStatusStore';
 import getExamResultHTML from '@utils/getExamResultHTML';
 import { useState } from 'react';
 import parse from 'html-react-parser';
+import { EXPOSE_OPTIONS } from '@features/exam/constants';
 
 type ThemeInputProps = {
   exposeOption: ExamExposeOption;
   theme: string;
 };
 
+const { THEME: EXPOSE_THEME } = EXPOSE_OPTIONS;
+
 function ThemeInput({ exposeOption, theme }: ThemeInputProps) {
   const isFinished = useExamStatusStore(state => state.isFinished);
-  const { code } = exposeOption;
   const [value, setValue] = useState('');
+
+  const { code } = exposeOption;
 
   return (
     <div className='w-full'>
-      {code === 'EXPOSE_002' ? (
+      {code === EXPOSE_THEME.code ? (
         <div className='text-xl font-medium leading-loose'>{theme}</div>
       ) : isFinished ? (
         <div className='w-4/5 rounded-lg bg-[#f7f7f7] pl-3 pt-[2px] text-xl font-medium leading-loose mobile:text-lg'>

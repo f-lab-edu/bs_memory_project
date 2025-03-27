@@ -7,27 +7,37 @@ import {
 
 type ModalProps = {
   title?: string;
-  children: React.ReactNode;
   isOpen: boolean;
-  onCloseModal: () => void;
-  buttonElement: React.ReactNode;
+  setIsOpen: (isOpen: boolean) => void;
+  onClickCloseCallback?: () => void;
+  onClickConfirmCallback?: () => void;
+  children: React.ReactNode;
 };
 
 function Modal({
   title,
   children,
   isOpen,
-  onCloseModal,
-  buttonElement,
+  setIsOpen,
+  onClickCloseCallback,
+  onClickConfirmCallback,
 }: ModalProps) {
-  const handleCloseModal = () => onCloseModal();
+  const handleOnClose = () => {
+    setIsOpen(false);
+    if (typeof onClickCloseCallback === 'function') onClickCloseCallback();
+  };
+
+  const handleOnConfirm = () => {
+    setIsOpen(false);
+    if (typeof onClickConfirmCallback === 'function') onClickConfirmCallback();
+  };
+
   return (
-    <Dialog open={isOpen} onClose={handleCloseModal} className='relative z-10'>
+    <Dialog open={isOpen} onClose={handleOnClose} className='relative z-10'>
       <DialogBackdrop
         transition
         className='fixed inset-0 bg-gray-500/75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in'
       />
-
       <div className='fixed inset-0 z-10 w-screen overflow-y-auto'>
         <div className='flex min-h-full items-center justify-center p-0 text-center'>
           <DialogPanel
@@ -45,7 +55,22 @@ function Modal({
               )}
               {children}
             </div>
-            {buttonElement}
+            <div className='my-3 flex items-center justify-center space-x-3'>
+              <button
+                type='button'
+                onClick={handleOnClose}
+                className='col-start-1 mt-3 inline-flex w-full justify-center rounded-lg bg-white px-3 py-2 text-lg font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 mobile:text-base'
+              >
+                취소
+              </button>
+              <button
+                type='button'
+                onClick={handleOnConfirm}
+                className='col-start-1 mt-3 inline-flex w-full justify-center rounded-lg bg-secondary px-3 py-2 text-lg font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary mobile:text-base'
+              >
+                확인
+              </button>
+            </div>
           </DialogPanel>
         </div>
       </div>

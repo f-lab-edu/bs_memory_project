@@ -3,11 +3,15 @@ import { useState } from 'react';
 import { useExamStatusStore } from '@features/exam/store/examStatusStore';
 import getExamResultHTML from '@utils/getExamResultHTML';
 import parse from 'html-react-parser';
+import { EXPOSE_OPTIONS } from '@features/exam/constants';
 
 type AddressInputProps = {
   exposeOption: ExamExposeOption;
   address: string;
 };
+
+const { ADDR: EXPOSE_ADDR, ADDR_THEME: EXPOSE_ADDR_THEME } = EXPOSE_OPTIONS;
+
 function AddressInput({ exposeOption, address }: AddressInputProps) {
   const isFinished = useExamStatusStore(state => state.isFinished);
   const [value, setValue] = useState('');
@@ -15,7 +19,7 @@ function AddressInput({ exposeOption, address }: AddressInputProps) {
   const { code } = exposeOption;
   return (
     <div className='w-full pl-2'>
-      {code === 'EXPOSE_001' || code === 'EXPOSE_003' ? (
+      {code === EXPOSE_ADDR.code || code === EXPOSE_ADDR_THEME.code ? (
         <div className='text-xl font-medium leading-loose'>{address}</div>
       ) : isFinished ? (
         <div className='w-full rounded-xl bg-[#f7f7f7] text-xl font-medium leading-loose text-secondary mobile:text-lg'>

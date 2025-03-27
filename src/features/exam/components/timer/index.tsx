@@ -12,29 +12,30 @@ function Timer({ time }: TimerProps) {
   const intervalRef = useRef<NodeJS.Timeout>(null);
 
   useEffect(() => {
-    if (isPaused && intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    if (!isPaused) {
+    if (!isPaused && intervalRef.current == null) {
       intervalRef.current = setInterval(() => {
         setLeftSeconds(prev => prev - 1);
       }, 1000);
     }
 
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [isPaused]);
-
-  useEffect(() => {
-    if (leftSeconds === 0 && intervalRef.current) {
+    if ((leftSeconds === 0 || isPaused) && intervalRef.current) {
       clearInterval(intervalRef.current);
-      if (confirm('시험이 종료되었습니다. 수고하셨습니다. 😊')) {
-        setIsFinished(true);
+      intervalRef.current = null;
+
+      if (leftSeconds === 0) {
+        if (confirm('시험이 종료되었습니다. 수고하셨습니다. 😊')) {
+          setIsFinished(true);
+        }
       }
     }
-  }, [leftSeconds, setIsFinished]);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [isPaused, leftSeconds, setIsFinished]);
 
   const min = Number((leftSeconds / 60).toFixed(2));
   const minValue = Math.floor(min);
