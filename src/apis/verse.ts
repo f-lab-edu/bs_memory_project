@@ -18,7 +18,7 @@ export const getVersesSummary = async (seriesCode: SeriesCode) => {
   return data;
 };
 
-const [BV_KOR, BV_GAE] = [BIBLE_VERSIONS[0], BIBLE_VERSIONS[1]];
+const { KOR: BV_KOR, GAE: BV_GAE } = BIBLE_VERSIONS;
 
 export const getVersesDetail = async (
   verseIds: Verse['idx'][],

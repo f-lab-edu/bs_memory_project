@@ -10,7 +10,7 @@ type AddressInputProps = {
   address: string;
 };
 
-const [EXPOSE_ADDR, EXPOSE_ADDR_THEME] = [EXPOSE_OPTIONS[0], EXPOSE_OPTIONS[2]];
+const { ADDR: EXPOSE_ADDR, ADDR_THEME: EXPOSE_ADDR_THEME } = EXPOSE_OPTIONS;
 
 function AddressInput({ exposeOption, address }: AddressInputProps) {
   const isFinished = useExamStatusStore(state => state.isFinished);

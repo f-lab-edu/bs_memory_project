@@ -21,8 +21,8 @@ type GlobalExamConfigStore = ExamConfigState & ExamConfigAction;
 
 const initialState: ExamConfigState = {
   time: 30,
-  sortMethod: SORT_METHODS[0],
-  exposeOption: EXPOSE_OPTIONS[0],
+  sortMethod: SORT_METHODS.NORMAL,
+  exposeOption: EXPOSE_OPTIONS.ADDR,
   setCount: 0,
 };
 

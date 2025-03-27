@@ -32,7 +32,7 @@ const getGaeExamVerse = async (verseIds: Verse['idx'][], count: number) => {
   return data.map(v => ({ ...v, contents: v.verse_gae }));
 };
 
-const [BV_KOR, BV_GAE] = [BIBLE_VERSIONS[0], BIBLE_VERSIONS[1]];
+const { KOR: BV_KOR, GAE: BV_GAE } = BIBLE_VERSIONS;
 
 export const getExamVerse = async (
   verseIds: Verse['idx'][],

@@ -4,14 +4,16 @@ import { CommonComboboxItem } from '@components/commonCombobox/type';
 import { cleanup, screen, waitFor, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import CommonCombobox from '@components/commonCombobox/index';
-import { BIBLE_VERSIONS } from '@utils/constants';
+import { BIBLE_VERSIONS_LIST } from '@utils/constants';
 
 const label = '성경버전';
-const items: CommonComboboxItem[] = BIBLE_VERSIONS.map(({ name, code }) => ({
-  name,
-  value: code,
-  id: code,
-}));
+const items: CommonComboboxItem[] = BIBLE_VERSIONS_LIST.map(
+  ({ name, code }) => ({
+    name,
+    value: code,
+    id: code,
+  }),
+);
 const selectedItem: CommonComboboxItem = items[0];
 const handleChangeCombobox = vi.fn<(item: CommonComboboxItem) => void>();
 

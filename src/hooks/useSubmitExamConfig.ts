@@ -1,10 +1,9 @@
 import useExamConfigContext from '@/hooks/useExamConfigContext';
 import { useShallow } from 'zustand/react/shallow';
 import { useGlobalExamConfigStore } from '@features/exam/store/globalExamConfigStore';
-import { useExamConfigModalStore } from '@features/exam/store/examConfigModalStore';
 import { useNavigate } from 'react-router-dom';
 
-export default function useExamConfigModalHandler() {
+export default function useSubmitExamConfig() {
   const { time, setCount, exposeOption, sortMethod } = useExamConfigContext(
     useShallow(state => ({
       time: state.time,
@@ -28,15 +27,9 @@ export default function useExamConfigModalHandler() {
     })),
   );
 
-  const setIsOpen = useExamConfigModalStore(state => state.setIsOpen);
   const navigate = useNavigate();
 
-  const handleClickClose = () => {
-    setIsOpen(false);
-  };
-
-  const handleClickConfirm = () => {
-    setIsOpen(false);
+  const submitExamConfig = () => {
     setSubmitTime(time);
     setSubmitCount(setCount);
     setSubmitSortMethod(sortMethod);
@@ -44,5 +37,5 @@ export default function useExamConfigModalHandler() {
     void navigate('/exam');
   };
 
-  return { handleClickClose, handleClickConfirm };
+  return { submitExamConfig };
 }
