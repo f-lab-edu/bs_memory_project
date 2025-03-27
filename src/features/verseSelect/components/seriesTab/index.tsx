@@ -25,8 +25,9 @@ function SeriesTab({ data }: SeriesTabProps) {
   return (
     <div className='w-full'>
       <button
-        aria-expanded={isTabOpen}
+        role='tab'
         aria-controls={contentsId}
+        aria-expanded={isTabOpen}
         className={clsx(
           isRootSeries
             ? tabVariants({ size: 'md', color: 'default' })
@@ -47,7 +48,13 @@ function SeriesTab({ data }: SeriesTabProps) {
           {isTabOpen ? <FaCaretUp /> : <FaCaretDown />}
         </span>
       </button>
-      {isTabOpen && <SeriesContents contentsId={contentsId} data={data} />}
+      {
+        <SeriesContents
+          contentsId={contentsId}
+          data={data}
+          isTabOpen={isTabOpen}
+        />
+      }
     </div>
   );
 }
