@@ -2,27 +2,28 @@ import Modal from '@components/modal';
 import TimeLimit from '@features/exam/components/examConfigModal/timelimit';
 import ExposeSelect from '@features/exam/components/examConfigModal/exposeSelect';
 import SortMethodSelect from '@features/exam/components/examConfigModal/sortMethodSelect';
-import { useExamConfigModalStore } from '@features/exam/store/examConfigModalStore';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import FetchErrorMessage from '@components/FetchErrorMessage';
 import { Suspense } from 'react';
 import CommonComboboxSkeleton from '@components/CommonComboboxSkeleton';
 import SetCountSelect from '@features/exam/components/examConfigModal/setCountSelect';
-import useExamConfigModalHandler from '@/hooks/useExamConfigModalHandler';
+import useSubmitExamConfig from '@/hooks/useSubmitExamConfig';
+import { useExamConfigModalStore } from '@features/exam/store/examConfigModalStore';
 
 function ExamConfigModal() {
   const { reset } = useQueryErrorResetBoundary();
-  const { handleClickConfirm, handleClickClose } = useExamConfigModalHandler();
+  const { submitExamConfig } = useSubmitExamConfig();
 
   const isOpen = useExamConfigModalStore(state => state.isOpen);
+  const setIsOpen = useExamConfigModalStore(state => state.setIsOpen);
 
   return (
     <Modal
       title='시험설정'
       isOpen={isOpen}
-      onClickCloseCallback={handleClickClose}
-      onClickConfirmCallback={handleClickConfirm}
+      setIsOpen={setIsOpen}
+      onClickConfirmCallback={submitExamConfig}
     >
       {isOpen && (
         <div className='mx-auto mb-12 mt-10 flex max-w-[200px] flex-col items-start space-y-5'>

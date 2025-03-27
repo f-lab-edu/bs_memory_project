@@ -10,7 +10,7 @@ type ThemeInputProps = {
   theme: string;
 };
 
-const EXPOSE_THEME = EXPOSE_OPTIONS[1];
+const { THEME: EXPOSE_THEME } = EXPOSE_OPTIONS;
 
 function ThemeInput({ exposeOption, theme }: ThemeInputProps) {
   const isFinished = useExamStatusStore(state => state.isFinished);

@@ -13,7 +13,7 @@ type BibleVersionAction = {
 type BibleVersionStore = BibleVersionState & BibleVersionAction;
 
 const initialState: BibleVersionState = {
-  bibleVersion: BIBLE_VERSIONS[0],
+  bibleVersion: BIBLE_VERSIONS.KOR,
 };
 
 export const useBibleVersionStore = create<BibleVersionStore>()(set => ({

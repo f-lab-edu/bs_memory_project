@@ -2,6 +2,7 @@ import supabase from '@apis/supabase';
 import { Verse } from '@apis/custom.types';
 import { BIBLE_VERSIONS } from '@utils/constants';
 import { BibleVersion } from '@utils/type';
+import SupabaseResponseError from '@apis/utils/SupabaseResponseError';
 
 const getKorExamVerse = async (verseIds: Verse['idx'][], count: number) => {
   const { data, error } = await supabase
@@ -12,7 +13,7 @@ const getKorExamVerse = async (verseIds: Verse['idx'][], count: number) => {
     .in('idx', [...verseIds])
     .limit(count);
 
-  if (error) throw error;
+  if (error) throw new SupabaseResponseError(error);
 
   return data.map(v => ({ ...v, contents: v.verse_kor }));
 };
@@ -26,12 +27,12 @@ const getGaeExamVerse = async (verseIds: Verse['idx'][], count: number) => {
     .in('idx', [...verseIds])
     .limit(count);
 
-  if (error) throw error;
+  if (error) throw new SupabaseResponseError(error);
 
   return data.map(v => ({ ...v, contents: v.verse_gae }));
 };
 
-const [BV_KOR, BV_GAE] = [BIBLE_VERSIONS[0], BIBLE_VERSIONS[1]];
+const { KOR: BV_KOR, GAE: BV_GAE } = BIBLE_VERSIONS;
 
 export const getExamVerse = async (
   verseIds: Verse['idx'][],
