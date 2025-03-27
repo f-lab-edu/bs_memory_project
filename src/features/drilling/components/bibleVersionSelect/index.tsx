@@ -1,9 +1,9 @@
 import CommonCombobox from '@components/commonCombobox';
 import { useQuery } from '@tanstack/react-query';
-import { getBibleVersions } from '@apis/bibleVersion.ts';
-import Loader from '@components/Loader.tsx';
-import { useBibleVersionStore } from '@store/bibleVersionStore.ts';
-import { CommonComboboxItem } from '@components/commonCombobox/type.ts';
+import { getBibleVersions } from '@apis/bibleVersion';
+import Loader from '@components/Loader';
+import { useBibleVersionStore } from '@store/bibleVersionStore';
+import { CommonComboboxItem } from '@components/commonCombobox/type';
 import { useShallow } from 'zustand/react/shallow';
 
 function BibleVersionSelect() {
@@ -19,7 +19,7 @@ function BibleVersionSelect() {
 
   const { data, isPending, isError } = useQuery({
     queryKey: ['bibleVersion'],
-    queryFn: () => getBibleVersions(),
+    queryFn: getBibleVersions,
   });
 
   if (isPending) return <Loader />;
@@ -36,7 +36,7 @@ function BibleVersionSelect() {
       label={'성경버전'}
       items={selectItems}
       selectedItem={selectedItem}
-      handleChangeCombobox={(item: CommonComboboxItem) =>
+      onChangeCombobox={(item: CommonComboboxItem) =>
         setBibleVersion({ name: item.name, code: item.value })
       }
     />

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { CardSortMethod } from '@apis/custom.types.ts';
+import { CardSortMethod } from '@apis/custom.types';
 
 type CardSortMethodState = {
   cardSortMethod: CardSortMethod;

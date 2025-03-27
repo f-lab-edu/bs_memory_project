@@ -3,11 +3,11 @@ import { FaCaretUp } from '@react-icons/all-files/fa/FaCaretUp';
 import { FaCaretDown } from '@react-icons/all-files/fa/FaCaretDown';
 import SeriesContents from '@features/verseSelect/components/seriesContents';
 import { SeriesDatum } from '@features/verseSelect/types';
-import { clsx } from 'clsx';
 import {
   caretVariants,
   tabVariants,
-} from '@features/verseSelect/components/seriesTab/css/variants.ts';
+} from '@features/verseSelect/components/seriesTab/css/variants';
+import cn from '@utils/cn';
 
 type SeriesTabProps = {
   data: SeriesDatum;
@@ -28,7 +28,7 @@ function SeriesTab({ data }: SeriesTabProps) {
         role='tab'
         aria-controls={contentsId}
         aria-expanded={isTabOpen}
-        className={clsx(
+        className={cn(
           isRootSeries
             ? tabVariants({ size: 'md', color: 'default' })
             : tabVariants({ size: 'sm', color: 'light' }),
@@ -39,7 +39,7 @@ function SeriesTab({ data }: SeriesTabProps) {
           {data.series_name}
         </span>
         <span
-          className={clsx(
+          className={cn(
             isRootSeries
               ? caretVariants({ size: 'md' })
               : caretVariants({ size: 'sm' }),
@@ -48,13 +48,11 @@ function SeriesTab({ data }: SeriesTabProps) {
           {isTabOpen ? <FaCaretUp /> : <FaCaretDown />}
         </span>
       </button>
-      {
-        <SeriesContents
-          contentsId={contentsId}
-          data={data}
-          isTabOpen={isTabOpen}
-        />
-      }
+      <SeriesContents
+        contentsId={contentsId}
+        data={data}
+        isTabOpen={isTabOpen}
+      />
     </div>
   );
 }

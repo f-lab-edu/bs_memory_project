@@ -4,10 +4,11 @@ import '@/index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import DrillingPage from '@pages/drilling';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { getSeries } from '@apis/series.ts';
-import RootComponent from './RootComponent.tsx';
+import { getSeries } from '@apis/series';
+import RootComponent from './RootComponent';
 import Exam from '@pages/exam';
 import Home from '@pages/home';
+import RouteErrorElement from '@components/RouteErrorElement';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,14 +27,17 @@ const router = createBrowserRouter([
         path: '/',
         loader: getSeries,
         element: <Home />,
+        errorElement: <RouteErrorElement />,
       },
       {
         path: '/drilling',
         element: <DrillingPage />,
+        errorElement: <RouteErrorElement />,
       },
       {
         path: '/exam',
         element: <Exam />,
+        errorElement: <RouteErrorElement />,
       },
     ],
   },

@@ -1,5 +1,5 @@
-import supabase from './supabase.ts';
-import { BibleVersionName, SeriesCode } from './custom.types.ts';
+import supabase from './supabase';
+import { BibleVersion, SeriesCode, Verse } from './custom.types';
 
 export const getVersesSummary = async (seriesCode: SeriesCode) => {
   const { data, error } = await supabase
@@ -16,16 +16,36 @@ export const getVersesSummary = async (seriesCode: SeriesCode) => {
 };
 
 export const getVersesDetail = async (
-  seriesCode: SeriesCode,
-  bibleVersion: BibleVersionName,
+  verseIds: Verse['idx'][],
+  bibleVersion: BibleVersion,
 ) => {
-  const { data: verse, error } = await supabase
+  return bibleVersion.code === 'BV_001'
+    ? await getVersesDetailBV_001(verseIds)
+    : await getVerseDetailBV_002(verseIds);
+};
+
+const getVersesDetailBV_001 = async (verseIds: Verse['idx'][]) => {
+  const { data, error } = await supabase
     .from('verse')
     .select(
-      `idx,card_num,series_code,category,theme,bible_code,chapter,verse1,verse2,
-         ${bibleVersion === '개역개정판' ? 'verse_gae' : 'verse_kor'}`,
+      'idx,card_num,series_code,category,theme,bible_code(bible_name,short_name),chapter,verse1,verse2,verse_kor',
     )
-    .eq('series_code', seriesCode);
+    .in('idx', [...verseIds]);
 
-  return { data: verse, error };
+  if (error) throw error;
+
+  return data.map(v => ({ ...v, contents: v.verse_kor }));
+};
+
+const getVerseDetailBV_002 = async (verseIds: Verse['idx'][]) => {
+  const { data, error } = await supabase
+    .from('verse')
+    .select(
+      'idx,card_num,series_code,category,theme,bible_code(bible_name,short_name),chapter,verse1,verse2,verse_gae',
+    )
+    .in('idx', [...verseIds]);
+
+  if (error) throw error;
+
+  return data.map(v => ({ ...v, contents: v.verse_gae }));
 };

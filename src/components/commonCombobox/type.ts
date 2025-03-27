@@ -6,6 +6,6 @@ export type CommonComboboxItem = {
 export type CommonComboboxProps = {
   label: string;
   items: CommonComboboxItem[];
-  handleChangeCombobox: (item: CommonComboboxItem) => void;
+  onChangeCombobox: (item: CommonComboboxItem) => void;
   selectedItem: CommonComboboxItem;
 };

@@ -11,14 +11,16 @@ import { FaCheck } from '@react-icons/all-files/fa/FaCheck';
 import {
   CommonComboboxItem,
   CommonComboboxProps,
-} from '@components/commonCombobox/type.ts';
+} from '@components/commonCombobox/type';
 
 function CommonCombobox({
   label,
   items,
-  handleChangeCombobox,
+  onChangeCombobox,
   selectedItem,
 }: CommonComboboxProps) {
+  const handleChangeCombobox = (item: CommonComboboxItem) =>
+    onChangeCombobox(item);
   return (
     <Combobox as='div' value={selectedItem} onChange={handleChangeCombobox}>
       <Label className='block text-[22px] font-semibold text-secondary mobile:text-base/4'>
@@ -37,7 +39,7 @@ function CommonCombobox({
           />
         </ComboboxButton>
 
-        <ComboboxOptions className='absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-xl shadow-lg ring-1 ring-black/5 focus:outline-none mobile:text-sm'>
+        <ComboboxOptions className='absolute z-10 max-h-60 w-full overflow-auto rounded-md bg-white text-xl shadow-lg ring-1 ring-black/5 focus:outline-none mobile:text-sm'>
           {items.map(item => (
             <ComboboxOption
               key={item.id}

@@ -154,6 +154,21 @@ export type Database = {
         };
         Relationships: [];
       };
+      exam_expose_option: {
+        Row: {
+          code: string;
+          name: string;
+        };
+        Insert: {
+          code: string;
+          name: string;
+        };
+        Update: {
+          code?: string;
+          name?: string;
+        };
+        Relationships: [];
+      };
       series: {
         Row: {
           category: string;
