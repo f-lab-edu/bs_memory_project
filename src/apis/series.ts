@@ -1,5 +1,6 @@
 import supabase from './supabase';
 import { SeriesCode } from './custom.types';
+import SupabaseResponseError from '@apis/utils/SupabaseResponseError';
 
 export const getSeries = async () => {
   const { data, error } = await supabase
@@ -8,7 +9,7 @@ export const getSeries = async () => {
     .is('parent_series', null)
     .order('ord', { ascending: true });
 
-  if (error) throw error;
+  if (error) throw new SupabaseResponseError(error);
 
   return data;
 };
@@ -22,7 +23,7 @@ export const getSubSeries = async (series_code: SeriesCode) => {
     .eq('parent_series', series_code)
     .order('ord', { ascending: true });
 
-  if (error) throw error;
+  if (error) throw new SupabaseResponseError(error);
 
   return data;
 };

@@ -2,10 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import Loader from '@components/Loader';
 import { CommonComboboxItem } from '@components/commonCombobox/type';
 import CommonCombobox from '@components/commonCombobox';
-import {
-  DEFAULT_HIDE_OPTION,
-  useCardHideOptionStore,
-} from '@store/cardHideOptionStore';
+import { useCardHideOptionStore } from '@features/drilling/store/cardHideOptionStore';
 import { getCardHideOption } from '@apis/cardHideOption';
 import { useShallow } from 'zustand/react/shallow';
 
@@ -29,14 +26,7 @@ function CardHideOptionSelect() {
   if (isPending) return <Loader />;
   if (isError) return <div>데이터를 조회하지 못했습니다.</div>;
 
-  const items = [
-    {
-      name: DEFAULT_HIDE_OPTION.name,
-      value: DEFAULT_HIDE_OPTION.code,
-      id: DEFAULT_HIDE_OPTION.code,
-    },
-    ...data.map(({ name, code }) => ({ name, value: code, id: code })),
-  ];
+  const items = data.map(({ name, code }) => ({ name, value: code, id: code }));
 
   return (
     <CommonCombobox

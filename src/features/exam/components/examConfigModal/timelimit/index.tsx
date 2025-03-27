@@ -1,12 +1,9 @@
-import {
-  MINUITE,
-  useExamConfigStore,
-} from '@features/exam/store/examConfigStore';
 import { useShallow } from 'zustand/react/shallow';
+import useExamConfigContext from '@/hooks/useExamConfigContext';
 
 function TimeLimit() {
-  const time = useExamConfigStore(useShallow(state => state.time / MINUITE));
-  const setTime = useExamConfigStore(state => state.setTime);
+  const time = useExamConfigContext(useShallow(state => state.time));
+  const setTime = useExamConfigContext(state => state.setTime);
 
   return (
     <div className='text-left text-[22px] mobile:text-base/4'>
