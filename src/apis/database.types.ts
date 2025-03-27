@@ -358,6 +358,13 @@ export type Database = {
             referencedRelation: 'bible_code';
             referencedColumns: ['bible_code'];
           },
+          {
+            foreignKeyName: 'verse_series_code_fkey';
+            columns: ['series_code'];
+            isOneToOne: false;
+            referencedRelation: 'series';
+            referencedColumns: ['series_code'];
+          },
         ];
       };
     };

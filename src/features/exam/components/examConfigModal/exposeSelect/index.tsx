@@ -1,14 +1,14 @@
 import CommonCombobox from '@components/commonCombobox';
-import { useExamConfigStore } from '@features/exam/store/examConfigStore';
 import { useShallow } from 'zustand/react/shallow';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getExamExposeOptions } from '@apis/exposeOption';
+import useExamConfigContext from '@/hooks/useExamConfigContext';
 
 function ExposeSelect() {
-  const { name, code } = useExamConfigStore(
+  const { name, code } = useExamConfigContext(
     useShallow(state => state.exposeOption),
   );
-  const setExposeOption = useExamConfigStore(state => state.setExposeOption);
+  const setExposeOption = useExamConfigContext(state => state.setExposeOption);
 
   const { data } = useSuspenseQuery({
     queryKey: ['exposeOption'],

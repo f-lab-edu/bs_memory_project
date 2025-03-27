@@ -1,9 +1,16 @@
 import { VerseDetailData } from '@features/drilling/components/cardDisplay/card/type';
 import { getVerseAddress } from '@utils/common';
 import { Textfit } from 'react-textfit';
-import { useCardHideOptionStore } from '@store/cardHideOptionStore';
+import { useCardHideOptionStore } from '@features/drilling/store/cardHideOptionStore';
 import { ClassValue } from 'clsx';
 import cn from '@utils/cn';
+import { CARD_HIDE_OPTIONS } from '@features/drilling/constants';
+
+const {
+  ADDR: HIDE_ADDR,
+  THEME: HIDE_THEME,
+  CONTENTS: HIDE_CONTENTS,
+} = CARD_HIDE_OPTIONS;
 
 type CardProps = {
   data: VerseDetailData;
@@ -15,16 +22,13 @@ const cardTextClass = (isHidden: boolean, ...inputs: ClassValue[]) => {
 
 function Card({ data }: CardProps) {
   const { theme, category, contents } = data;
-  const { code: hideOption } = useCardHideOptionStore(
-    state => state.cardHideOption,
-  );
-
+  const { code } = useCardHideOptionStore(state => state.cardHideOption);
   const address = getVerseAddress(data);
   return (
-    <div className='my-4 flex h-[400px] flex-col items-start justify-center rounded-xl border border-[#bebebe] px-9 py-6 text-left shadow-lg'>
+    <div className='my-4 flex h-[400px] flex-col items-start justify-center rounded-xl border border-[#bebebe] px-9 py-6 text-left shadow-lg mobile:h-[200px]'>
       <div
         className={cardTextClass(
-          hideOption === 'HIDE_002',
+          code === HIDE_THEME.code,
           'mb-3 mt-2 text-[28px] font-semibold mobile:text-[20px]',
         )}
       >
@@ -32,7 +36,7 @@ function Card({ data }: CardProps) {
       </div>
       <div
         className={cardTextClass(
-          hideOption === 'HIDE_001',
+          code === HIDE_ADDR.code,
           'mt-2 text-[26px] font-medium mobile:text-[18px]',
         )}
       >
@@ -46,7 +50,7 @@ function Card({ data }: CardProps) {
           'h-[220px] w-[500px] text-wrap rounded-xl py-4 leading-8 mobile:h-[150px] mobile:leading-4'
         }
       >
-        <span className={cardTextClass(hideOption === 'HIDE_003', '')}>
+        <span className={cardTextClass(code === HIDE_CONTENTS.code, '')}>
           {contents}
         </span>
       </Textfit>

@@ -58,11 +58,9 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
       'react/jsx-handler-names': [
-        'error',
+        'off',
         {
           eventHandlerPrefix: 'handle',
-          eventHandlerPropPrefix: 'on',
-          checkLocalVariables: true,
         },
       ],
       '@typescript-eslint/no-empty-function': 'off',

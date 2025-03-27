@@ -22,6 +22,7 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter([
   {
     element: <RootComponent />,
+    errorElement: <RouteErrorElement />,
     children: [
       {
         path: '/',
