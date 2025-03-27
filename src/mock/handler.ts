@@ -1,5 +1,8 @@
 import { http, HttpResponse } from 'msw';
 import {
+  BIBLE_VERSION,
+  CARD_HIDE_OPTION,
+  CARD_SORT_METHOD,
   SERIES_DATA,
   SERIES_DATA_SUB,
   VERSE_SUMMARY_DATA,
@@ -34,6 +37,36 @@ export const getVerseSummaryHandler = http.get(
   () => {
     return HttpResponse.json({
       data: VERSE_SUMMARY_DATA,
+      error: null,
+    });
+  },
+);
+
+export const getBibleVerseHandler = http.get(
+  `${baseURL}/bible_version?select=*`,
+  () => {
+    return HttpResponse.json({
+      data: BIBLE_VERSION,
+      error: null,
+    });
+  },
+);
+
+export const getCardSortMethodHandler = http.get(
+  `${baseURL}/card_sort_method?select=*`,
+  () => {
+    return HttpResponse.json({
+      data: CARD_SORT_METHOD,
+      error: null,
+    });
+  },
+);
+
+export const getCardHideOptionHandler = http.get(
+  `${baseURL}/card_hide_option?select=*`,
+  () => {
+    return HttpResponse.json({
+      data: CARD_HIDE_OPTION,
       error: null,
     });
   },

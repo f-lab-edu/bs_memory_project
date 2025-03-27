@@ -65,6 +65,7 @@ export default tseslint.config(
           checkLocalVariables: true,
         },
       ],
+      '@typescript-eslint/no-empty-function': 'off',
     },
   },
 );

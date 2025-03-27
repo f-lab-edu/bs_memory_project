@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '@/index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Drilling from '@pages/drilling';
+import DrillingPage from '@pages/drilling';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { getSeries } from '@apis/series.ts';
 import RootComponent from './RootComponent.tsx';
@@ -12,7 +12,8 @@ import Home from '@pages/home';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 10,
+      staleTime: 1000 * 60 * 60 * 24,
+      gcTime: 1000 * 60 * 60 * 24,
     },
   },
 });
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/drilling',
-        element: <Drilling />,
+        element: <DrillingPage />,
       },
       {
         path: '/exam',
