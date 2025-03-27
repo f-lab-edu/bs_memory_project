@@ -7,8 +7,17 @@ import RangeInfo from '@features/exam/components/rangeInfo';
 import { getExamVerse } from '@apis/examVerse';
 import { useGlobalExamConfigStore } from '@features/exam/store/globalExamConfigStore';
 import ExamBoard from '@features/exam/components/examBoard';
+import SubmitButton from '@features/exam/components/submitButton';
+import { useExamStatusStore } from '@features/exam/store/examStatusStore';
+import { useEffect } from 'react';
 
 function Exam() {
+  const setIsFinished = useExamStatusStore(state => state.setIsFinished);
+
+  useEffect(() => {
+    return () => setIsFinished(false);
+  }, [setIsFinished]);
+
   const { time, setCount } = useGlobalExamConfigStore(
     useShallow(state => ({
       time: state.time,
@@ -32,6 +41,7 @@ function Exam() {
         <RangeInfo data={data} />
         <Timer time={time} />
       </div>
+      <SubmitButton />
       <ExamBoard data={data} />
     </div>
   );
