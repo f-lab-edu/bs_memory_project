@@ -1,4 +1,4 @@
-import { SeriesData } from '@features/verseSelect/types.ts';
+import { SeriesData } from '@features/verseSelect/types';
 
 export const SERIES_DATA: SeriesData = [
   {

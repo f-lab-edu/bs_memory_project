@@ -6,8 +6,8 @@ import {
   SERIES_DATA,
   SERIES_DATA_SUB,
   VERSE_SUMMARY_DATA,
-} from '@/mock/mockData.ts';
-import { SUPABASE_URL } from '@/config.ts';
+} from '@/mock/mockData';
+import { SUPABASE_URL } from '@/config';
 
 const baseURL = `${SUPABASE_URL}/rest/v1`;
 

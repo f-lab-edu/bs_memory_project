@@ -1,5 +1,5 @@
-import { CardSortMethod } from '@apis/custom.types.ts';
-import { ExamExposeOption } from '@features/exam/type.ts';
+import { CardSortMethod } from '@apis/custom.types';
+import { ExamExposeOption } from '@features/exam/type';
 import { create } from 'zustand';
 
 type ExamConfigState = {

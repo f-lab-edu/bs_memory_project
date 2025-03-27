@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { VerseId } from '@features/verseSelect/types.ts';
+import { VerseId } from '@features/verseSelect/types';
 
 type VerseSelectState = {
   verseIds: VerseId[];

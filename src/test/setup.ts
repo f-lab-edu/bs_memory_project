@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, afterEach } from 'vitest';
-import { server } from '@/mock/node.ts';
+import { server } from '@/mock/node';
 
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 

@@ -1,9 +1,9 @@
 import CommonCombobox from '@components/commonCombobox';
-import { useExamConfigStore } from '@features/exam/store/examConfigStore.ts';
+import { useExamConfigStore } from '@features/exam/store/examConfigStore';
 import { useShallow } from 'zustand/react/shallow';
 import { useQuery } from '@tanstack/react-query';
-import { getExamExposeOptions } from '@apis/exposeOption.ts';
-import Loader from '@components/Loader.tsx';
+import { getExamExposeOptions } from '@apis/exposeOption';
+import Loader from '@components/Loader';
 
 function ExposeSelect() {
   const { name, code } = useExamConfigStore(

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { BibleVersion } from '@apis/custom.types.ts';
+import { BibleVersion } from '@apis/custom.types';
 
 type BibleVersionState = {
   bibleVersion: BibleVersion;

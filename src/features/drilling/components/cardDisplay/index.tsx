@@ -1,9 +1,9 @@
-import { useVerseSelectStore } from '@store/verseSelectStore.ts';
+import { useVerseSelectStore } from '@store/verseSelectStore';
 import { useQuery } from '@tanstack/react-query';
-import { getVersesDetail } from '@apis/verse.ts';
-import { useBibleVersionStore } from '@store/bibleVersionStore.ts';
+import { getVersesDetail } from '@apis/verse';
+import { useBibleVersionStore } from '@store/bibleVersionStore';
 import { useShallow } from 'zustand/react/shallow';
-import Loader from '@components/Loader.tsx';
+import Loader from '@components/Loader';
 import CardSwiper from 'src/features/drilling/components/cardDisplay/cardSwiper';
 
 function CardDisplay() {
