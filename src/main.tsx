@@ -28,17 +28,14 @@ const router = createBrowserRouter([
         path: '/',
         loader: getSeries,
         element: <Home />,
-        errorElement: <RouteErrorElement />,
       },
       {
         path: '/drilling',
         element: <DrillingPage />,
-        errorElement: <RouteErrorElement />,
       },
       {
         path: '/exam',
         element: <Exam />,
-        errorElement: <RouteErrorElement />,
       },
     ],
   },
