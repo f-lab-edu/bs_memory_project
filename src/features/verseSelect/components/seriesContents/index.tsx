@@ -19,7 +19,7 @@ export type SeriesContentsProps = {
 };
 
 function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
-  const { reset: handleQueryErrorReset } = useQueryErrorResetBoundary();
+  const { reset } = useQueryErrorResetBoundary();
   const tabpanelRef = useRef<HTMLDivElement>(null);
 
   const { sub_series_opt, series_code } = data;
@@ -55,11 +55,11 @@ function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
     >
       {isTabOpen && (
         <ErrorBoundary
-          onReset={handleQueryErrorReset}
+          onReset={reset}
           fallbackRender={({ resetErrorBoundary }) => (
             <FetchErrorMessage
               className='mt-3 pl-4'
-              onClickRetryButton={() => resetErrorBoundary()}
+              onClickRetryButton={resetErrorBoundary}
             />
           )}
         >

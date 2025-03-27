@@ -1,13 +1,13 @@
 import { http, HttpResponse } from 'msw';
 import {
-  BIBLE_VERSION,
-  CARD_HIDE_OPTION,
-  CARD_SORT_METHOD,
   SERIES_DATA,
   SERIES_DATA_SUB,
   VERSE_SUMMARY_DATA,
 } from '@/mock/mockData';
 import { SUPABASE_URL } from '@/config';
+import { BIBLE_VERSIONS_LIST } from '@utils/constants';
+import { SORT_METHODS_LIST } from '@features/exam/constants';
+import { CARD_HIDE_OPTIONS_LIST } from '@features/drilling/constants';
 
 const baseURL = `${SUPABASE_URL}/rest/v1`;
 
@@ -46,7 +46,7 @@ export const getBibleVerseHandler = http.get(
   `${baseURL}/bible_version?select=*`,
   () => {
     return HttpResponse.json({
-      data: BIBLE_VERSION,
+      data: BIBLE_VERSIONS_LIST,
       error: null,
     });
   },
@@ -56,7 +56,7 @@ export const getCardSortMethodHandler = http.get(
   `${baseURL}/card_sort_method?select=*`,
   () => {
     return HttpResponse.json({
-      data: CARD_SORT_METHOD,
+      data: SORT_METHODS_LIST,
       error: null,
     });
   },
@@ -66,7 +66,7 @@ export const getCardHideOptionHandler = http.get(
   `${baseURL}/card_hide_option?select=*`,
   () => {
     return HttpResponse.json({
-      data: CARD_HIDE_OPTION,
+      data: CARD_HIDE_OPTIONS_LIST,
       error: null,
     });
   },

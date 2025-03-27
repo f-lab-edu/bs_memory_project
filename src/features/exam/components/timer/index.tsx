@@ -1,34 +1,41 @@
-import { useExamConfigStore } from '@features/exam/store/examConfigStore';
 import { useEffect, useRef, useState } from 'react';
+import { useExamStatusStore } from '@features/exam/store/examStatusStore';
 
-function Timer() {
+type TimerProps = {
+  time: number;
+};
+function Timer({ time }: TimerProps) {
+  const setIsFinished = useExamStatusStore(state => state.setIsFinished);
   const [isPaused, setIsPaused] = useState(false);
-  const time = useExamConfigStore(state => state.time);
-  const [leftSeconds, setLeftSeconds] = useState(() => time / 1000);
+  const [leftSeconds, setLeftSeconds] = useState(() => time * 60);
 
   const intervalRef = useRef<NodeJS.Timeout>(null);
 
   useEffect(() => {
-    if (isPaused && intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    if (!isPaused) {
+    if (!isPaused && intervalRef.current == null) {
       intervalRef.current = setInterval(() => {
         setLeftSeconds(prev => prev - 1);
       }, 1000);
     }
 
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [isPaused]);
-
-  useEffect(() => {
-    if (leftSeconds === 0 && intervalRef.current) {
+    if ((leftSeconds === 0 || isPaused) && intervalRef.current) {
       clearInterval(intervalRef.current);
+      intervalRef.current = null;
+
+      if (leftSeconds === 0) {
+        if (confirm('시험이 종료되었습니다. 수고하셨습니다. 😊')) {
+          setIsFinished(true);
+        }
+      }
     }
-  }, [leftSeconds]);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [isPaused, leftSeconds, setIsFinished]);
 
   const min = Number((leftSeconds / 60).toFixed(2));
   const minValue = Math.floor(min);

@@ -1,14 +1,14 @@
-import { useExamConfigStore } from '@features/exam/store/examConfigStore';
 import { useShallow } from 'zustand/react/shallow';
 import CommonCombobox from '@components/commonCombobox';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getCardSortMethod } from '@apis/cardSortMethod';
+import useExamConfigContext from '@/hooks/useExamConfigContext';
 
 function SortMethodSelect() {
-  const { name, code } = useExamConfigStore(
+  const { name, code } = useExamConfigContext(
     useShallow(state => state.sortMethod),
   );
-  const setSortMethod = useExamConfigStore(state => state.setSortMethod);
+  const setSortMethod = useExamConfigContext(state => state.setSortMethod);
 
   const { data } = useSuspenseQuery({
     queryKey: ['sortMethod'],

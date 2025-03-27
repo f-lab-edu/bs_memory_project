@@ -4,8 +4,8 @@ import { useShallow } from 'zustand/react/shallow';
 import ExamConfigModal from '@features/exam/components/examConfigModal';
 import { useVerseSelectStore } from '@store/verseSelectStore';
 import { useExamConfigModalStore } from '@features/exam/store/examConfigModalStore';
-import { useExamConfigStore } from '@features/exam/store/examConfigStore';
 import Nav from '@components/nav';
+import ExamConfigProvider from '@features/exam/ExamConfigProvider';
 
 function Home() {
   const hasSelectedVerse = useVerseSelectStore(
@@ -14,7 +14,6 @@ function Home() {
   const setExamConfigModalOpen = useExamConfigModalStore(
     state => state.setIsOpen,
   );
-  const resetExamConfig = useExamConfigStore(state => state.reset);
 
   const handleDrillingLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!hasSelectedVerse()) {
@@ -29,7 +28,6 @@ function Home() {
       alert('암송 구절을 선택해주세요. 😊');
       return;
     }
-    resetExamConfig();
     setExamConfigModalOpen(true);
   };
 
@@ -55,7 +53,9 @@ function Home() {
         </h1>
         <VerseSelect />
       </div>
-      <ExamConfigModal />
+      <ExamConfigProvider>
+        <ExamConfigModal />
+      </ExamConfigProvider>
     </>
   );
 }
