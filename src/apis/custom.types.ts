@@ -1,4 +1,4 @@
-import { Tables } from './database.types.ts';
+import { Tables } from './database.types';
 
 export type SeriesCode = Tables<'series'>['series_code'];
 
