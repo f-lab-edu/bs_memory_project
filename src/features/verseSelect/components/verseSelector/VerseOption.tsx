@@ -1,7 +1,7 @@
-import { useVerseSelectStore } from '@store/verseSelectStore.ts';
+import { useVerseSelectStore } from '@store/verseSelectStore';
 import { useShallow } from 'zustand/react/shallow';
 import { ChangeEvent } from 'react';
-import { VerseSummaryDatum } from '@features/verseSelect/types.ts';
+import { VerseSummaryDatum } from '@features/verseSelect/types';
 
 type VerseOptionProps = {
   data: VerseSummaryDatum;

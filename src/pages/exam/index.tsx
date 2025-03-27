@@ -1,4 +1,4 @@
-import { useVerseSelectStore } from '@store/verseSelectStore.ts';
+import { useVerseSelectStore } from '@store/verseSelectStore';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 

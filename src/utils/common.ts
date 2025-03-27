@@ -1,5 +1,5 @@
-import { VerseDetailData } from '@features/drilling/components/cardDisplay/card/type.ts';
-import { VerseSummaryDatum } from '@features/verseSelect/types.ts';
+import { VerseDetailData } from '@features/drilling/components/cardDisplay/card/type';
+import { VerseSummaryDatum } from '@features/verseSelect/types';
 
 export const getVerseAddress = (data: VerseSummaryDatum | VerseDetailData) => {
   const {

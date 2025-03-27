@@ -1,5 +1,5 @@
-import supabase from './supabase.ts';
-import { BibleVersion, SeriesCode, Verse } from './custom.types.ts';
+import supabase from './supabase';
+import { BibleVersion, SeriesCode, Verse } from './custom.types';
 
 export const getVersesSummary = async (seriesCode: SeriesCode) => {
   const { data, error } = await supabase

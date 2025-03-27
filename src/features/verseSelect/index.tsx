@@ -1,8 +1,8 @@
 import SeriesTab from '@features/verseSelect/components/seriesTab';
-import { SeriesData } from '@features/verseSelect/types.ts';
+import { SeriesData } from '@features/verseSelect/types';
 import { useLoaderData } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useVerseSelectStore } from '@store/verseSelectStore.ts';
+import { useVerseSelectStore } from '@store/verseSelectStore';
 
 function VerseSelect() {
   const data = useLoaderData<SeriesData>();

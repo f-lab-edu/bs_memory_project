@@ -1,8 +1,8 @@
-import { SeriesData } from '@features/verseSelect/types.ts';
+import { SeriesData } from '@features/verseSelect/types';
 
 export const SERIES_DATA: SeriesData = [
   {
-    series_code: '100',
+    series_code: '%101',
     series_name: '5확신',
     category: '그리스도와의 새출발',
     sub_series_opt: 'N',
@@ -10,7 +10,7 @@ export const SERIES_DATA: SeriesData = [
     parent_series: null,
   },
   {
-    series_code: '110',
+    series_code: '%110',
     series_name: '8동행',
     category: '그리스도와의 동행',
     sub_series_opt: 'N',
@@ -44,7 +44,7 @@ export const SERIES_DATA: SeriesData = [
 ];
 
 export const SERIES_DATA_NO_SUB = {
-  series_code: '100',
+  series_code: '%101',
   series_name: '5확신',
   category: '그리스도와의 새출발',
   sub_series_opt: 'N',
@@ -108,7 +108,7 @@ export const VERSE_SUMMARY_DATA = [
   {
     idx: 697,
     card_num: 1,
-    series_code: '100',
+    series_code: '%101',
     category: '그리스도와의 새출발',
     theme: '구원의 확신',
     chapter: 5,
@@ -121,7 +121,7 @@ export const VERSE_SUMMARY_DATA = [
   {
     idx: 698,
     card_num: 2,
-    series_code: '100',
+    series_code: '%101',
     category: '그리스도와의 새출발',
     theme: '기도응답의 확신',
     chapter: 16,
@@ -134,7 +134,7 @@ export const VERSE_SUMMARY_DATA = [
   {
     idx: 699,
     card_num: 3,
-    series_code: '100',
+    series_code: '%101',
     category: '그리스도와의 새출발',
     theme: '승리의 확신',
     chapter: 10,
@@ -147,7 +147,7 @@ export const VERSE_SUMMARY_DATA = [
   {
     idx: 700,
     card_num: 4,
-    series_code: '100',
+    series_code: '%101',
     category: '그리스도와의 새출발',
     theme: '사죄의 확신',
     chapter: 1,
@@ -160,7 +160,7 @@ export const VERSE_SUMMARY_DATA = [
   {
     idx: 701,
     card_num: 5,
-    series_code: '100',
+    series_code: '%101',
     category: '그리스도와의 새출발',
     theme: '인도의 확신',
     chapter: 3,

@@ -1,9 +1,9 @@
 import CommonCombobox from '@components/commonCombobox';
-import { useCardSortMethodStore } from '@store/cardSortMethodStore.ts';
+import { useCardSortMethodStore } from '@store/cardSortMethodStore';
 import { useQuery } from '@tanstack/react-query';
-import { getCardSortMethod } from '@apis/cardSortMethod.ts';
-import Loader from '@components/Loader.tsx';
-import { CommonComboboxItem } from '@components/commonCombobox/type.ts';
+import { getCardSortMethod } from '@apis/cardSortMethod';
+import Loader from '@components/Loader';
+import { CommonComboboxItem } from '@components/commonCombobox/type';
 import { useShallow } from 'zustand/react/shallow';
 
 function CardSortMethodSelect() {
