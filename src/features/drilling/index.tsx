@@ -1,13 +1,13 @@
 import BibleVersionSelect from '@features/drilling/components/bibleVersionSelect';
 import CardHideOptionSelect from '@features/drilling/components/cardHideOptionSelect';
 import CardDisplay from '@features/drilling/components/cardDisplay';
-import Loader from '@components/Loader';
+import Loader from '@/shared/ui/Loader';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Suspense } from 'react';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
-import FetchErrorMessage from '@components/FetchErrorMessage';
+import FetchErrorMessage from '@/shared/ui/FetchErrorMessage';
 
-function Drilling() {
+function Index() {
   const { reset } = useQueryErrorResetBoundary();
 
   return (
@@ -34,4 +34,4 @@ function Drilling() {
   );
 }
 
-export default Drilling;
+export default Index;

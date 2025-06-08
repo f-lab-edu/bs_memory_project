@@ -1,8 +1,9 @@
-import supabase from './supabase';
-import { SeriesCode, Verse } from './custom.types';
+import supabase from '../lib/supabase';
 import { BibleVersion } from '@utils/type';
 import { BIBLE_VERSIONS } from '@utils/constants';
-import SupabaseResponseError from '@apis/utils/SupabaseResponseError';
+import SupabaseResponseError from '@/lib/SupabaseResponseError';
+
+import { SeriesCode, Verse } from '@/types/data.types';
 
 export const getVersesSummary = async (seriesCode: SeriesCode) => {
   const { data, error } = await supabase

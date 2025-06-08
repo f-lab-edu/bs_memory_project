@@ -1,7 +1,8 @@
-import { useGlobalExamConfigStore } from '@features/exam/store/globalExamConfigStore';
-import { ExamVerseDataList } from '@features/exam/type';
-import ExamCard from '@features/exam/components/examBoard/examCard';
-import { SORT_METHODS } from '@features/exam/constants';
+import { useGlobalExamConfigStore } from '@store/exam/globalExamConfigStore';
+import ExamCard from 'src/features/exam/components/examCard';
+
+import { SORT_METHODS } from '@features/exam/constants/sortMethods';
+import { ExamVerseDataList } from '@features/exam/types/examVerseData.types';
 
 type ExamBoardProps = {
   data: ExamVerseDataList;

@@ -1,6 +1,6 @@
-import { SeriesData } from '@features/verseSelect/types';
+import { SeriesDataTypes } from '@features/verseSelect/types/seriesData.types';
 
-export const SERIES_DATA: SeriesData = [
+export const SERIES_DATA: SeriesDataTypes = [
   {
     series_code: '%101',
     series_name: '5확신',

@@ -1,8 +1,7 @@
 import VerseSelector from '@features/verseSelect/components/verseSelector';
-import { SeriesDatum } from '@features/verseSelect/types';
 import { Suspense, useEffect, useRef } from 'react';
 import SubSeriesTabs from '@features/verseSelect/components/subSeriesTabs';
-import Loader from '@components/Loader';
+import Loader from '@/shared/ui/Loader';
 import {
   usePrefetchQuery,
   useQueryErrorResetBoundary,
@@ -10,7 +9,8 @@ import {
 import { getSubSeries } from '@apis/series';
 import { getVersesSummary } from '@apis/verse';
 import { ErrorBoundary } from 'react-error-boundary';
-import FetchErrorMessage from '@components/FetchErrorMessage';
+import FetchErrorMessage from '@/shared/ui/FetchErrorMessage';
+import { SeriesDatum } from '@features/verseSelect/types/seriesData.types';
 
 export type SeriesContentsProps = {
   data: SeriesDatum;

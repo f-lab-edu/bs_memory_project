@@ -2,12 +2,34 @@ import { useState } from 'react';
 import { FaCaretUp } from '@react-icons/all-files/fa/FaCaretUp';
 import { FaCaretDown } from '@react-icons/all-files/fa/FaCaretDown';
 import SeriesContents from '@features/verseSelect/components/seriesContents';
-import { SeriesDatum } from '@features/verseSelect/types';
-import {
-  caretVariants,
-  tabVariants,
-} from '@features/verseSelect/components/seriesTab/css/variants';
 import cn from '@utils/cn';
+import { cva } from 'class-variance-authority';
+import { SeriesDatum } from '@features/verseSelect/types/seriesData.types';
+
+const tabVariants = cva(
+  'w-full rounded-2xl px-7 py-2.5 text-center mobile:px-2 flex items-center justify-between space-x-1',
+  {
+    variants: {
+      size: {
+        md: 'text-[28px] mobile:text-lg',
+        sm: 'text-[24px] mobile:text-base',
+      },
+      color: {
+        default: 'bg-yellow-400 text-black',
+        light: 'bg-yellow-300/70 text-neutral-600/90',
+      },
+    },
+  },
+);
+
+const caretVariants = cva('flex size-10 items-center justify-center', {
+  variants: {
+    size: {
+      md: 'text-[35px] mobile:text-2xl',
+      sm: 'text-[30px] mobile:text-xl',
+    },
+  },
+});
 
 type SeriesTabProps = {
   data: SeriesDatum;

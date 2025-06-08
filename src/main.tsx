@@ -8,7 +8,7 @@ import { getSeries } from '@apis/series';
 import RootComponent from './RootComponent';
 import Exam from '@pages/exam';
 import Home from '@pages/home';
-import RouteErrorElement from '@components/RouteErrorElement';
+import RouteErrorElement from '@/shared/ui/RouteErrorElement';
 
 const queryClient = new QueryClient({
   defaultOptions: {

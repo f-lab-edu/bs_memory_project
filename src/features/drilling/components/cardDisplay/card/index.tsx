@@ -1,10 +1,11 @@
 import { VerseDetailData } from '@features/drilling/components/cardDisplay/card/type';
 import { getVerseAddress } from '@utils/common';
 import { Textfit } from 'react-textfit';
-import { useCardHideOptionStore } from '@features/drilling/store/cardHideOptionStore';
+import { useCardHideOptionStore } from '@store/drilling/cardHideOptionStore';
 import { ClassValue } from 'clsx';
 import cn from '@utils/cn';
-import { CARD_HIDE_OPTIONS } from '@features/drilling/constants';
+
+import { CARD_HIDE_OPTIONS } from '@features/drilling/constants/cardHideOptions';
 
 const {
   ADDR: HIDE_ADDR,

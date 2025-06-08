@@ -5,13 +5,13 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import Timer from '@features/exam/components/timer';
 import RangeInfo from '@features/exam/components/rangeInfo';
 import { getExamVerse } from '@apis/examVerse';
-import { useGlobalExamConfigStore } from '@features/exam/store/globalExamConfigStore';
+import { useGlobalExamConfigStore } from '@store/exam/globalExamConfigStore';
 import ExamBoard from '@features/exam/components/examBoard';
 import SubmitButton from '@features/exam/components/submitButton';
-import { useExamStatusStore } from '@features/exam/store/examStatusStore';
+import { useExamStatusStore } from '@store/exam/examStatusStore';
 import { useEffect } from 'react';
 
-function Exam() {
+function Index() {
   const setIsFinished = useExamStatusStore(state => state.setIsFinished);
 
   useEffect(() => {
@@ -47,4 +47,4 @@ function Exam() {
   );
 }
 
-export default Exam;
+export default Index;

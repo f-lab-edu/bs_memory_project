@@ -1,10 +1,10 @@
 import { useVerseSelectStore } from '@store/verseSelectStore';
 import { Suspense, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Nav from '@components/nav';
+import Nav from '@/shared/ui/Nav';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
-import Exam from '@features/exam';
-import Loader from '@components/Loader';
+import Index from '@features/exam';
+import Loader from '@/shared/ui/Loader';
 
 function ExamPage() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function ExamPage() {
         </Nav.Container>
       </Nav>
       <Suspense fallback={<Loader size='lg' className='my-[100px]' />}>
-        <Exam />
+        <Index />
       </Suspense>
     </>
   );

@@ -1,8 +1,8 @@
-import supabase from '@apis/supabase';
-import { Verse } from '@apis/custom.types';
+import supabase from '@/lib/supabase';
 import { BIBLE_VERSIONS } from '@utils/constants';
 import { BibleVersion } from '@utils/type';
-import SupabaseResponseError from '@apis/utils/SupabaseResponseError';
+import SupabaseResponseError from '@/lib/SupabaseResponseError';
+import { Verse } from '@/types/data.types';
 
 const getKorExamVerse = async (verseIds: Verse['idx'][], count: number) => {
   const { data, error } = await supabase

@@ -1,4 +1,4 @@
-import { useExamStatusStore } from '@features/exam/store/examStatusStore';
+import { useExamStatusStore } from '@store/exam/examStatusStore';
 import cn from '@utils/cn';
 
 function SubmitButton() {

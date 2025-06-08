@@ -1,9 +1,11 @@
-import CommonCombobox from '@components/commonCombobox';
+import {
+  CommonCombobox,
+  CommonComboboxItem,
+} from 'src/shared/ui/commonCombobox';
 import { useQuery } from '@tanstack/react-query';
 import { getBibleVersions } from '@apis/bibleVersion';
-import Loader from '@components/Loader';
+import Loader from '@/shared/ui/Loader';
 import { useBibleVersionStore } from '@store/bibleVersionStore';
-import { CommonComboboxItem } from '@components/commonCombobox/type';
 import { useShallow } from 'zustand/react/shallow';
 
 function BibleVersionSelect() {

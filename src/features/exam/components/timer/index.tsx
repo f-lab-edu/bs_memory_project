@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useExamStatusStore } from '@features/exam/store/examStatusStore';
+import { useExamStatusStore } from '@store/exam/examStatusStore';
 
 type TimerProps = {
   time: number;

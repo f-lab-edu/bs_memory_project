@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import Loader from '@components/Loader';
-import { CommonComboboxItem } from '@components/commonCombobox/type';
-import CommonCombobox from '@components/commonCombobox';
-import { useCardHideOptionStore } from '@features/drilling/store/cardHideOptionStore';
+import Loader from '@/shared/ui/Loader';
+import {
+  CommonCombobox,
+  CommonComboboxItem,
+} from 'src/shared/ui/commonCombobox';
+import { useCardHideOptionStore } from '@store/drilling/cardHideOptionStore';
 import { getCardHideOption } from '@apis/cardHideOption';
 import { useShallow } from 'zustand/react/shallow';
 

@@ -1,6 +1,7 @@
-import supabase from './supabase';
-import { SeriesCode } from './custom.types';
-import SupabaseResponseError from '@apis/utils/SupabaseResponseError';
+import supabase from '../lib/supabase';
+import SupabaseResponseError from '@/lib/SupabaseResponseError';
+
+import { SeriesCode } from '@/types/data.types';
 
 export const getSeries = async () => {
   const { data, error } = await supabase

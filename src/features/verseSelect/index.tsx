@@ -1,11 +1,11 @@
 import SeriesTab from '@features/verseSelect/components/seriesTab';
-import { SeriesData } from '@features/verseSelect/types';
 import { useLoaderData } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useVerseSelectStore } from '@store/verseSelectStore';
+import { SeriesDataTypes } from '@features/verseSelect/types/seriesData.types';
 
-function VerseSelect() {
-  const data = useLoaderData<SeriesData>();
+function Index() {
+  const data = useLoaderData<SeriesDataTypes>();
   const resetVerseSelect = useVerseSelectStore(state => state.reset);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ function VerseSelect() {
   );
 }
 
-export default VerseSelect;
+export default Index;

@@ -1,11 +1,11 @@
-import VerseSelect from '@features/verseSelect';
+import Index from '@features/verseSelect';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import { useShallow } from 'zustand/react/shallow';
-import ExamConfigModal from '@features/exam/components/examConfigModal';
+import ExamConfigModal from '@features/examConfigModal';
 import { useVerseSelectStore } from '@store/verseSelectStore';
-import { useExamConfigModalStore } from '@features/exam/store/examConfigModalStore';
-import Nav from '@components/nav';
-import ExamConfigProvider from '@features/exam/ExamConfigProvider';
+import { useExamConfigModalStore } from '@store/exam/examConfigModalStore';
+import Nav from '@/shared/ui/Nav';
+import ExamConfigProvider from '@/providers/ExamConfigProvider';
 
 function Home() {
   const hasSelectedVerse = useVerseSelectStore(
@@ -51,7 +51,7 @@ function Home() {
         <h1 className='flex items-center text-5xl font-semibold mobile:text-3xl'>
           NAVI 성경 암송
         </h1>
-        <VerseSelect />
+        <Index />
       </div>
       <ExamConfigProvider>
         <ExamConfigModal />
