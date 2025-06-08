@@ -2,11 +2,10 @@ import {
   CommonCombobox,
   CommonComboboxItem,
 } from 'src/shared/ui/commonCombobox';
-import { useQuery } from '@tanstack/react-query';
-import { getBibleVersions } from '@apis/bibleVersion';
 import Loader from '@/shared/ui/Loader';
 import { useBibleVersionStore } from '@store/bibleVersionStore';
 import { useShallow } from 'zustand/react/shallow';
+import { useBibleVersions } from '@features/drilling/api/getBibleVersions';
 
 function BibleVersionSelect() {
   const selectedItem = useBibleVersionStore(
@@ -19,10 +18,7 @@ function BibleVersionSelect() {
 
   const setBibleVersion = useBibleVersionStore(state => state.setBibleVersion);
 
-  const { data, isPending, isError } = useQuery({
-    queryKey: ['bibleVersion'],
-    queryFn: getBibleVersions,
-  });
+  const { data, isPending, isError } = useBibleVersions();
 
   if (isPending) return <Loader />;
   if (isError) return <div>데이터를 조회하지 못했습니다.</div>;

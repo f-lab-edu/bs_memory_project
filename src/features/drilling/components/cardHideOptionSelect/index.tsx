@@ -1,12 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
 import Loader from '@/shared/ui/Loader';
 import {
   CommonCombobox,
   CommonComboboxItem,
 } from 'src/shared/ui/commonCombobox';
 import { useCardHideOptionStore } from '@store/drilling/cardHideOptionStore';
-import { getCardHideOption } from '@apis/cardHideOption';
 import { useShallow } from 'zustand/react/shallow';
+import { useCardHideOptions } from '@features/drilling/api/getCardHideOptions';
 
 function CardHideOptionSelect() {
   const selectedItem = useCardHideOptionStore(
@@ -20,10 +19,7 @@ function CardHideOptionSelect() {
     state => state.setCardHideOption,
   );
 
-  const { data, isPending, isError } = useQuery({
-    queryKey: ['cardHideOption'],
-    queryFn: getCardHideOption,
-  });
+  const { data, isPending, isError } = useCardHideOptions();
 
   if (isPending) return <Loader />;
   if (isError) return <div>데이터를 조회하지 못했습니다.</div>;

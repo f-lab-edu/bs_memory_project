@@ -4,11 +4,11 @@ import '@/index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import DrillingPage from '@pages/drilling';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { getSeries } from '@apis/series';
 import RootComponent from './RootComponent';
 import Exam from '@pages/exam';
 import Home from '@pages/home';
 import RouteErrorElement from '@/shared/ui/RouteErrorElement';
+import { getSeries } from '@features/verseSelect/api/getSeries';
 
 const queryClient = new QueryClient({
   defaultOptions: {

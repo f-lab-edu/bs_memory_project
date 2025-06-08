@@ -1,13 +1,13 @@
 import Modal from '@/shared/ui/modal';
-import TimeLimit from '@features/examConfigModal/components/timelimit';
-import ExposeSelect from '@features/examConfigModal/components/exposeSelect';
-import SortMethodSelect from '@features/examConfigModal/components/sortMethodSelect';
+import TimeLimit from '@features/examConfig/components/timelimit';
+import ExposeSelect from '@features/examConfig/components/exposeSelect';
+import SortMethodSelect from '@features/examConfig/components/sortMethodSelect';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import FetchErrorMessage from '@/shared/ui/FetchErrorMessage';
 import { Suspense } from 'react';
 import CommonComboboxSkeleton from '@/shared/ui/commonCombobox/CommonComboboxSkeleton';
-import SetCountSelect from '@features/examConfigModal/components/setCountSelect';
+import SetCountSelect from '@features/examConfig/components/setCountSelect';
 import useSubmitExamConfig from '@/hooks/useSubmitExamConfig';
 import { useExamConfigModalStore } from '@store/exam/examConfigModalStore';
 

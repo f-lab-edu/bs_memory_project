@@ -1,8 +1,7 @@
 import { useShallow } from 'zustand/react/shallow';
 import { CommonCombobox } from '@/shared/ui/commonCombobox';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { getCardSortMethod } from '@apis/cardSortMethod';
 import useExamConfigContext from '@/hooks/useExamConfigContext';
+import { useCardSortMethods } from '@features/examConfig/api/getCardSortMethods';
 
 function SortMethodSelect() {
   const { name, code } = useExamConfigContext(
@@ -10,10 +9,7 @@ function SortMethodSelect() {
   );
   const setSortMethod = useExamConfigContext(state => state.setSortMethod);
 
-  const { data } = useSuspenseQuery({
-    queryKey: ['sortMethod'],
-    queryFn: getCardSortMethod,
-  });
+  const { data } = useCardSortMethods();
 
   const items = data.map(({ name, code }) => ({ name, value: code, id: code }));
 

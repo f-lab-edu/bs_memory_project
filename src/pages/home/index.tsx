@@ -1,7 +1,7 @@
 import Index from '@features/verseSelect';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import { useShallow } from 'zustand/react/shallow';
-import ExamConfigModal from '@features/examConfigModal';
+import ExamConfigModal from 'src/features/examConfig';
 import { useVerseSelectStore } from '@store/verseSelectStore';
 import { useExamConfigModalStore } from '@store/exam/examConfigModalStore';
 import Nav from '@/shared/ui/Nav';

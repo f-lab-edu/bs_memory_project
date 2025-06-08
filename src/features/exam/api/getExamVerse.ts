@@ -1,8 +1,10 @@
-import supabase from '@/lib/supabase';
-import { BIBLE_VERSIONS } from '@utils/constants';
-import { BibleVersion } from '@utils/type';
-import SupabaseResponseError from '@/lib/SupabaseResponseError';
 import { Verse } from '@/types/data.types';
+import { BibleVersion } from '@utils/type';
+import supabase from '@/lib/supabase';
+import SupabaseResponseError from '@/lib/SupabaseResponseError';
+import { BIBLE_VERSIONS } from '@utils/constants';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { VerseId } from '@features/verseSelect/types/verseSummaryData.types';
 
 const getKorExamVerse = async (verseIds: Verse['idx'][], count: number) => {
   const { data, error } = await supabase
@@ -17,7 +19,6 @@ const getKorExamVerse = async (verseIds: Verse['idx'][], count: number) => {
 
   return data.map(v => ({ ...v, contents: v.verse_kor }));
 };
-
 const getGaeExamVerse = async (verseIds: Verse['idx'][], count: number) => {
   const { data, error } = await supabase
     .from('verse')
@@ -35,7 +36,7 @@ const getGaeExamVerse = async (verseIds: Verse['idx'][], count: number) => {
 const { KOR: BV_KOR, GAE: BV_GAE } = BIBLE_VERSIONS;
 
 export const getExamVerse = async (
-  verseIds: Verse['idx'][],
+  verseIds: VerseId[],
   bibleVersion: BibleVersion,
   count: number,
 ) => {
@@ -46,4 +47,17 @@ export const getExamVerse = async (
   } else {
     throw new Error(`Unknown Bible Version: ${bibleVersion.code}`);
   }
+};
+
+export const EXAM_VERSES_QUERY_KEY = 'verseDetails';
+
+export const useExamVerses = (
+  verseIds: VerseId[],
+  bibleVersion: BibleVersion,
+  setCount: number,
+) => {
+  return useSuspenseQuery({
+    queryKey: [EXAM_VERSES_QUERY_KEY, verseIds, bibleVersion, setCount],
+    queryFn: () => getExamVerse(verseIds, bibleVersion, setCount),
+  });
 };

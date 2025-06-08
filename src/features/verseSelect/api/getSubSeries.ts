@@ -1,19 +1,7 @@
-import supabase from '../lib/supabase';
-import SupabaseResponseError from '@/lib/SupabaseResponseError';
-
 import { SeriesCode } from '@/types/data.types';
-
-export const getSeries = async () => {
-  const { data, error } = await supabase
-    .from('series')
-    .select('series_code,series_name,category,sub_series_opt,ord,parent_series')
-    .is('parent_series', null)
-    .order('ord', { ascending: true });
-
-  if (error) throw new SupabaseResponseError(error);
-
-  return data;
-};
+import supabase from '@/lib/supabase';
+import SupabaseResponseError from '@/lib/SupabaseResponseError';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 export const getSubSeries = async (series_code: SeriesCode) => {
   const { data, error } = await supabase
@@ -27,4 +15,13 @@ export const getSubSeries = async (series_code: SeriesCode) => {
   if (error) throw new SupabaseResponseError(error);
 
   return data;
+};
+
+export const SUB_SERIES_QUERY_KEY = 'subSeriesData';
+
+export const useSubSeries = (seriesCode: SeriesCode) => {
+  return useSuspenseQuery({
+    queryKey: [SUB_SERIES_QUERY_KEY, seriesCode],
+    queryFn: () => getSubSeries(seriesCode),
+  });
 };
