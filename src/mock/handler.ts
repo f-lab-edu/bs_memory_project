@@ -4,7 +4,7 @@ import {
   SERIES_DATA_SUB,
   VERSE_SUMMARY_DATA,
 } from '@/mock/mockData';
-import { SUPABASE_URL } from '@/config';
+import { SUPABASE_URL } from '@/lib/supabase/supabaseConfig';
 import { BIBLE_VERSIONS_LIST } from '@utils/constants';
 
 import { CARD_HIDE_OPTIONS_LIST } from '@features/drilling/constants/cardHideOptions';
