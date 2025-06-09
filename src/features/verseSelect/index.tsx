@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useVerseSelectStore } from '@store/verseSelectStore';
 import { SeriesDataTypes } from '@features/verseSelect/types/seriesData.types';
 
-function Index() {
+function VerseSelect() {
   const data = useLoaderData<SeriesDataTypes>();
   const resetVerseSelect = useVerseSelectStore(state => state.reset);
 
@@ -25,4 +25,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default VerseSelect;

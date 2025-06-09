@@ -15,6 +15,7 @@ function CardHideOptionSelect() {
       id: code,
     })),
   );
+
   const setCardHideOption = useCardHideOptionStore(
     state => state.setCardHideOption,
   );

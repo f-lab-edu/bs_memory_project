@@ -1,4 +1,4 @@
-import Index from '@features/verseSelect';
+import VerseSelect from '@features/verseSelect';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import { useShallow } from 'zustand/react/shallow';
 import ExamConfigModal from 'src/features/examConfig';
@@ -51,7 +51,7 @@ function Home() {
         <h1 className='flex items-center text-5xl font-semibold mobile:text-3xl'>
           NAVI 성경 암송
         </h1>
-        <Index />
+        <VerseSelect />
       </div>
       <ExamConfigProvider>
         <ExamConfigModal />
