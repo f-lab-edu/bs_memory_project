@@ -21,7 +21,7 @@ interface LoaderProps
 function Loader({ size, ...props }: LoaderProps) {
   return (
     <>
-      <div className='flex min-h-[50px] items-center'>
+      <div className='flex min-h-[50px] w-full items-center'>
         <div className={cn(LoaderVariants({ size }), props.className)}>
           {props.children}
         </div>

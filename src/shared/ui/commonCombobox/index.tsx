@@ -8,6 +8,8 @@ import {
 } from '@headlessui/react';
 import { FaChevronDown } from '@react-icons/all-files/fa/FaChevronDown';
 import { FaCheck } from '@react-icons/all-files/fa/FaCheck';
+import { HTMLAttributes } from 'react';
+import cn from '@utils/cn';
 
 export type CommonComboboxItem = {
   id: string;
@@ -16,15 +18,12 @@ export type CommonComboboxItem = {
 };
 
 export type CommonComboboxProps = {
-  label: string;
   items: CommonComboboxItem[];
   onChangeCombobox: (item: CommonComboboxItem) => void;
   selectedItem: CommonComboboxItem;
 };
 
-// todo - Label 밖으로 빼기
 export function CommonCombobox({
-  label,
   items,
   onChangeCombobox,
   selectedItem,
@@ -34,9 +33,6 @@ export function CommonCombobox({
 
   return (
     <Combobox as='div' value={selectedItem} onChange={handleChangeCombobox}>
-      <Label className='block text-[22px] font-semibold text-secondary mobile:text-base/4'>
-        {label}
-      </Label>
       <div className='relative mt-2'>
         <ComboboxInput
           className='block w-full rounded-md bg-white px-3 py-1.5 text-xl font-medium text-secondary outline outline-1 -outline-offset-2 outline-gray-300 placeholder:text-gray-400 focus:border-[#6b7280] focus:outline-1 focus:-outline-offset-2 focus:outline-gray-300 focus:ring-0 mobile:text-sm'
@@ -71,3 +67,18 @@ export function CommonCombobox({
     </Combobox>
   );
 }
+
+function CommonComboboxLabel({ ...props }: HTMLAttributes<HTMLLabelElement>) {
+  return (
+    <Label
+      className={cn(
+        'block text-[22px] font-semibold text-secondary mobile:text-base/4',
+        props.className,
+      )}
+    >
+      {props.children}
+    </Label>
+  );
+}
+
+CommonCombobox.Label = CommonComboboxLabel;

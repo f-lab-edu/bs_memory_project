@@ -25,7 +25,6 @@ function CardHideOptionSelect() {
 
   return (
     <CommonCombobox
-      label={'숨김'}
       items={items}
       selectedItem={selectedItem}
       onChangeCombobox={(item: CommonComboboxItem) => {

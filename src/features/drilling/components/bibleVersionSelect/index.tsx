@@ -27,7 +27,6 @@ function BibleVersionSelect() {
 
   return (
     <CommonCombobox
-      label={'성경버전'}
       items={selectItems}
       selectedItem={selectedItem}
       onChangeCombobox={(item: CommonComboboxItem) =>
