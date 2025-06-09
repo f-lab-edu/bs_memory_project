@@ -1,13 +1,13 @@
 import { Verse } from '@/types/data.types';
 import { BibleVersion } from '@utils/type';
 import supabase from '@/lib/supabase';
-import SupabaseResponseError from '@/lib/SupabaseResponseError';
 import { BIBLE_VERSIONS } from '@utils/constants';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { VerseId } from '@features/verseSelect/types/verseSummaryData.types';
+import { supabaseResponseHandler } from '@/lib/api/supabaseResponseHandler';
 
 const getKorExamVerse = async (verseIds: Verse['idx'][], count: number) => {
-  const { data, error } = await supabase
+  const res = await supabase
     .from('verse')
     .select(
       'idx,card_num,series_code(ord, series_name),category,theme,bible_code(bible_name,short_name),chapter,verse1,verse2,verse_kor',
@@ -15,12 +15,12 @@ const getKorExamVerse = async (verseIds: Verse['idx'][], count: number) => {
     .in('idx', [...verseIds])
     .limit(count);
 
-  if (error) throw new SupabaseResponseError(error);
-
-  return data.map(v => ({ ...v, contents: v.verse_kor }));
+  return supabaseResponseHandler(res, data =>
+    data.map(v => ({ ...v, contents: v.verse_kor })),
+  );
 };
 const getGaeExamVerse = async (verseIds: Verse['idx'][], count: number) => {
-  const { data, error } = await supabase
+  const res = await supabase
     .from('verse')
     .select(
       'idx,card_num,series_code(ord, series_name),category,theme,bible_code(bible_name,short_name),chapter,verse1,verse2,verse_gae',
@@ -28,9 +28,9 @@ const getGaeExamVerse = async (verseIds: Verse['idx'][], count: number) => {
     .in('idx', [...verseIds])
     .limit(count);
 
-  if (error) throw new SupabaseResponseError(error);
-
-  return data.map(v => ({ ...v, contents: v.verse_gae }));
+  return supabaseResponseHandler(res, data =>
+    data.map(v => ({ ...v, contents: v.verse_gae })),
+  );
 };
 
 const { KOR: BV_KOR, GAE: BV_GAE } = BIBLE_VERSIONS;

@@ -1,13 +1,11 @@
 import supabase from '@/lib/supabase';
-import SupabaseResponseError from '@/lib/SupabaseResponseError';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { supabaseResponseHandler } from '@/lib/api/supabaseResponseHandler';
 
 export const getExamExposeOptions = async () => {
-  const { data, error } = await supabase.from('exam_expose_option').select();
+  const res = await supabase.from('exam_expose_option').select();
 
-  if (error) throw new SupabaseResponseError(error);
-
-  return data;
+  return supabaseResponseHandler(res);
 };
 
 export const EXAM_EXPOSE_OPTIONS_QUERY_KEY = 'exposeOption';
