@@ -1,5 +1,4 @@
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
-import { ErrorMessage } from '@/shared/ui/ErrorMessage';
 import { IoIosWarning } from '@react-icons/all-files/io/IoIosWarning';
 import SupabaseResponseError from '@/lib/SupabaseResponseError';
 
@@ -15,12 +14,12 @@ function RouteErrorElement() {
   }
 
   return (
-    <ErrorMessage className='absolute top-1/2 flex max-w-[600px] -translate-y-1/2 flex-col items-center justify-center space-y-12 px-4 mobile:space-y-8'>
-      <IoIosWarning className='size-32 mobile:size-16' />
+    <div className='absolute top-1/2 flex max-w-[600px] -translate-y-1/2 flex-col items-center justify-center space-y-12 px-4 font-medium leading-loose text-gray-500 mobile:space-y-8'>
+      <IoIosWarning aria-hidden={true} className='size-32 mobile:size-16' />
       <p className='text-center text-4xl leading-relaxed mobile:text-xl'>
         {message}
       </p>
-    </ErrorMessage>
+    </div>
   );
 }
 
