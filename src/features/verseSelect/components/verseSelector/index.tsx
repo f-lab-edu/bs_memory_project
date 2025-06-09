@@ -36,7 +36,7 @@ function VerseSelector({ series_code }: VerseSelectorProps) {
           htmlFor={`${data[0].series_code}-all`}
           className='max-w-[500px] truncate text-xl font-semibold text-greyBlue mobile:text-base'
         >
-          {'전체'}
+          전체
         </label>
       </li>
       {data.map(item => (

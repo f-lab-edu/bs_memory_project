@@ -2,17 +2,14 @@ import Modal from '@/shared/ui/modal';
 import TimeLimit from '@features/examConfig/components/timelimit';
 import ExposeSelect from '@features/examConfig/components/exposeSelect';
 import SortMethodSelect from '@features/examConfig/components/sortMethodSelect';
-import { useQueryErrorResetBoundary } from '@tanstack/react-query';
-import { ErrorBoundary } from 'react-error-boundary';
-import FetchErrorMessage from '@/shared/ui/FetchErrorMessage';
-import { Suspense } from 'react';
 import CommonComboboxSkeleton from '@/shared/ui/commonCombobox/CommonComboboxSkeleton';
 import SetCountSelect from '@features/examConfig/components/setCountSelect';
 import useSubmitExamConfig from '@/hooks/useSubmitExamConfig';
 import { useExamConfigModalStore } from '@store/exam/examConfigModalStore';
+import { ComposedBoundary } from '@/lib/error/ComposedBoundary';
+import ErrorMessage from '@/lib/error/ErrorMessage';
 
 function ExamConfigModal() {
-  const { reset } = useQueryErrorResetBoundary();
   const { submitExamConfig } = useSubmitExamConfig();
 
   const isOpen = useExamConfigModalStore(state => state.isOpen);
@@ -28,51 +25,31 @@ function ExamConfigModal() {
       {isOpen && (
         <div className='mx-auto mb-12 mt-10 flex max-w-[200px] flex-col items-start space-y-5'>
           <TimeLimit />
-          <ErrorBoundary
-            onReset={reset}
-            fallbackRender={({ resetErrorBoundary }) => (
-              <div className='flex w-full flex-col items-start'>
-                <div
-                  aria-hidden={true}
-                  className='text-[22px] font-semibold text-secondary mobile:text-base/4'
-                >
-                  표시
-                </div>
-                <FetchErrorMessage
-                  className='text-[14px]'
-                  iconClass='size-5'
-                  onClickRetryButton={resetErrorBoundary}
-                />
-              </div>
+          <ComposedBoundary
+            fallbackRender={({ error, resetErrorBoundary }) => (
+              <ErrorMessage
+                error={error}
+                resetErrorBoundary={resetErrorBoundary}
+                className='flex-col items-start'
+              />
             )}
+            suspenseFallback={<CommonComboboxSkeleton label='표시' />}
           >
-            <Suspense fallback={<CommonComboboxSkeleton label={'표시'} />}>
-              <ExposeSelect />
-            </Suspense>
-          </ErrorBoundary>
+            <ExposeSelect />
+          </ComposedBoundary>
           <SetCountSelect />
-          <ErrorBoundary
-            onReset={reset}
-            fallbackRender={({ resetErrorBoundary }) => (
-              <div className='flex w-full flex-col items-start'>
-                <div
-                  aria-hidden={true}
-                  className='text-[22px] font-semibold text-secondary mobile:text-base/4'
-                >
-                  순서
-                </div>
-                <FetchErrorMessage
-                  className='text-[14px]'
-                  iconClass='size-5'
-                  onClickRetryButton={resetErrorBoundary}
-                />
-              </div>
+          <ComposedBoundary
+            fallbackRender={({ error, resetErrorBoundary }) => (
+              <ErrorMessage
+                error={error}
+                resetErrorBoundary={resetErrorBoundary}
+                className='flex-col items-start'
+              />
             )}
+            suspenseFallback={<CommonComboboxSkeleton label='순서' />}
           >
-            <Suspense fallback={<CommonComboboxSkeleton label={'순서'} />}>
-              <SortMethodSelect />
-            </Suspense>
-          </ErrorBoundary>
+            <SortMethodSelect />
+          </ComposedBoundary>
         </div>
       )}
     </Modal>

@@ -22,6 +22,7 @@ export type CommonComboboxProps = {
   selectedItem: CommonComboboxItem;
 };
 
+// todo - Label 밖으로 빼기
 export function CommonCombobox({
   label,
   items,
