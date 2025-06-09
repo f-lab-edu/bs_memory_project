@@ -1,19 +1,17 @@
 import supabase from '@/lib/supabase';
-import SupabaseResponseError from '@/lib/SupabaseResponseError';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { supabaseResponseHandler } from '@/lib/api/supabaseResponseHandler';
 
 export const getCardHideOptions = async () => {
-  const { data, error } = await supabase.from('card_hide_option').select();
+  const res = await supabase.from('card_hide_option').select();
 
-  if (error) throw new SupabaseResponseError(error);
-
-  return data;
+  return supabaseResponseHandler(res);
 };
 
 export const GET_CARD_HIDE_OPTIONS_QUERY_KEY = 'cardHideOption';
 
 export const useCardHideOptions = () => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: [GET_CARD_HIDE_OPTIONS_QUERY_KEY],
     queryFn: getCardHideOptions,
   });

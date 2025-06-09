@@ -7,6 +7,7 @@ import {
   CommonComboboxItem,
 } from '@/shared/ui/commonCombobox/index';
 import { BIBLE_VERSIONS_LIST } from '@utils/constants';
+import { Field } from '@headlessui/react';
 
 const label = '성경버전';
 const items: CommonComboboxItem[] = BIBLE_VERSIONS_LIST.map(
@@ -22,12 +23,14 @@ const handleChangeCombobox = vi.fn<(item: CommonComboboxItem) => void>();
 describe('CommonCombobox Test', () => {
   beforeEach(() => {
     render(
-      <CommonCombobox
-        label={label}
-        items={items}
-        selectedItem={selectedItem}
-        onChangeCombobox={handleChangeCombobox}
-      />,
+      <Field>
+        <CommonCombobox.Label>{label}</CommonCombobox.Label>
+        <CommonCombobox
+          items={items}
+          selectedItem={selectedItem}
+          onChangeCombobox={handleChangeCombobox}
+        />
+      </Field>,
     );
   });
   afterEach(() => cleanup());

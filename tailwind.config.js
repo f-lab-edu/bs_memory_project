@@ -88,7 +88,7 @@ export default {
     nesting,
     autoprefixer,
     forms,
-    plugin(function ({ addBase, theme }) {
+    plugin(function ({ addBase, addComponents, theme }) {
       const mobile = theme('screens.mobile', { max: 'max' });
       const tablet = theme('screens.tablet', {});
       const pc = theme('screens.pc', {});
@@ -107,6 +107,52 @@ export default {
           margin: '0 auto',
         },
       });
+
+      const errorMessageSizes = {
+        base: {
+          fontSize: { base: '18px', mobile: '16px' },
+          iconSize: { base: '22px', mobile: '22px' },
+        },
+        lg: {
+          fontSize: { base: '18px', mobile: '16px' },
+          iconSize: { base: '28px', mobile: '28px' },
+        },
+        xl: {
+          fontSize: { base: '36px', mobile: '20px' },
+          iconSize: { base: '40px', mobile: '24px' },
+        },
+      };
+
+      const errorMessageComponents = {};
+
+      for (const [key, size] of Object.entries(errorMessageSizes)) {
+        errorMessageComponents[`.errorMessage-${key}`] = {
+          display: 'flex',
+          width: '100%',
+          justifyItems: 'center',
+          color: 'oklch(55.1% 0.027 264.364)',
+          fontWeight: '500',
+          fontSize: size.fontSize.base,
+          lineHeight: '2',
+          '> * + *': {
+            marginLeft: '0.75rem',
+          },
+          '@screen mobile': {
+            fontSize: size.fontSize.mobile,
+          },
+          '.retryIcon': {
+            color: 'rgb(2 132 199 / var(--tw-text-opacity, 1))',
+            width: size.iconSize.base,
+            height: size.iconSize.base,
+            '@screen mobile': {
+              width: size.iconSize.mobile,
+              height: size.iconSize.mobile,
+            },
+          },
+        };
+      }
+
+      addComponents(errorMessageComponents);
     }),
   ],
 };

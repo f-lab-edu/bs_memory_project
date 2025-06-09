@@ -1,4 +1,3 @@
-import Loader from '@/shared/ui/Loader';
 import {
   CommonCombobox,
   CommonComboboxItem,
@@ -20,16 +19,12 @@ function CardHideOptionSelect() {
     state => state.setCardHideOption,
   );
 
-  const { data, isPending, isError } = useCardHideOptions();
-
-  if (isPending) return <Loader />;
-  if (isError) return <div>데이터를 조회하지 못했습니다.</div>;
+  const { data } = useCardHideOptions();
 
   const items = data.map(({ name, code }) => ({ name, value: code, id: code }));
 
   return (
     <CommonCombobox
-      label={'숨김'}
       items={items}
       selectedItem={selectedItem}
       onChangeCombobox={(item: CommonComboboxItem) => {

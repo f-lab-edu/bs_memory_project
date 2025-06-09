@@ -2,7 +2,6 @@ import {
   CommonCombobox,
   CommonComboboxItem,
 } from 'src/shared/ui/commonCombobox';
-import Loader from '@/shared/ui/Loader';
 import { useBibleVersionStore } from '@store/bibleVersionStore';
 import { useShallow } from 'zustand/react/shallow';
 import { useBibleVersions } from '@features/drilling/api/getBibleVersions';
@@ -18,10 +17,7 @@ function BibleVersionSelect() {
 
   const setBibleVersion = useBibleVersionStore(state => state.setBibleVersion);
 
-  const { data, isPending, isError } = useBibleVersions();
-
-  if (isPending) return <Loader />;
-  if (isError) return <div>데이터를 조회하지 못했습니다.</div>;
+  const { data } = useBibleVersions();
 
   const selectItems = data.map(({ code, name }) => ({
     name,
@@ -31,7 +27,6 @@ function BibleVersionSelect() {
 
   return (
     <CommonCombobox
-      label={'성경버전'}
       items={selectItems}
       selectedItem={selectedItem}
       onChangeCombobox={(item: CommonComboboxItem) =>

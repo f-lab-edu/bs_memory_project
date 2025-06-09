@@ -1,13 +1,7 @@
 import VerseSelector from '@features/verseSelect/components/verseSelector';
-import { Suspense, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import SubSeriesTabs from '@features/verseSelect/components/subSeriesTabs';
-import Loader from '@/shared/ui/Loader';
-import {
-  usePrefetchQuery,
-  useQueryErrorResetBoundary,
-} from '@tanstack/react-query';
-import { ErrorBoundary } from 'react-error-boundary';
-import FetchErrorMessage from '@/shared/ui/FetchErrorMessage';
+import { usePrefetchQuery } from '@tanstack/react-query';
 import { SeriesDatum } from '@features/verseSelect/types/seriesData.types';
 import {
   getSubSeries,
@@ -17,6 +11,9 @@ import {
   getVersesSummary,
   VERSES_SUMMARY_QUERY_KEY,
 } from '@features/verseSelect/api/getVersesSummary';
+import { ComposedBoundary } from '@/lib/error/ComposedBoundary';
+import ErrorMessage from '@/lib/error/ErrorMessage';
+import Loader from '@/shared/ui/Loader';
 
 export type SeriesContentsProps = {
   data: SeriesDatum;
@@ -25,7 +22,6 @@ export type SeriesContentsProps = {
 };
 
 function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
-  const { reset } = useQueryErrorResetBoundary();
   const tabpanelRef = useRef<HTMLDivElement>(null);
 
   const { sub_series_opt, series_code } = data;
@@ -60,23 +56,22 @@ function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
       className='scroll-mb-[50px] scroll-mt-[100px]'
     >
       {isTabOpen && (
-        <ErrorBoundary
-          onReset={reset}
-          fallbackRender={({ resetErrorBoundary }) => (
-            <FetchErrorMessage
+        <ComposedBoundary
+          fallbackRender={({ error, resetErrorBoundary }) => (
+            <ErrorMessage
+              error={error}
+              resetErrorBoundary={resetErrorBoundary}
               className='mt-3 pl-4'
-              onClickRetryButton={resetErrorBoundary}
             />
           )}
+          suspenseFallback={<Loader />}
         >
-          <Suspense fallback={<Loader />}>
-            {hasSubSeries ? (
-              <SubSeriesTabs parent_series_code={series_code} />
-            ) : (
-              <VerseSelector series_code={series_code} />
-            )}
-          </Suspense>
-        </ErrorBoundary>
+          {hasSubSeries ? (
+            <SubSeriesTabs parent_series_code={series_code} />
+          ) : (
+            <VerseSelector series_code={series_code} />
+          )}
+        </ComposedBoundary>
       )}
     </div>
   );

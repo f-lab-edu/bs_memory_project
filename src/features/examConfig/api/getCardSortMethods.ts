@@ -1,13 +1,11 @@
 import supabase from '@/lib/supabase';
-import SupabaseResponseError from '@/lib/SupabaseResponseError';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { supabaseResponseHandler } from '@/lib/api/supabaseResponseHandler';
 
 export const getCardSortMethods = async () => {
-  const { data, error } = await supabase.from('card_sort_method').select();
+  const res = await supabase.from('card_sort_method').select();
 
-  if (error) throw new SupabaseResponseError(error);
-
-  return data;
+  return supabaseResponseHandler(res);
 };
 
 export const CARD_SORT_METHODS_QUERY_KEY = 'sortMethod';

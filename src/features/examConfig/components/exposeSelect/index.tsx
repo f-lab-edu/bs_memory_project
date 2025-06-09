@@ -14,16 +14,13 @@ function ExposeSelect() {
   const items = data.map(({ name, code }) => ({ name, value: code, id: code }));
 
   return (
-    <div className='flex items-center text-left'>
-      <CommonCombobox
-        label={'표시'}
-        items={items}
-        selectedItem={{ name, value: code, id: code }}
-        onChangeCombobox={({ name, value }) =>
-          setExposeOption({ name, code: value })
-        }
-      />
-    </div>
+    <CommonCombobox
+      items={items}
+      selectedItem={{ name, value: code, id: code }}
+      onChangeCombobox={({ name, value }) =>
+        setExposeOption({ name, code: value })
+      }
+    />
   );
 }
 

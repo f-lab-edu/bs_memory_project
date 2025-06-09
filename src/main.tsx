@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import RootComponent from './RootComponent';
 import Exam from '@pages/exam';
 import Home from '@pages/home';
-import RouteErrorElement from '@/shared/ui/RouteErrorElement';
+import RouteErrorElement from '@/lib/error/RouteErrorElement';
 import { getSeries } from '@features/verseSelect/api/getSeries';
 
 const queryClient = new QueryClient({
