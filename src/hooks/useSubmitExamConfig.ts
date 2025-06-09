@@ -1,6 +1,6 @@
 import useExamConfigContext from '@/hooks/useExamConfigContext';
 import { useShallow } from 'zustand/react/shallow';
-import { useGlobalExamConfigStore } from '@features/exam/store/globalExamConfigStore';
+import { useGlobalExamConfigStore } from '@store/exam/globalExamConfigStore';
 import { useNavigate } from 'react-router-dom';
 
 export default function useSubmitExamConfig() {

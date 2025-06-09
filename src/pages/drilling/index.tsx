@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
-import Drilling from '@features/drilling';
+import Index from '@features/drilling';
 import { useVerseSelectStore } from '@store/verseSelectStore';
 import { useEffect } from 'react';
-import Nav from '@components/nav';
+import Nav from '@/shared/ui/Nav';
 
 function DrillingPage() {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ function DrillingPage() {
           <Nav.Link to={`/exam`}>시험보기</Nav.Link>
         </Nav.Container>
       </Nav>
-      {hasSelectedVerse() && <Drilling />}
+      {hasSelectedVerse() && <Index />}
     </>
   );
 }

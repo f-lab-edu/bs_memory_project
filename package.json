@@ -11,8 +11,8 @@
     "format": "prettier . --write",
     "preview": "vite preview",
     "postinstall": "husky",
-    "update-types": "dotenv -- cross-var npx supabase gen types --lang=typescript --project-id %VITE_SUPABASE_PID% --schema public > src/apis/database.types.ts",
-    "dev:update-types": "dotenv -- cross-var npx supabase gen types --lang=typescript --local > src/apis/database.types.ts"
+    "update-types": "dotenv -- cross-var npx supabase gen types --lang=typescript --project-id %VITE_SUPABASE_PID% --schema public > src/types/database.types.ts",
+    "dev:update-types": "dotenv -- cross-var npx supabase gen types --lang=typescript --local > src/types/database.types.ts"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [

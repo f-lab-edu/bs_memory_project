@@ -1,5 +1,5 @@
-import { ExamConfigState } from '@features/exam/store/createExamConfigStore';
-import { ExamConfigContext } from '@features/exam/context/ExamConfigContext';
+import { ExamConfigState } from '@store/exam/createExamConfigStore';
+import { ExamConfigContext } from '@/contexts/ExamConfigContext';
 import { useContext } from 'react';
 import { useStore } from 'zustand/react';
 

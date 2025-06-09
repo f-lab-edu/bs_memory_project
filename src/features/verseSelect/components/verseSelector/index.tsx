@@ -1,8 +1,7 @@
 import { ChangeEvent } from 'react';
 import { useVerseSelectStore } from '@store/verseSelectStore';
 import VerseOption from '@features/verseSelect/components/verseSelector/VerseOption';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { getVersesSummary } from '@apis/verse';
+import { useVersesSummary } from '@features/verseSelect/api/getVersesSummary';
 
 type VerseSelectorProps = {
   series_code: string;
@@ -12,10 +11,7 @@ function VerseSelector({ series_code }: VerseSelectorProps) {
   const resetSelected = useVerseSelectStore(state => state.reset);
   const addSelected = useVerseSelectStore(state => state.add);
 
-  const { data } = useSuspenseQuery({
-    queryKey: ['verseSummaryData', series_code],
-    queryFn: () => getVersesSummary(series_code),
-  });
+  const { data } = useVersesSummary(series_code);
 
   const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.checked) resetSelected();

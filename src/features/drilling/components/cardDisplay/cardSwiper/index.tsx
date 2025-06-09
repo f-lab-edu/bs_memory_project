@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import SwiperCore from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';

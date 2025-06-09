@@ -4,10 +4,11 @@ import {
   SERIES_DATA_SUB,
   VERSE_SUMMARY_DATA,
 } from '@/mock/mockData';
-import { SUPABASE_URL } from '@/config';
+import { SUPABASE_URL } from '@/lib/supabase/supabaseConfig';
 import { BIBLE_VERSIONS_LIST } from '@utils/constants';
-import { SORT_METHODS_LIST } from '@features/exam/constants';
-import { CARD_HIDE_OPTIONS_LIST } from '@features/drilling/constants';
+
+import { CARD_HIDE_OPTIONS_LIST } from '@features/drilling/constants/cardHideOptions';
+import { SORT_METHODS_LIST } from '@features/exam/constants/sortMethods';
 
 const baseURL = `${SUPABASE_URL}/rest/v1`;
 

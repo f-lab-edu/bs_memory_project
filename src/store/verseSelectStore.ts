@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { VerseId } from '@features/verseSelect/types';
+
+import { VerseId } from '@features/verseSelect/types/verseSummaryData.types';
 
 type VerseSelectState = {
   verseIds: VerseId[];

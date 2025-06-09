@@ -1,16 +1,12 @@
 import SeriesTab from '@features/verseSelect/components/seriesTab';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { getSubSeries } from '@apis/series';
+import { useSubSeries } from '@features/verseSelect/api/getSubSeries';
 
 type SubSeriesTabsProps = {
   parent_series_code: string;
 };
 
 function SubSeriesTabs({ parent_series_code }: SubSeriesTabsProps) {
-  const { data } = useSuspenseQuery({
-    queryKey: ['subSeriesData', parent_series_code],
-    queryFn: () => getSubSeries(parent_series_code),
-  });
+  const { data } = useSubSeries(parent_series_code);
 
   return (
     <div

@@ -1,16 +1,22 @@
 import VerseSelector from '@features/verseSelect/components/verseSelector';
-import { SeriesDatum } from '@features/verseSelect/types';
 import { Suspense, useEffect, useRef } from 'react';
 import SubSeriesTabs from '@features/verseSelect/components/subSeriesTabs';
-import Loader from '@components/Loader';
+import Loader from '@/shared/ui/Loader';
 import {
   usePrefetchQuery,
   useQueryErrorResetBoundary,
 } from '@tanstack/react-query';
-import { getSubSeries } from '@apis/series';
-import { getVersesSummary } from '@apis/verse';
 import { ErrorBoundary } from 'react-error-boundary';
-import FetchErrorMessage from '@components/FetchErrorMessage';
+import FetchErrorMessage from '@/shared/ui/FetchErrorMessage';
+import { SeriesDatum } from '@features/verseSelect/types/seriesData.types';
+import {
+  getSubSeries,
+  SUB_SERIES_QUERY_KEY,
+} from '@features/verseSelect/api/getSubSeries';
+import {
+  getVersesSummary,
+  VERSES_SUMMARY_QUERY_KEY,
+} from '@features/verseSelect/api/getVersesSummary';
 
 export type SeriesContentsProps = {
   data: SeriesDatum;
@@ -26,12 +32,12 @@ function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
   const hasSubSeries = sub_series_opt === 'Y';
 
   usePrefetchQuery({
-    queryKey: ['subSeriesData', series_code],
+    queryKey: [SUB_SERIES_QUERY_KEY, series_code],
     queryFn: () => (hasSubSeries ? getSubSeries(series_code) : null),
   });
 
   usePrefetchQuery({
-    queryKey: ['verseSummaryData', series_code],
+    queryKey: [VERSES_SUMMARY_QUERY_KEY, series_code],
     queryFn: () => (!hasSubSeries ? getVersesSummary(series_code) : null),
   });
 
