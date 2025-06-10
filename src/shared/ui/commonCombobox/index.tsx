@@ -40,6 +40,7 @@ export function CommonCombobox({
           readOnly={true}
         />
         <ComboboxButton className='absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none'>
+          <span className='sr-only'>옵션 선택</span>
           <FaChevronDown
             className='size-5 text-gray-400 mobile:size-3'
             aria-hidden='true'
