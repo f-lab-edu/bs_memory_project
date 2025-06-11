@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import { useVerseSelectStore } from '@store/verseSelectStore';
-import VerseOption from '@features/verseSelect/components/verseSelector/VerseOption';
+import VerseOption from '@features/verseSelect/components/verseOption';
 import { useVersesSummary } from '@features/verseSelect/api/getVersesSummary';
 
 type VerseSelectorProps = {
