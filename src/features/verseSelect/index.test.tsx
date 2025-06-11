@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import RootComponent from '@/RootComponent.tsx';
 import Home from '@pages/home';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
@@ -25,8 +25,11 @@ test('renders series tabs with loaded data', async () => {
 
   render(<RouterProvider router={router} />);
 
-  for (const data of SERIES_DATA) {
-    const tab = await screen.findByRole('tab', { name: data.series_name });
-    expect(tab.ariaExpanded).toBe('false');
-  }
+  await waitFor(() => {
+    SERIES_DATA.forEach(data => {
+      expect(
+        screen.queryByRole('tab', { name: data.series_name, expanded: false }),
+      ).not.toBeNull();
+    });
+  });
 });
