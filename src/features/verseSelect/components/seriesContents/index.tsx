@@ -17,11 +17,11 @@ import Loader from '@/shared/ui/Loader';
 
 export type SeriesContentsProps = {
   data: SeriesDatum;
-  contentsId: string;
+  testId: string;
   isTabOpen: boolean;
 };
 
-function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
+function SeriesContents({ data, testId, isTabOpen }: SeriesContentsProps) {
   const tabpanelRef = useRef<HTMLDivElement>(null);
 
   const { sub_series_opt, series_code } = data;
@@ -49,9 +49,9 @@ function SeriesContents({ data, contentsId, isTabOpen }: SeriesContentsProps) {
   return (
     <div
       role='tabpanel'
-      id={contentsId}
+      id={testId}
       hidden={!isTabOpen}
-      data-testid={contentsId}
+      data-testid={testId}
       ref={tabpanelRef}
       className='scroll-mb-[50px] scroll-mt-[100px]'
     >

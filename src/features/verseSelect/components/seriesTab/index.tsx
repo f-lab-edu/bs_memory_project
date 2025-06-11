@@ -5,6 +5,7 @@ import SeriesContents from '@features/verseSelect/components/seriesContents';
 import cn from '@utils/cn';
 import { cva } from 'class-variance-authority';
 import { SeriesDatum } from '@features/verseSelect/types/seriesData.types';
+import { createSeriesTabPanelId } from '@utils/componentUtils/seriesTab';
 
 const tabVariants = cva(
   'w-full rounded-2xl px-7 py-2.5 text-center mobile:px-2 flex items-center justify-between space-x-1',
@@ -42,13 +43,13 @@ function SeriesTab({ data }: SeriesTabProps) {
 
   const handleClickSeriesTab = () => setIsTabOpen(prev => !prev);
 
-  const contentsId = `contents-of-series${data.series_code}`;
+  const tabPanelId = createSeriesTabPanelId(data.series_code);
 
   return (
     <div className='w-full'>
       <button
         role='tab'
-        aria-controls={contentsId}
+        aria-controls={tabPanelId}
         aria-expanded={isTabOpen}
         className={cn(
           isRootSeries
@@ -70,11 +71,7 @@ function SeriesTab({ data }: SeriesTabProps) {
           {isTabOpen ? <FaCaretUp /> : <FaCaretDown />}
         </span>
       </button>
-      <SeriesContents
-        contentsId={contentsId}
-        data={data}
-        isTabOpen={isTabOpen}
-      />
+      <SeriesContents testId={tabPanelId} data={data} isTabOpen={isTabOpen} />
     </div>
   );
 }
