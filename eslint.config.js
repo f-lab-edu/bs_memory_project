@@ -65,6 +65,7 @@ export default tseslint.config(
       ],
       '@typescript-eslint/no-empty-function': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-function-type': 'off',
     },
   },
 );
