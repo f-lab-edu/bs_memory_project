@@ -6,6 +6,7 @@ import { useVerseSelectStore } from '@store/verseSelectStore';
 import { useExamConfigModalStore } from '@store/exam/examConfigModalStore';
 import Nav from '@/shared/ui/Nav';
 import ExamConfigProvider from '@/providers/ExamConfigProvider';
+import ALERT_MESSAGE from '@/constants/alertMessage';
 
 function Home() {
   const hasSelectedVerse = useVerseSelectStore(
@@ -18,14 +19,14 @@ function Home() {
   const handleDrillingLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!hasSelectedVerse()) {
       e.preventDefault();
-      alert('암송 구절을 선택해주세요. 😊');
+      alert(ALERT_MESSAGE.VERSE_NOT_SELECTED);
     }
   };
 
   const handleExamLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (!hasSelectedVerse()) {
-      alert('암송 구절을 선택해주세요. 😊');
+      alert(ALERT_MESSAGE.VERSE_NOT_SELECTED);
       return;
     }
     setExamConfigModalOpen(true);
