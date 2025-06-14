@@ -11,7 +11,7 @@ import { cleanup, screen, waitFor, within } from '@testing-library/react';
 import RootComponent from '@/RootComponent';
 import Loader from '@/shared/ui/Loader';
 import { getSeries } from '@features/verseSelect/api/getSeries';
-import { render } from '@/test/test-utils';
+import { render } from '@/lib/test/render';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import {
   SERIES_DATA,
@@ -114,7 +114,7 @@ describe('HomePage Test', () => {
     });
   });
 
-  test('when clicks "drilling" link without selecting verses, alert pops up and stop navigating', async () => {
+  test('when clicks "drilling" link without selecting verses, alert pops up', async () => {
     const { user } = setup();
 
     const testNav = await screen.findByRole('link', {
