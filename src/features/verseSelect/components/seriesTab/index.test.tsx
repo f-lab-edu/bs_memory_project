@@ -10,7 +10,7 @@ import {
 import { cleanup, screen, waitFor, within } from '@testing-library/react';
 import { UserEvent, userEvent } from '@testing-library/user-event';
 import SeriesTab from '@features/verseSelect/components/seriesTab/index';
-import { render } from '@/lib/test/render';
+import { render } from '@/lib/test/testUtils/render';
 import {
   SERIES_DATA,
   SERIES_DATA_HAS_SUB,
