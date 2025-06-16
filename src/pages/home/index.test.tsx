@@ -14,30 +14,8 @@ import { userEvent } from '@testing-library/user-event';
 import ALERT_MESSAGE from '@/constants/alertMessage';
 import { createSeriesTabPanelId } from '@utils/componentUtils/seriesTab';
 import { createVerseOptionId } from '@utils/componentUtils/verseOption';
-
-const LINK_TEXTS = {
-  HOME: '홈으로',
-  DRILLING: '암송하기',
-  EXAM: '시험보기',
-};
-
-const PAGE_HEADING = 'NAVI 성경 암송';
-
-const spyOnAlert = () => {
-  vi.spyOn(window, 'alert').mockImplementation(() => {});
-};
-
-const mockUseVerseSelectStore = () => {
-  vi.mock('@store/verseSelectStore', async () => {
-    return await vi.importActual('@store/verseSelectStore');
-  });
-};
-
-const mockExamConfigModalStore = () => {
-  vi.mock('@store/exam/examConfigModalStore', async () => {
-    return await vi.importActual('@store/exam/examConfigModalStore');
-  });
-};
+import LINK_TEXTS from '@/constants/linkTexts';
+import PAGE_HEADING_TEXTS from '@/constants/pageHeadingTexts';
 
 const setup = () => {
   const user = userEvent.setup();
@@ -67,9 +45,13 @@ describe('HomePage Test', () => {
   });
 
   beforeEach(() => {
-    mockUseVerseSelectStore();
-    mockExamConfigModalStore();
-    spyOnAlert();
+    vi.mock('@store/verseSelectStore', async () => {
+      return await vi.importActual('@store/verseSelectStore');
+    });
+    vi.mock('@store/exam/examConfigModalStore', async () => {
+      return await vi.importActual('@store/exam/examConfigModalStore');
+    });
+    vi.spyOn(window, 'alert').mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -115,7 +97,10 @@ describe('HomePage Test', () => {
     expect(window.alert).toHaveBeenCalledWith(ALERT_MESSAGE.VERSE_NOT_SELECTED);
     expect(window.alert).toHaveBeenCalledTimes(1);
     expect(
-      screen.queryByRole('heading', { level: 1, name: PAGE_HEADING }),
+      screen.queryByRole('heading', {
+        level: 1,
+        name: PAGE_HEADING_TEXTS.HOME,
+      }),
     ).not.toBeNull();
   });
 
@@ -130,7 +115,10 @@ describe('HomePage Test', () => {
     expect(window.alert).toHaveBeenCalledWith(ALERT_MESSAGE.VERSE_NOT_SELECTED);
     expect(window.alert).toHaveBeenCalledTimes(1);
     expect(
-      screen.queryByRole('heading', { level: 1, name: PAGE_HEADING }),
+      screen.queryByRole('heading', {
+        level: 1,
+        name: PAGE_HEADING_TEXTS.HOME,
+      }),
     ).not.toBeNull();
   });
 
