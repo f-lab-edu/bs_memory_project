@@ -12,6 +12,10 @@ import LINK_TEXTS from '@/constants/linkTexts';
 import PAGE_HEADING_TEXTS from '@/constants/pageHeadingTexts';
 import renderHome from '@/lib/test/testUtils/renderHome';
 import DIALOG_HEADING_TEXTS from '@/constants/dialogHeadingTexts';
+import mockExamConfigModalStore from '@/lib/test/testUtils/mocks/mockExamConfigModalStore';
+import mockVerseSelectStore from '@/lib/test/testUtils/mocks/mockVerseSelectStore';
+import mockAlert from '@/lib/test/testUtils/mocks/mockAlert';
+import mockScrollIntoView from '@/lib/test/testUtils/mocks/mockScrollIntoView';
 
 const setup = () => {
   const user = userEvent.setup();
@@ -24,17 +28,13 @@ const setup = () => {
 
 describe('HomePage Test', () => {
   beforeAll(() => {
-    window.HTMLElement.prototype.scrollIntoView = vi.fn();
+    mockScrollIntoView();
   });
 
   beforeEach(() => {
-    vi.mock('@store/verseSelectStore', async () => {
-      return await vi.importActual('@store/verseSelectStore');
-    });
-    vi.mock('@store/exam/examConfigModalStore', async () => {
-      return await vi.importActual('@store/exam/examConfigModalStore');
-    });
-    vi.spyOn(window, 'alert').mockImplementation(() => {});
+    mockVerseSelectStore();
+    mockExamConfigModalStore();
+    mockAlert();
   });
 
   afterEach(() => {
