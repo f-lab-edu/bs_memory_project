@@ -1,17 +1,8 @@
-import {
-  afterEach,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-} from 'vitest';
-import { cleanup, screen, waitFor, within } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import RootComponent from '@/RootComponent';
 import Loader from '@/shared/ui/Loader';
 import { getSeries } from '@features/verseSelect/api/getSeries';
-import { render } from '@/lib/test/render';
+import { render } from '@/lib/test/testUtils/render';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import {
   SERIES_DATA,
@@ -84,7 +75,6 @@ describe('HomePage Test', () => {
   afterEach(() => {
     vi.resetModules();
     vi.restoreAllMocks();
-    cleanup();
   });
 
   test('renders "홈으로","암송하기","시험보기" links and series tabs', async () => {
