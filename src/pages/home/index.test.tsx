@@ -11,6 +11,7 @@ import { createVerseOptionId } from '@utils/componentUtils/verseOption';
 import LINK_TEXTS from '@/constants/linkTexts';
 import PAGE_HEADING_TEXTS from '@/constants/pageHeadingTexts';
 import renderHome from '@/lib/test/testUtils/renderHome';
+import DIALOG_HEADING_TEXTS from '@/constants/dialogHeadingTexts';
 
 const setup = () => {
   const user = userEvent.setup();
@@ -105,7 +106,6 @@ describe('HomePage Test', () => {
   });
 
   test('when clicks "exam" link after selecting verses, "시험설정" dialog pops up', async () => {
-    const DIALOG_HEADING_TEXT = '시험설정';
     const { user } = setup();
 
     const testTab = await screen.findByRole('tab', {
@@ -141,7 +141,10 @@ describe('HomePage Test', () => {
 
     await waitFor(() => {
       expect(
-        screen.queryByRole('heading', { level: 3, name: DIALOG_HEADING_TEXT }),
+        screen.queryByRole('heading', {
+          level: 3,
+          name: DIALOG_HEADING_TEXTS.EXAMCONFIG,
+        }),
       ).not.toBeNull();
     });
   });
