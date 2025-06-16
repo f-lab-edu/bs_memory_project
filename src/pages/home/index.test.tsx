@@ -1,38 +1,20 @@
 import { screen, waitFor, within } from '@testing-library/react';
-import RootComponent from '@/RootComponent';
-import Loader from '@/shared/ui/Loader';
-import { getSeries } from '@features/verseSelect/api/getSeries';
-import { render } from '@/lib/test/testUtils/render';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import {
   SERIES_DATA,
   SERIES_DATA_NO_SUB,
   VERSE_SUMMARY_DATA,
 } from '@/mock/mockData';
-import Home from '@pages/home/index';
 import { userEvent } from '@testing-library/user-event';
 import ALERT_MESSAGE from '@/constants/alertMessage';
 import { createSeriesTabPanelId } from '@utils/componentUtils/seriesTab';
 import { createVerseOptionId } from '@utils/componentUtils/verseOption';
 import LINK_TEXTS from '@/constants/linkTexts';
 import PAGE_HEADING_TEXTS from '@/constants/pageHeadingTexts';
+import renderHome from '@/lib/test/testUtils/renderHome';
 
 const setup = () => {
   const user = userEvent.setup();
-  const router = createMemoryRouter([
-    {
-      element: <RootComponent />,
-      HydrateFallback: Loader,
-      children: [
-        {
-          path: '/',
-          element: <Home />,
-          loader: getSeries,
-        },
-      ],
-    },
-  ]);
-  render(<RouterProvider router={router} />);
+  renderHome();
 
   return {
     user,
