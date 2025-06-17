@@ -10,7 +10,7 @@ import { createSeriesTabPanelId } from '@utils/componentUtils/seriesTab';
 import { createVerseOptionId } from '@utils/componentUtils/verseOption';
 import LINK_TEXTS from '@/constants/linkTexts';
 import PAGE_HEADING_TEXTS from '@/constants/pageHeadingTexts';
-import renderHome from '@/lib/test/testUtils/renderHome';
+import renderRoute from '@/lib/test/testUtils/renderRoute';
 import DIALOG_HEADING_TEXTS from '@/constants/dialogHeadingTexts';
 import mockExamConfigModalStore from '@/lib/test/testUtils/mocks/mockExamConfigModalStore';
 import mockVerseSelectStore from '@/lib/test/testUtils/mocks/mockVerseSelectStore';
@@ -19,7 +19,7 @@ import mockScrollIntoView from '@/lib/test/testUtils/mocks/mockScrollIntoView';
 
 const setup = () => {
   const user = userEvent.setup();
-  renderHome();
+  renderRoute();
 
   return {
     user,

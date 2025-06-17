@@ -4,8 +4,10 @@ import Loader from '@/shared/ui/Loader';
 import Home from '@pages/home';
 import { getSeries } from '@features/verseSelect/api/getSeries';
 import { render } from '@/lib/test/testUtils/render';
+import DrillingPage from '@pages/drilling';
+import Exam from '@pages/exam';
 
-const renderHome = () => {
+const renderRoute = () => {
   const router = createMemoryRouter([
     {
       element: <RootComponent />,
@@ -16,10 +18,18 @@ const renderHome = () => {
           element: <Home />,
           loader: getSeries,
         },
+        {
+          path: '/drilling',
+          element: <DrillingPage />,
+        },
+        {
+          path: '/exam',
+          element: <Exam />,
+        },
       ],
     },
   ]);
   render(<RouterProvider router={router} />);
 };
 
-export default renderHome;
+export default renderRoute;
