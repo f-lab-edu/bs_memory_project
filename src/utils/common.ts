@@ -1,4 +1,4 @@
-import { VerseDetailData } from '@features/drilling/components/cardDisplay/card/type';
+import { VerseDetailData } from '@features/drilling/components/verseDisplay/verseCard/type';
 
 import { ExamVerseDataTypes } from '@features/exam/types/examVerseData.types';
 import { VerseSummaryDatum } from '@features/verseSelect/types/verseSummaryData.types';

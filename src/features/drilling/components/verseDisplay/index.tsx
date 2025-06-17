@@ -1,7 +1,7 @@
 import { useVerseSelectStore } from '@store/verseSelectStore';
 import { useBibleVersionStore } from '@store/bibleVersionStore';
 import { useShallow } from 'zustand/react/shallow';
-import CardSwiper from 'src/features/drilling/components/cardDisplay/cardSwiper';
+import CardSwiper from '@features/drilling/components/verseDisplay/cardSwiper';
 import { useVersesDetail } from '@features/verseSelect/api/getVersesDetail';
 
 function CardDisplay() {

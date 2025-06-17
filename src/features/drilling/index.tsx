@@ -1,4 +1,4 @@
-import CardDisplay from '@features/drilling/components/cardDisplay';
+import CardDisplay from 'src/features/drilling/components/verseDisplay';
 import { ComposedBoundary } from '@/lib/error/ComposedBoundary';
 import ErrorMessage from '@/lib/error/ErrorMessage';
 import Loader from '@/shared/ui/Loader';
