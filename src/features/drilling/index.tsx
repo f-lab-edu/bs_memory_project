@@ -6,13 +6,16 @@ import { CommonCombobox } from '@/shared/ui/commonCombobox';
 import { Field } from '@headlessui/react';
 import CardHideOptionSelect from '@features/drilling/components/cardHideOptionSelect';
 import BibleVersionSelect from '@features/drilling/components/bibleVersionSelect';
+import COMBOBOX_LABEL_TEXTS from '@/constants/comboboxLabelTexts';
 
 function Drilling() {
   return (
     <div className='flex w-full max-w-[800px] grow flex-col items-center justify-center space-y-4'>
       <div className='flex h-[100px] w-full items-center justify-around mobile:w-full mobile:space-x-3'>
         <Field className='flex min-w-[30%] flex-col items-start'>
-          <CommonCombobox.Label>성경버전</CommonCombobox.Label>
+          <CommonCombobox.Label>
+            {COMBOBOX_LABEL_TEXTS.BIBLE_VERSION}
+          </CommonCombobox.Label>
           <ComposedBoundary
             fallbackRender={({ error, resetErrorBoundary }) => (
               <ErrorMessage
@@ -26,7 +29,9 @@ function Drilling() {
           </ComposedBoundary>
         </Field>
         <Field className='flex min-w-[30%] flex-col items-start'>
-          <CommonCombobox.Label>숨김</CommonCombobox.Label>
+          <CommonCombobox.Label>
+            {COMBOBOX_LABEL_TEXTS.CARD_HIDE_OPTION}
+          </CommonCombobox.Label>
           <ComposedBoundary
             fallbackRender={({ error, resetErrorBoundary }) => (
               <ErrorMessage

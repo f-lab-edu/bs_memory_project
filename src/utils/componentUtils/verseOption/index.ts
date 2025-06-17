@@ -6,6 +6,12 @@ export const createVerseOptionId = (verseSummaryData: VerseSummaryDatum) => {
   return `${series_code}-${card_num}`;
 };
 
+export const createAllVerseOptionId = (
+  seriesCode: VerseSummaryDatum['series_code'],
+) => {
+  return `${seriesCode}-all`;
+};
+
 export const createVerseOptionText = (verseSummaryData: VerseSummaryDatum) => {
   const {
     bible_code: { bible_name },

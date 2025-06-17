@@ -171,3 +171,101 @@ export const VERSE_SUMMARY_DATA = [
     },
   },
 ];
+
+export const VERSE_DETAIL_DATA_KOR = [
+  {
+    idx: 697,
+    card_num: 1,
+    category: '그리스도와의 새출발',
+    theme: '구원의 확신',
+    chapter: 5,
+    verse1: 11,
+    verse2: 12,
+    verse_kor:
+      '또 증거는 이것이니 하나님이 우리에게 영생을 주신 것과 이 생명이 그의 아들 안에 있는 그것이니라아들이 있는 자에게는 생명이 있고 하나님의 아들이 없는 자에게는 생명이 없느니라',
+    series_code: {
+      ord: 1,
+      series_name: '5확신',
+    },
+    bible_code: {
+      bible_name: '요한일서',
+      short_name: '요일',
+    },
+  },
+  {
+    idx: 698,
+    card_num: 2,
+    category: '그리스도와의 새출발',
+    theme: '기도응답의 확신',
+    chapter: 16,
+    verse1: 24,
+    verse2: 0,
+    verse_kor:
+      '지금까지는 너희가 내 이름으로 아무 것도 구하지 아니하였으나 구하라 그리하면 받으리니 너희 기쁨이 충만하리라',
+    series_code: {
+      ord: 1,
+      series_name: '5확신',
+    },
+    bible_code: {
+      bible_name: '요한복음',
+      short_name: '요',
+    },
+  },
+  {
+    idx: 699,
+    card_num: 3,
+    category: '그리스도와의 새출발',
+    theme: '승리의 확신',
+    chapter: 10,
+    verse1: 13,
+    verse2: 0,
+    verse_kor:
+      '사람이 감당할 시험 밖에는 너희에게 당한 것이 없나니 오직 하나님은 미쁘사 너희가 감당치 못할 시험 당함을 허락지 아니하시고 시험 당할 즈음에 또한 피할 길을 내사 너희로 능히 감당하게 하시느니라',
+    series_code: {
+      ord: 1,
+      series_name: '5확신',
+    },
+    bible_code: {
+      bible_name: '고린도전서',
+      short_name: '고전',
+    },
+  },
+  {
+    idx: 700,
+    card_num: 4,
+    category: '그리스도와의 새출발',
+    theme: '사죄의 확신',
+    chapter: 1,
+    verse1: 9,
+    verse2: 0,
+    verse_kor:
+      '만일 우리가 우리 죄를 자백하면 저는 미쁘시고 의로우사 우리 죄를 사하시며 모든 불의에서 우리를 깨끗케 하실 것이요',
+    series_code: {
+      ord: 1,
+      series_name: '5확신',
+    },
+    bible_code: {
+      bible_name: '요한일서',
+      short_name: '요일',
+    },
+  },
+  {
+    idx: 701,
+    card_num: 5,
+    category: '그리스도와의 새출발',
+    theme: '인도의 확신',
+    chapter: 3,
+    verse1: 5,
+    verse2: 6,
+    verse_kor:
+      '너는 마음을 다하여 여호와를 의뢰하고 네 명철을 의지하지 말라너는 범사에 그를 인정하라 그리하면 네 길을 지도하시리라',
+    series_code: {
+      ord: 1,
+      series_name: '5확신',
+    },
+    bible_code: {
+      bible_name: '잠언',
+      short_name: '잠',
+    },
+  },
+];
