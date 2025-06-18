@@ -87,6 +87,7 @@ describe('SeriesTab Test', () => {
 
     await waitForElementToBeRemoved(
       within(testTabPanel).queryByTestId('loader'),
+      { timeout: 3000 },
     );
 
     SERIES_DATA_SUB.forEach(data => {

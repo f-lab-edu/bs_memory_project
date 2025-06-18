@@ -56,6 +56,13 @@ describe('DrillingPage Test', () => {
     expect(testTab.ariaExpanded).toBe('true');
     expect(testTabPanel.hidden).toBe(false);
 
+    const tabPanelLoader = within(testTabPanel).queryByTestId('loader');
+    if (tabPanelLoader !== null) {
+      await waitForElementToBeRemoved(
+        within(testTabPanel).queryByTestId('loader'),
+      );
+    }
+
     const allCheckbox = within(testTabPanel).getByTestId(
       createAllVerseOptionId(VERSE_SUMMARY_DATA[0].series_code),
     );
