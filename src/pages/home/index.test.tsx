@@ -1,4 +1,9 @@
-import { screen, waitFor, within } from '@testing-library/react';
+import {
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+  within,
+} from '@testing-library/react';
 import {
   SERIES_DATA,
   SERIES_DATA_NO_SUB,
@@ -44,28 +49,25 @@ describe('HomePage Test', () => {
 
   test('renders "홈으로","암송하기","시험보기" links and series tabs', async () => {
     setup();
+    await waitForElementToBeRemoved(screen.queryByTestId('loader'));
 
-    await waitFor(() => {
-      expect(
-        screen.queryByRole('link', { name: LINK_TEXTS.HOME }),
-      ).not.toBeNull();
-      expect(
-        screen.queryByRole('link', { name: LINK_TEXTS.DRILLING }),
-      ).not.toBeNull();
-      expect(
-        screen.queryByRole('link', { name: LINK_TEXTS.EXAM }),
-      ).not.toBeNull();
-    });
+    expect(
+      screen.queryByRole('link', { name: LINK_TEXTS.HOME }),
+    ).not.toBeNull();
+    expect(
+      screen.queryByRole('link', { name: LINK_TEXTS.DRILLING }),
+    ).not.toBeNull();
+    expect(
+      screen.queryByRole('link', { name: LINK_TEXTS.EXAM }),
+    ).not.toBeNull();
 
-    await waitFor(() => {
-      SERIES_DATA.forEach(data => {
-        expect(
-          screen.queryByRole('tab', {
-            name: data.series_name,
-            expanded: false,
-          }),
-        ).not.toBeNull();
-      });
+    SERIES_DATA.forEach(data => {
+      expect(
+        screen.queryByRole('tab', {
+          name: data.series_name,
+          expanded: false,
+        }),
+      ).not.toBeNull();
     });
   });
 

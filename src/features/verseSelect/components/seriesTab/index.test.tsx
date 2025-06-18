@@ -7,7 +7,12 @@ import {
   test,
   vi,
 } from 'vitest';
-import { cleanup, screen, waitFor, within } from '@testing-library/react';
+import {
+  cleanup,
+  screen,
+  waitForElementToBeRemoved,
+  within,
+} from '@testing-library/react';
 import { UserEvent, userEvent } from '@testing-library/user-event';
 import SeriesTab from '@features/verseSelect/components/seriesTab/index';
 import { render } from '@/lib/test/testUtils/render';
@@ -80,15 +85,17 @@ describe('SeriesTab Test', () => {
     expect(testTab.ariaExpanded).toBe('true');
     expect(testTabPanel.hidden).toBe(false);
 
-    await waitFor(() => {
-      SERIES_DATA_SUB.forEach(data => {
-        expect(
-          within(testTabPanel).queryByRole('tab', {
-            name: data.series_name,
-            expanded: false,
-          }),
-        ).not.toBeNull();
-      });
+    await waitForElementToBeRemoved(
+      within(testTabPanel).queryByTestId('loader'),
+    );
+
+    SERIES_DATA_SUB.forEach(data => {
+      expect(
+        within(testTabPanel).queryByRole('tab', {
+          name: data.series_name,
+          expanded: false,
+        }),
+      ).not.toBeNull();
     });
 
     await user.click(testTab);
@@ -96,15 +103,13 @@ describe('SeriesTab Test', () => {
     expect(testTab.ariaExpanded).toBe('false');
     expect(testTabPanel.hidden).toBe(true);
 
-    await waitFor(() => {
-      SERIES_DATA_SUB.forEach(data => {
-        expect(
-          within(testTabPanel).queryByRole('tab', {
-            name: data.series_name,
-            expanded: false,
-          }),
-        ).toBeNull();
-      });
+    SERIES_DATA_SUB.forEach(data => {
+      expect(
+        within(testTabPanel).queryByRole('tab', {
+          name: data.series_name,
+          expanded: false,
+        }),
+      ).toBeNull();
     });
   });
 
@@ -125,13 +130,15 @@ describe('SeriesTab Test', () => {
     expect(testTab.ariaExpanded).toBe('true');
     expect(testTabPanel.hidden).toBe(false);
 
-    await waitFor(() => {
-      VERSE_SUMMARY_DATA.forEach(data => {
-        const testCheckbox = within(testTabPanel).getByTestId(
-          createVerseOptionId(data),
-        );
-        expect(testCheckbox.ariaChecked).toBe('false');
-      });
+    await waitForElementToBeRemoved(
+      within(testTabPanel).queryByTestId('loader'),
+    );
+
+    VERSE_SUMMARY_DATA.forEach(data => {
+      const testCheckbox = within(testTabPanel).getByTestId(
+        createVerseOptionId(data),
+      );
+      expect(testCheckbox.ariaChecked).toBe('false');
     });
   });
 });
