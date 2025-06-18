@@ -5,6 +5,7 @@ import {
   getCardSortMethodHandler,
   getSeriesHandler,
   getSubSeriesHandler,
+  getVerseDetailHandler,
   getVerseSummaryHandler,
 } from '@/mock/handler';
 
@@ -15,6 +16,7 @@ export const handlers = [
   getBibleVerseHandler,
   getCardSortMethodHandler,
   getCardHideOptionHandler,
+  getVerseDetailHandler,
 ];
 
 export const server = setupServer(...handlers);

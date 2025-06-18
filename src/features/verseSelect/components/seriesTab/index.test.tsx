@@ -1,99 +1,141 @@
-import { describe, test } from 'vitest';
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from 'vitest';
+import { cleanup, screen, within } from '@testing-library/react';
+import { UserEvent, userEvent } from '@testing-library/user-event';
+import SeriesTab from '@features/verseSelect/components/seriesTab/index';
+import { render } from '@/lib/test/testUtils/render';
+import {
+  SERIES_DATA,
+  SERIES_DATA_HAS_SUB,
+  SERIES_DATA_NO_SUB,
+  SERIES_DATA_SUB,
+  VERSE_SUMMARY_DATA,
+} from '@/mock/mockData';
+import { createSeriesTabPanelId } from '@utils/componentUtils/seriesTab';
+import { createVerseOptionId } from '@utils/componentUtils/verseOption';
+import waitForElementToBeRemovedIfExist from '@/lib/test/testUtils/waitForElementToBeRemovedIfExist';
 
 describe('SeriesTab Test', () => {
-  // let user: UserEvent;
-  //
-  // beforeAll(() => {
-  //   window.HTMLElement.prototype.scrollIntoView = vi.fn();
-  // });
-  //
-  // beforeEach(() => {
-  //   user = userEvent.setup();
-  //   const seriesTabs = SERIES_DATA.map(data => (
-  //     <SeriesTab key={data.series_code} data={data} />
-  //   ));
-  //   render(<div role='tabList'>{seriesTabs}</div>);
-  // });
-  //
-  // afterEach(() => {
-  //   cleanup();
-  // });
+  let user: UserEvent;
 
-  test('when clicks a series tab, associated tabpanel opens', async () => {
-    // const testTab = screen.getByRole('tab', {
-    //   name: SERIES_DATA[0].series_name,
-    // });
-    //
-    // expect(testTab.ariaExpanded).toBe('false');
-    //
-    // await user.click(testTab);
-    //
-    // expect(testTab.ariaExpanded).toBe('true');
-    //
-    // const panels = await screen.findAllByRole('tabpanel');
-    // const testPanel = panels.find(
-    //   element => element.id === testTab.getAttribute('aria-controls'),
-    // )!;
-    // expect(testPanel).toBeDefined();
-    // expect(testPanel.hidden).toBe(false);
+  beforeAll(() => {
+    window.HTMLElement.prototype.scrollIntoView = vi.fn();
   });
 
-  test('when clicks a multi-depth series tab, associated tabpanel has child tabs', async () => {
-    // const testTab = await screen.findByRole('tab', {
-    //   name: SERIES_DATA_HAS_SUB.series_name,
-    // });
-    //
-    // expect(testTab.ariaExpanded).toBe('false');
-    //
-    // await user.click(testTab);
-    //
-    // expect(testTab.ariaExpanded).toBe('true');
-    //
-    // const panels = await screen.findAllByRole('tabpanel');
-    // const testPanel = panels.find(
-    //   element => element.id === testTab.getAttribute('aria-controls'),
-    // )!;
-    //
-    // expect(testPanel).toBeDefined();
-    // expect(testPanel.hidden).toBe(false);
-    //
-    // const childTabs = await within(testPanel).findAllByRole('tab');
-    // childTabs.forEach(element => expect(element.ariaExpanded).toBe('false'));
+  beforeEach(() => {
+    user = userEvent.setup();
+    const seriesTabs = SERIES_DATA.map(data => (
+      <SeriesTab key={data.series_code} data={data} />
+    ));
+    render(<div role='tabList'>{seriesTabs}</div>);
   });
 
-  test('when clicks a single-depth series tab, associated tabpanel has verse checkboxes', async () => {
-    // const testTab = await screen.findByRole('tab', {
-    //   name: SERIES_DATA_NO_SUB.series_name,
-    // });
-    //
-    // expect(testTab.ariaExpanded).toBe('false');
-    //
-    // await user.click(testTab);
-    //
-    // expect(testTab.ariaExpanded).toBe('true');
-    //
-    // const panels = await screen.findAllByRole('tabpanel');
-    // const testPanel = panels.find(
-    //   element => element.id === testTab.getAttribute('aria-controls'),
-    // )!;
-    //
-    // expect(testPanel).toBeDefined();
-    // expect(testPanel.hidden).toBe(false);
-    //
-    // for (const data of VERSE_SUMMARY_DATA) {
-    //   const {
-    //     theme,
-    //     bible_code: { bible_name },
-    //     chapter,
-    //     verse1,
-    //     verse2,
-    //   } = data;
-    //
-    //   const name = `${theme} ${bible_name} ${chapter}:${verse2 ? verse1 + '-' + verse2 : verse1}`;
-    //
-    //   await expect(
-    //     within(testPanel).findByRole('checkbox', { name, checked: false }),
-    //   ).resolves.not.toThrowError();
-    // }
+  afterEach(() => {
+    cleanup();
+  });
+
+  test('a series tab toggles associated tab panel', async () => {
+    const testTab = screen.getByRole('tab', {
+      name: SERIES_DATA[0].series_name,
+      expanded: false,
+    });
+
+    const testTabPanel = screen.getByTestId(
+      createSeriesTabPanelId(SERIES_DATA[0].series_code),
+    );
+
+    expect(testTabPanel.hidden).toBe(true);
+
+    await user.click(testTab);
+
+    expect(testTab.ariaExpanded).toBe('true');
+    expect(testTabPanel.hidden).toBe(false);
+
+    await user.click(testTab);
+
+    expect(testTab.ariaExpanded).toBe('false');
+    expect(testTabPanel.hidden).toBe(true);
+  });
+
+  test('a multi-depth series tab toggles child series tabs', async () => {
+    const testTab = await screen.findByRole('tab', {
+      name: SERIES_DATA_HAS_SUB.series_name,
+    });
+
+    const testTabPanel = screen.getByTestId(
+      createSeriesTabPanelId(SERIES_DATA_HAS_SUB.series_code),
+    );
+
+    expect(testTab.ariaExpanded).toBe('false');
+    expect(testTabPanel.hidden).toBe(true);
+
+    await user.click(testTab);
+
+    expect(testTab.ariaExpanded).toBe('true');
+    expect(testTabPanel.hidden).toBe(false);
+
+    await waitForElementToBeRemovedIfExist(
+      within(testTabPanel).queryByTestId('loader'),
+      { timeout: 3000 },
+    );
+
+    SERIES_DATA_SUB.forEach(data => {
+      expect(
+        within(testTabPanel).queryByRole('tab', {
+          name: data.series_name,
+          expanded: false,
+        }),
+      ).not.toBeNull();
+    });
+
+    await user.click(testTab);
+
+    expect(testTab.ariaExpanded).toBe('false');
+    expect(testTabPanel.hidden).toBe(true);
+
+    SERIES_DATA_SUB.forEach(data => {
+      expect(
+        within(testTabPanel).queryByRole('tab', {
+          name: data.series_name,
+          expanded: false,
+        }),
+      ).toBeNull();
+    });
+  });
+
+  test('a single-depth series tab panel has a list of verse checkboxes', async () => {
+    const testTab = await screen.findByRole('tab', {
+      name: SERIES_DATA_NO_SUB.series_name,
+    });
+
+    const testTabPanel = screen.getByTestId(
+      createSeriesTabPanelId(SERIES_DATA_NO_SUB.series_code),
+    );
+
+    expect(testTab.ariaExpanded).toBe('false');
+    expect(testTabPanel.hidden).toBe(true);
+
+    await user.click(testTab);
+
+    expect(testTab.ariaExpanded).toBe('true');
+    expect(testTabPanel.hidden).toBe(false);
+
+    await waitForElementToBeRemovedIfExist(
+      within(testTabPanel).queryByTestId('loader'),
+    );
+
+    VERSE_SUMMARY_DATA.forEach(data => {
+      const testCheckbox = within(testTabPanel).getByTestId(
+        createVerseOptionId(data),
+      );
+      expect(testCheckbox.ariaChecked).toBe('false');
+    });
   });
 });

@@ -3,8 +3,8 @@ import SwiperCore from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
-import { VerseDetailDataList } from '@features/drilling/components/cardDisplay/card/type';
-import Card from '@features/drilling/components/cardDisplay/card';
+import { VerseDetailDataList } from '@features/drilling/components/verseDisplay/verseCard/type';
+import VerseCard from 'src/features/drilling/components/verseDisplay/verseCard';
 import { getShortVerseAddress } from '@utils/common';
 import { FiChevronsLeft } from '@react-icons/all-files/fi/FiChevronsLeft';
 import { FiChevronsRight } from '@react-icons/all-files/fi/FiChevronsRight';
@@ -95,7 +95,7 @@ function CardSwiper({ data }: CardSwiperProps) {
         </div>
         {data.map(v => (
           <SwiperSlide key={`card-${v.idx}`}>
-            <Card data={v} />
+            <VerseCard data={v} />
           </SwiperSlide>
         ))}
       </Swiper>

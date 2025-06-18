@@ -1,7 +1,8 @@
 import { ChangeEvent } from 'react';
 import { useVerseSelectStore } from '@store/verseSelectStore';
-import VerseOption from '@features/verseSelect/components/verseSelector/VerseOption';
+import VerseOption from '@features/verseSelect/components/verseOption';
 import { useVersesSummary } from '@features/verseSelect/api/getVersesSummary';
+import { createAllVerseOptionId } from '@utils/componentUtils/verseOption';
 
 type VerseSelectorProps = {
   series_code: string;
@@ -13,10 +14,12 @@ function VerseSelector({ series_code }: VerseSelectorProps) {
 
   const { data } = useVersesSummary(series_code);
 
-  const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeAllCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.checked) resetSelected();
     else addSelected(data.map(v => v.idx));
   };
+
+  const allCheckboxId = createAllVerseOptionId(data[0].series_code);
 
   return (
     <ul
@@ -27,13 +30,14 @@ function VerseSelector({ series_code }: VerseSelectorProps) {
         <div className='flex basis-[40px] justify-center'>
           <input
             type='checkbox'
-            id={`${data[0].series_code}-all`}
+            id={allCheckboxId}
+            data-testid={allCheckboxId}
             className='size-5 checked:ring-0 focus-within:ring-0 mobile:size-4'
-            onChange={handleChangeCheckbox}
+            onChange={handleChangeAllCheckbox}
           />
         </div>
         <label
-          htmlFor={`${data[0].series_code}-all`}
+          htmlFor={allCheckboxId}
           className='max-w-[500px] truncate text-xl font-semibold text-greyBlue mobile:text-base'
         >
           전체

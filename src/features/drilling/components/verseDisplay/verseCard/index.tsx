@@ -1,11 +1,11 @@
-import { VerseDetailData } from '@features/drilling/components/cardDisplay/card/type';
+import { VerseDetailData } from '@features/drilling/components/verseDisplay/verseCard/type';
 import { getVerseAddress } from '@utils/common';
 import { Textfit } from 'react-textfit';
 import { useCardHideOptionStore } from '@store/drilling/cardHideOptionStore';
 import { ClassValue } from 'clsx';
 import cn from '@utils/cn';
-
 import { CARD_HIDE_OPTIONS } from '@features/drilling/constants/cardHideOptions';
+import { createVerseCardTestId } from '@utils/componentUtils/verseCard';
 
 const {
   ADDR: HIDE_ADDR,
@@ -21,12 +21,15 @@ const cardTextClass = (isHidden: boolean, ...inputs: ClassValue[]) => {
   return cn(inputs, isHidden && 'text-transparent bg-sky-100/70');
 };
 
-function Card({ data }: CardProps) {
+function VerseCard({ data }: CardProps) {
   const { theme, category, contents } = data;
   const { code } = useCardHideOptionStore(state => state.cardHideOption);
   const address = getVerseAddress(data);
   return (
-    <div className='my-4 flex h-[400px] flex-col items-start justify-center rounded-xl border border-[#bebebe] px-9 py-6 text-left shadow-lg mobile:h-[200px]'>
+    <div
+      className='my-4 flex h-[400px] flex-col items-start justify-center rounded-xl border border-[#bebebe] px-9 py-6 text-left shadow-lg mobile:h-[200px]'
+      data-testid={createVerseCardTestId(data)}
+    >
       <div
         className={cardTextClass(
           code === HIDE_THEME.code,
@@ -62,4 +65,4 @@ function Card({ data }: CardProps) {
   );
 }
 
-export default Card;
+export default VerseCard;

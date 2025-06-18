@@ -10,6 +10,7 @@ import { Field } from '@headlessui/react';
 import { CommonCombobox } from '@/shared/ui/commonCombobox';
 import Loader from '@/shared/ui/Loader';
 import SortMethodSelect from '@features/examConfig/components/sortMethodSelect';
+import DIALOG_HEADING_TEXTS from '@/constants/dialogHeadingTexts';
 
 function ExamConfigModal() {
   const { submitExamConfig } = useSubmitExamConfig();
@@ -19,7 +20,7 @@ function ExamConfigModal() {
 
   return (
     <Modal
-      title='시험설정'
+      title={DIALOG_HEADING_TEXTS.EXAMCONFIG}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       onClickConfirmCallback={submitExamConfig}

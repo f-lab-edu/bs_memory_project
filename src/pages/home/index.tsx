@@ -6,6 +6,8 @@ import { useVerseSelectStore } from '@store/verseSelectStore';
 import { useExamConfigModalStore } from '@store/exam/examConfigModalStore';
 import Nav from '@/shared/ui/Nav';
 import ExamConfigProvider from '@/providers/ExamConfigProvider';
+import ALERT_MESSAGE from '@/constants/alertMessage';
+import PAGE_HEADING_TEXTS from '@/constants/pageHeadingTexts';
 
 function Home() {
   const hasSelectedVerse = useVerseSelectStore(
@@ -18,14 +20,14 @@ function Home() {
   const handleDrillingLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!hasSelectedVerse()) {
       e.preventDefault();
-      alert('암송 구절을 선택해주세요. 😊');
+      alert(ALERT_MESSAGE.VERSE_NOT_SELECTED);
     }
   };
 
   const handleExamLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (!hasSelectedVerse()) {
-      alert('암송 구절을 선택해주세요. 😊');
+      alert(ALERT_MESSAGE.VERSE_NOT_SELECTED);
       return;
     }
     setExamConfigModalOpen(true);
@@ -35,21 +37,21 @@ function Home() {
     <>
       <Nav>
         <Nav.Container>
-          <Nav.Link to={`/`}>
+          <Nav.Link to='/'>
             <FaHome aria-hidden={true} className='size-[32px]' />
             <span className='sr-only'>홈으로</span>
           </Nav.Link>
-          <Nav.Link to={`/drilling`} onClick={handleDrillingLinkClick}>
+          <Nav.Link to='/drilling' onClick={handleDrillingLinkClick}>
             암송하기
           </Nav.Link>
-          <Nav.Link to={`/exam`} onClick={handleExamLinkClick}>
+          <Nav.Link to='/exam' onClick={handleExamLinkClick}>
             시험보기
           </Nav.Link>
         </Nav.Container>
       </Nav>
       <div className='mx-2 my-14 flex flex-col items-center justify-center'>
         <h1 className='flex items-center text-5xl font-semibold mobile:text-3xl'>
-          NAVI 성경 암송
+          {PAGE_HEADING_TEXTS.HOME}
         </h1>
         <VerseSelect />
       </div>

@@ -13,7 +13,7 @@ type VerseSelectAction = {
   hasAnyId: () => boolean;
 };
 
-type VerseSelectStore = VerseSelectState & VerseSelectAction;
+export type VerseSelectStore = VerseSelectState & VerseSelectAction;
 
 const initialState: VerseSelectState = {
   verseIds: [],

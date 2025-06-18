@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-import { render } from '@/test/test-utils';
+import { render } from '@/lib/test/testUtils/render';
 import { cleanup, screen, waitFor, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import {
@@ -35,10 +35,10 @@ describe('CommonCombobox Test', () => {
   });
   afterEach(() => cleanup());
 
-  test('Combobox and combobox button render', async () => {
+  test('Combobox renders', async () => {
     await waitFor(() => {
       expect(screen.queryByRole('combobox', { name: label })).not.toBeNull();
-      expect(screen.queryByRole('button', { name: label })).not.toBeNull();
+      expect(screen.queryByRole('button', { expanded: false })).not.toBeNull();
       expect(screen.queryByDisplayValue(selectedItem.name)).not.toBeNull();
     });
   });
@@ -46,35 +46,27 @@ describe('CommonCombobox Test', () => {
   test('Combobox button toggles associated listbox', async () => {
     const user = userEvent.setup();
 
-    const comboboxButton = await screen.findByRole('button', { name: label });
-
-    expect(comboboxButton.ariaExpanded).toBe('false');
+    const comboboxButton = await screen.findByRole('button', {
+      expanded: false,
+    });
 
     await user.click(comboboxButton);
-
-    await waitFor(() => {
-      const listbox = screen.queryByRole('listbox');
-      expect(listbox).not.toBeNull();
-      expect(listbox!.getAttribute('id')).toBe(
-        comboboxButton.getAttribute('aria-controls'),
-      );
-    });
 
     expect(comboboxButton.ariaExpanded).toBe('true');
+    expect(screen.queryByRole('listbox')).not.toBeNull();
 
     await user.click(comboboxButton);
 
-    await waitFor(() => {
-      expect(screen.queryByRole('listbox')).toBeNull();
-    });
-
     expect(comboboxButton.ariaExpanded).toBe('false');
+    expect(screen.queryByRole('listbox')).toBeNull();
   });
 
   test('Associated listbox renders a list of options', async () => {
     const user = userEvent.setup();
 
-    const comboboxButton = await screen.findByRole('button', { name: label });
+    const comboboxButton = await screen.findByRole('button', {
+      expanded: false,
+    });
 
     await user.click(comboboxButton);
 

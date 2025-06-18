@@ -28,7 +28,8 @@
       "@apis/*": ["src/apis/*"],
       "@store/*": ["src/store/*"],
       "@utils/*": ["src/utils/*"]
-    }
+    },
+    "types": ["vitest/globals"]
   },
   "include": ["src"]
 }
