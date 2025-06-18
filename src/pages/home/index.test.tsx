@@ -1,9 +1,4 @@
-import {
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-  within,
-} from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import {
   SERIES_DATA,
   SERIES_DATA_NO_SUB,
@@ -21,6 +16,7 @@ import mockExamConfigModalStore from '@/lib/test/testUtils/mocks/mockExamConfigM
 import mockVerseSelectStore from '@/lib/test/testUtils/mocks/mockVerseSelectStore';
 import mockAlert from '@/lib/test/testUtils/mocks/mockAlert';
 import mockScrollIntoView from '@/lib/test/testUtils/mocks/mockScrollIntoView';
+import waitForElementToBeRemovedIfExist from '@/lib/test/testUtils/waitForElementToBeRemovedIfExist';
 
 const setup = () => {
   const user = userEvent.setup();
@@ -49,7 +45,7 @@ describe('HomePage Test', () => {
 
   test('renders "홈으로","암송하기","시험보기" links and series tabs', async () => {
     setup();
-    await waitForElementToBeRemoved(screen.queryByTestId('loader'));
+    await waitForElementToBeRemovedIfExist(screen.queryByTestId('loader'));
 
     expect(
       screen.queryByRole('link', { name: LINK_TEXTS.HOME }),

@@ -7,12 +7,7 @@ import {
   test,
   vi,
 } from 'vitest';
-import {
-  cleanup,
-  screen,
-  waitForElementToBeRemoved,
-  within,
-} from '@testing-library/react';
+import { cleanup, screen, within } from '@testing-library/react';
 import { UserEvent, userEvent } from '@testing-library/user-event';
 import SeriesTab from '@features/verseSelect/components/seriesTab/index';
 import { render } from '@/lib/test/testUtils/render';
@@ -25,6 +20,7 @@ import {
 } from '@/mock/mockData';
 import { createSeriesTabPanelId } from '@utils/componentUtils/seriesTab';
 import { createVerseOptionId } from '@utils/componentUtils/verseOption';
+import waitForElementToBeRemovedIfExist from '@/lib/test/testUtils/waitForElementToBeRemovedIfExist';
 
 describe('SeriesTab Test', () => {
   let user: UserEvent;
@@ -85,7 +81,7 @@ describe('SeriesTab Test', () => {
     expect(testTab.ariaExpanded).toBe('true');
     expect(testTabPanel.hidden).toBe(false);
 
-    await waitForElementToBeRemoved(
+    await waitForElementToBeRemovedIfExist(
       within(testTabPanel).queryByTestId('loader'),
       { timeout: 3000 },
     );
@@ -131,7 +127,7 @@ describe('SeriesTab Test', () => {
     expect(testTab.ariaExpanded).toBe('true');
     expect(testTabPanel.hidden).toBe(false);
 
-    await waitForElementToBeRemoved(
+    await waitForElementToBeRemovedIfExist(
       within(testTabPanel).queryByTestId('loader'),
     );
 

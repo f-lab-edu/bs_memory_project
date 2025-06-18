@@ -2,12 +2,7 @@ import renderRoute from '@/lib/test/testUtils/renderRoute';
 import { userEvent } from '@testing-library/user-event';
 import mockVerseSelectStore from '@/lib/test/testUtils/mocks/mockVerseSelectStore';
 import mockScrollIntoView from '@/lib/test/testUtils/mocks/mockScrollIntoView';
-import {
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-  within,
-} from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import {
   SERIES_DATA_NO_SUB,
   VERSE_DETAIL_DATA_KOR,
@@ -20,6 +15,7 @@ import PAGE_HEADING_TEXTS from '@/constants/pageHeadingTexts';
 import { mockAnimationsApi } from 'jsdom-testing-mocks';
 import COMBOBOX_LABEL_TEXTS from '@/constants/comboboxLabelTexts';
 import { createVerseCardTestId } from '@utils/componentUtils/verseCard';
+import waitForElementToBeRemovedIfExist from '@/lib/test/testUtils/waitForElementToBeRemovedIfExist';
 
 describe('DrillingPage Test', () => {
   beforeAll(() => {
@@ -38,7 +34,7 @@ describe('DrillingPage Test', () => {
   test('renders "홈으로" and "시험보기" links, "성경버전" and "숨김" options, and card slide', async () => {
     const user = userEvent.setup();
 
-    await waitForElementToBeRemoved(screen.queryByTestId('loader'));
+    await waitForElementToBeRemovedIfExist(screen.queryByTestId('loader'));
 
     const testTab = await screen.findByRole('tab', {
       name: SERIES_DATA_NO_SUB.series_name,
@@ -56,12 +52,9 @@ describe('DrillingPage Test', () => {
     expect(testTab.ariaExpanded).toBe('true');
     expect(testTabPanel.hidden).toBe(false);
 
-    const tabPanelLoader = within(testTabPanel).queryByTestId('loader');
-    if (tabPanelLoader !== null) {
-      await waitForElementToBeRemoved(
-        within(testTabPanel).queryByTestId('loader'),
-      );
-    }
+    await waitForElementToBeRemovedIfExist(
+      within(testTabPanel).queryByTestId('loader'),
+    );
 
     const allCheckbox = within(testTabPanel).getByTestId(
       createAllVerseOptionId(VERSE_SUMMARY_DATA[0].series_code),
@@ -92,7 +85,7 @@ describe('DrillingPage Test', () => {
       screen.queryByRole('link', { name: LINK_TEXTS.EXAM }),
     ).not.toBeNull();
 
-    await waitForElementToBeRemoved(screen.queryAllByTestId('loader'));
+    await waitForElementToBeRemovedIfExist(screen.queryAllByTestId('loader'));
 
     expect(
       screen.queryByRole('combobox', {
