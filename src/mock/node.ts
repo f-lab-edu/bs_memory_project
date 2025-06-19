@@ -1,7 +1,7 @@
 import { setupServer } from 'msw/node';
 import {
   getBibleVersionsHandler,
-  getCardHideOptionHandler,
+  getCardHideOptionsHandler,
   getCardSortMethodHandler,
   getSeriesHandler,
   getSubSeriesHandler,
@@ -14,9 +14,9 @@ export const handlers = [
   getSubSeriesHandler,
   getVerseSummaryHandler,
   getCardSortMethodHandler,
-  getCardHideOptionHandler,
   getVerseDetailHandler,
   getBibleVersionsHandler,
+  getCardHideOptionsHandler,
 ];
 
 export const server = setupServer(...handlers);

@@ -1,7 +1,6 @@
 import { create } from 'zustand/index';
-
-import { CARD_HIDE_OPTIONS } from '@features/drilling/constants/cardHideOptions';
 import { CardHideOption } from '@features/drilling/types/cardHideOption.types';
+import { CARD_HIDE_OPTIONS } from '@/mock/mockData';
 
 type CardHideOptionState = {
   cardHideOption: CardHideOption;
@@ -13,8 +12,9 @@ type CardHideOptionAction = {
 
 type CardHideOptionStore = CardHideOptionState & CardHideOptionAction;
 
+const [HIDE_NONE] = CARD_HIDE_OPTIONS;
 const initialState: CardHideOptionState = {
-  cardHideOption: CARD_HIDE_OPTIONS.NONE,
+  cardHideOption: HIDE_NONE,
 };
 
 export const useCardHideOptionStore = create<CardHideOptionStore>()(set => ({

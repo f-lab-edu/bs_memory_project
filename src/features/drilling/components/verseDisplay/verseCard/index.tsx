@@ -4,14 +4,10 @@ import { Textfit } from 'react-textfit';
 import { useCardHideOptionStore } from '@store/drilling/cardHideOptionStore';
 import { ClassValue } from 'clsx';
 import cn from '@utils/cn';
-import { CARD_HIDE_OPTIONS } from '@features/drilling/constants/cardHideOptions';
 import { createVerseCardTestId } from '@utils/componentUtils/verseCard';
+import { CARD_HIDE_OPTIONS } from '@/mock/mockData';
 
-const {
-  ADDR: HIDE_ADDR,
-  THEME: HIDE_THEME,
-  CONTENTS: HIDE_CONTENTS,
-} = CARD_HIDE_OPTIONS;
+const [_, HIDE_ADDR, HIDE_THEME, HIDE_CONTENTS] = CARD_HIDE_OPTIONS;
 
 type CardProps = {
   data: VerseDetailData;
