@@ -1,4 +1,4 @@
-import { VerseDetailData } from '@features/drilling/components/verseDisplay/verseCard/type';
+import { VerseDetailData } from '@features/verseCardDisplay/components/verseCard/type';
 import { getVerseAddress } from '@utils/common';
 import { Textfit } from 'react-textfit';
 import { useCardHideOptionStore } from '@store/drilling/cardHideOptionStore';
