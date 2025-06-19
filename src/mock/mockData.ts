@@ -1,6 +1,4 @@
-import { SeriesDataTypes } from '@features/verseSelect/types/seriesData.types';
-
-export const SERIES_DATA: SeriesDataTypes = [
+export const SERIES_DATA = [
   {
     series_code: '%101',
     series_name: '5확신',
@@ -41,7 +39,7 @@ export const SERIES_DATA: SeriesDataTypes = [
     ord: 19,
     parent_series: null,
   },
-];
+] as const;
 
 export const SERIES_DATA_NO_SUB = {
   series_code: '%101',
@@ -50,7 +48,7 @@ export const SERIES_DATA_NO_SUB = {
   sub_series_opt: 'N',
   ord: 2,
   parent_series: null,
-};
+} as const;
 
 export const SERIES_DATA_HAS_SUB = {
   series_code: '2%',
@@ -59,7 +57,7 @@ export const SERIES_DATA_HAS_SUB = {
   sub_series_opt: 'Y',
   ord: 4,
   parent_series: null,
-};
+} as const;
 
 export const SERIES_DATA_SUB = [
   {
@@ -102,7 +100,7 @@ export const SERIES_DATA_SUB = [
     ord: 9,
     parent_series: '2%',
   },
-];
+] as const;
 
 export const VERSE_SUMMARY_DATA = [
   {
@@ -170,7 +168,7 @@ export const VERSE_SUMMARY_DATA = [
       bible_name: '잠언',
     },
   },
-];
+] as const;
 
 export const VERSE_DETAIL_DATA_KOR = [
   {
@@ -268,7 +266,7 @@ export const VERSE_DETAIL_DATA_KOR = [
       short_name: '잠',
     },
   },
-];
+] as const;
 
 export const BIBLE_VERSIONS = [
   { code: 'BV_001', name: '개역한글판' },
@@ -276,4 +274,11 @@ export const BIBLE_VERSIONS = [
     code: 'BV_002',
     name: '개역개정판',
   },
-];
+] as const;
+
+export const CARD_HIDE_OPTIONS = [
+  { code: 'HIDE_000', name: '없음' },
+  { code: 'HIDE_001', name: '장절' },
+  { code: 'HIDE_002', name: '제목' },
+  { code: 'HIDE_003', name: '내용' },
+] as const;
