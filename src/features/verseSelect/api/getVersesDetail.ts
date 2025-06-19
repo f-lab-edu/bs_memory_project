@@ -1,9 +1,9 @@
 import { Verse } from '@/types/data.types';
 import { BibleVersion } from '@utils/type';
 import supabase from '@/lib/supabase';
-import { BIBLE_VERSIONS } from '@utils/constants';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { supabaseResponseHandler } from '@/lib/api/supabaseResponseHandler';
+import { BIBLE_VERSIONS } from '@/mock/mockData';
 
 const getKorVersesDetail = async (verseIds: Verse['idx'][]) => {
   const res = await supabase
@@ -33,7 +33,7 @@ const getGaeVersesDetail = async (verseIds: Verse['idx'][]) => {
   );
 };
 
-const { KOR: BV_KOR, GAE: BV_GAE } = BIBLE_VERSIONS;
+const [BV_KOR, BV_GAE] = BIBLE_VERSIONS;
 
 export const getVersesDetail = async (
   verseIds: Verse['idx'][],

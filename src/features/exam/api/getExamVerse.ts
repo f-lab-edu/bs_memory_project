@@ -1,10 +1,10 @@
 import { Verse } from '@/types/data.types';
 import { BibleVersion } from '@utils/type';
 import supabase from '@/lib/supabase';
-import { BIBLE_VERSIONS } from '@utils/constants';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { VerseId } from '@features/verseSelect/types/verseSummaryData.types';
 import { supabaseResponseHandler } from '@/lib/api/supabaseResponseHandler';
+import { BIBLE_VERSIONS } from '@/mock/mockData';
 
 const getKorExamVerse = async (verseIds: Verse['idx'][], count: number) => {
   const res = await supabase
@@ -33,7 +33,7 @@ const getGaeExamVerse = async (verseIds: Verse['idx'][], count: number) => {
   );
 };
 
-const { KOR: BV_KOR, GAE: BV_GAE } = BIBLE_VERSIONS;
+const [BV_KOR, BV_GAE] = BIBLE_VERSIONS;
 
 export const getExamVerse = async (
   verseIds: VerseId[],
