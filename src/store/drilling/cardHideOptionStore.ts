@@ -1,5 +1,5 @@
 import { create } from 'zustand/index';
-import { CardHideOption } from '@features/drilling/types/cardHideOption.types';
+import { CardHideOption } from '@features/cardHideOptionSelect/types';
 import { CARD_HIDE_OPTIONS } from '@/mock/mockData';
 
 type CardHideOptionState = {
