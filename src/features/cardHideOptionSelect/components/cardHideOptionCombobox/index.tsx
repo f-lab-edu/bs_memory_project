@@ -1,12 +1,9 @@
-import {
-  CommonCombobox,
-  CommonComboboxItem,
-} from 'src/shared/ui/commonCombobox';
+import { CommonCombobox, CommonComboboxItem } from '@/shared/ui/commonCombobox';
 import { useCardHideOptionStore } from '@store/drilling/cardHideOptionStore';
 import { useShallow } from 'zustand/react/shallow';
-import { useCardHideOptions } from '@features/drilling/api/getCardHideOptions';
+import { useCardHideOptions } from '@features/cardHideOptionSelect/api/getCardHideOptions';
 
-function CardHideOptionSelect() {
+function CardHideOptionCombobox() {
   const selectedItem = useCardHideOptionStore(
     useShallow(({ cardHideOption: { name, code } }) => ({
       name,
@@ -34,4 +31,4 @@ function CardHideOptionSelect() {
   );
 }
 
-export default CardHideOptionSelect;
+export default CardHideOptionCombobox;

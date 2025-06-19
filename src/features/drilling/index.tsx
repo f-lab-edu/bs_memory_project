@@ -2,33 +2,15 @@ import CardDisplay from 'src/features/drilling/components/verseDisplay';
 import { ComposedBoundary } from '@/lib/error/ComposedBoundary';
 import ErrorMessage from '@/lib/error/ErrorMessage';
 import Loader from '@/shared/ui/Loader';
-import { CommonCombobox } from '@/shared/ui/commonCombobox';
-import { Field } from '@headlessui/react';
-import CardHideOptionSelect from '@features/drilling/components/cardHideOptionSelect';
 import BibleVersionSelect from '@features/bibleVersionSelect';
-import COMBOBOX_LABEL_TEXTS from '@/constants/comboboxLabelTexts';
+import CardHideOptionSelect from '@features/cardHideOptionSelect';
 
 function Drilling() {
   return (
     <div className='flex w-full max-w-[800px] grow flex-col items-center justify-center space-y-4'>
       <div className='flex h-[100px] w-full items-center justify-around mobile:w-full mobile:space-x-3'>
         <BibleVersionSelect />
-        <Field className='flex min-w-[30%] flex-col items-start'>
-          <CommonCombobox.Label>
-            {COMBOBOX_LABEL_TEXTS.CARD_HIDE_OPTION}
-          </CommonCombobox.Label>
-          <ComposedBoundary
-            fallbackRender={({ error, resetErrorBoundary }) => (
-              <ErrorMessage
-                error={error}
-                resetErrorBoundary={resetErrorBoundary}
-              />
-            )}
-            suspenseFallback={<Loader />}
-          >
-            <CardHideOptionSelect />
-          </ComposedBoundary>
-        </Field>
+        <CardHideOptionSelect />
       </div>
       <ComposedBoundary
         fallbackRender={({ resetErrorBoundary, error }) => (
