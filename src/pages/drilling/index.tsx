@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
-import Drilling from '@features/drilling';
 import { useVerseSelectStore } from '@store/verseSelectStore';
 import { useEffect } from 'react';
 import Nav from '@/shared/ui/Nav';
 import PAGE_HEADING_TEXTS from '@/constants/pageHeadingTexts';
 import LINK_TEXTS from '@/constants/linkTexts';
+import BibleVersionSelect from '@features/bibleVersionSelect';
+import CardHideOptionSelect from '@features/cardHideOptionSelect';
+import VerseCardDisplay from '@features/verseCardDisplay';
 
 function DrillingPage() {
   const navigate = useNavigate();
@@ -27,7 +29,15 @@ function DrillingPage() {
         </Nav.Container>
       </Nav>
       <h1 className='sr-only'>{PAGE_HEADING_TEXTS.DRILLING}</h1>
-      {hasSelectedVerse() && <Drilling />}
+      {hasSelectedVerse() && (
+        <div className='flex w-full max-w-[800px] grow flex-col items-center justify-center space-y-4'>
+          <div className='flex h-[100px] w-full items-center justify-around mobile:w-full mobile:space-x-3'>
+            <BibleVersionSelect />
+            <CardHideOptionSelect />
+          </div>
+          <VerseCardDisplay />
+        </div>
+      )}
     </>
   );
 }
