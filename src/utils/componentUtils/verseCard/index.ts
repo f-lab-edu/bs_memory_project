@@ -1,4 +1,4 @@
-import { VerseDetailData } from '@features/drilling/components/verseDisplay/verseCard/type';
+import { VerseDetailData } from '@features/verseCardDisplay/components/verseCard/type';
 
 export const createVerseCardTestId = <T extends Pick<VerseDetailData, 'idx'>>(
   data: T,

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { BibleVersion } from '@utils/type';
-import { BIBLE_VERSIONS } from '@utils/constants';
+import { BIBLE_VERSIONS } from '@/mock/mockData';
 
 type BibleVersionState = {
   bibleVersion: BibleVersion;
@@ -12,8 +12,10 @@ type BibleVersionAction = {
 
 type BibleVersionStore = BibleVersionState & BibleVersionAction;
 
+const [BIBLE_VERSION_KOR] = BIBLE_VERSIONS;
+
 const initialState: BibleVersionState = {
-  bibleVersion: BIBLE_VERSIONS.KOR,
+  bibleVersion: BIBLE_VERSION_KOR,
 };
 
 export const useBibleVersionStore = create<BibleVersionStore>()(set => ({

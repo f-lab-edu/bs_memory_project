@@ -1,30 +1,39 @@
-import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { render } from '@/lib/test/testUtils/render';
-import { cleanup, screen, waitFor, within } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import {
   CommonCombobox,
   CommonComboboxItem,
 } from '@/shared/ui/commonCombobox/index';
-import { BIBLE_VERSIONS_LIST } from '@utils/constants';
 import { Field } from '@headlessui/react';
 
-const label = '성경버전';
-const items: CommonComboboxItem[] = BIBLE_VERSIONS_LIST.map(
-  ({ name, code }) => ({
-    name,
-    value: code,
-    id: code,
-  }),
-);
-const selectedItem: CommonComboboxItem = items[0];
+const COMBOBOX_LABEL = 'COMBOBOX';
+const items: CommonComboboxItem[] = [
+  {
+    id: 'option-1-id',
+    name: 'option-1',
+    value: 'option-1-value',
+  },
+  {
+    id: 'option-2-id',
+    name: 'option-2',
+    value: 'option-2-value',
+  },
+  {
+    id: 'option-3-id',
+    name: 'option-3',
+    value: 'option-3-value',
+  },
+];
+const selectedItem = items[0];
 const handleChangeCombobox = vi.fn<(item: CommonComboboxItem) => void>();
 
 describe('CommonCombobox Test', () => {
   beforeEach(() => {
     render(
       <Field>
-        <CommonCombobox.Label>{label}</CommonCombobox.Label>
+        <CommonCombobox.Label>{COMBOBOX_LABEL}</CommonCombobox.Label>
         <CommonCombobox
           items={items}
           selectedItem={selectedItem}
@@ -33,11 +42,12 @@ describe('CommonCombobox Test', () => {
       </Field>,
     );
   });
-  afterEach(() => cleanup());
 
-  test('Combobox renders', async () => {
+  test('renders combobox, combobox button with first item selected', async () => {
     await waitFor(() => {
-      expect(screen.queryByRole('combobox', { name: label })).not.toBeNull();
+      expect(
+        screen.queryByRole('combobox', { name: COMBOBOX_LABEL }),
+      ).not.toBeNull();
       expect(screen.queryByRole('button', { expanded: false })).not.toBeNull();
       expect(screen.queryByDisplayValue(selectedItem.name)).not.toBeNull();
     });

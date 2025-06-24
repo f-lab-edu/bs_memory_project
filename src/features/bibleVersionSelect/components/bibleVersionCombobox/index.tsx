@@ -1,12 +1,9 @@
-import {
-  CommonCombobox,
-  CommonComboboxItem,
-} from 'src/shared/ui/commonCombobox';
+import { CommonCombobox, CommonComboboxItem } from '@/shared/ui/commonCombobox';
 import { useBibleVersionStore } from '@store/bibleVersionStore';
 import { useShallow } from 'zustand/react/shallow';
-import { useBibleVersions } from '@features/drilling/api/getBibleVersions';
+import { useBibleVersions } from '@features/bibleVersionSelect/api/getBibleVersions';
 
-function BibleVersionSelect() {
+function BibleVersionCombobox() {
   const selectedItem = useBibleVersionStore(
     useShallow(({ bibleVersion: { name, code } }) => ({
       name,
@@ -36,4 +33,4 @@ function BibleVersionSelect() {
   );
 }
 
-export default BibleVersionSelect;
+export default BibleVersionCombobox;
